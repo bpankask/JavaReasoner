@@ -1,1 +1,1 @@
-# Basic reasoner rdf/s complete rule reasoner. 
+# Basic rdf/s complete rule reasoner. 

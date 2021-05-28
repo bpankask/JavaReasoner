@@ -1,0 +1,55 @@
+//All rules taken from official w3c website -- https://www.w3.org/TR/rdf11-mt/#entailment-rules-informative.
+//-----------------------------RDF Entailment Rules------------------------------//
+//[rdfD1: (?x ?a ?l), isLiteral(?l), isDType(?l,xsd:string), makeSkolem(?b, ?l) -> (?x ?a ?b), (?b rdf:type xsd:string)]
+//[rdfD1: (?x ?a ?l), isLiteral(?l), isDType(?l,rdf:langString), makeSkolem(?b, ?l) -> (?x ?a ?b), (?b rdf:type rdf:langString)]
+//[rdfD1: (?x ?a ?l), isLiteral(?l), isDType(?l,xsd:boolean), makeSkolem(?b, ?l) -> (?x ?a ?b), (?b rdf:type xsd:boolean)]
+//[rdfD1: (?x ?a ?l), isLiteral(?l), isDType(?l,xsd:date), makeSkolem(?b, ?l) -> (?x ?a ?b), (?b rdf:type xsd:date)]
+//[rdfD1: (?x ?a ?l), isLiteral(?l), isDType(?l,xsd:dateTime), makeSkolem(?b, ?l) -> (?x ?a ?b), (?b rdf:type xsd:dateTime)]
+//[rdfD1: (?x ?a ?l), isLiteral(?l), isDType(?l,xsd:nonNegativeInteger), makeSkolem(?b, ?l) -> (?x ?a ?b), (?b rdf:type xsd:nonNegativeInteger)]
+//[rdfD1: (?x ?a ?l), isLiteral(?l), isDType(?l,xsd:anyURI), makeSkolem(?b, ?l) -> (?x ?a ?b), (?b rdf:type xsd:anyURI)]
+//[rdfD1: (?x ?a ?l), isLiteral(?l), isDType(?l,xsd:int), makeSkolem(?b, ?l) -> (?x ?a ?b), (?b rdf:type xsd:int)]
+//[rdfD1: (?x ?a ?l), isLiteral(?l), isDType(?l,xsd:integer), makeSkolem(?b, ?l) -> (?x ?a ?b), (?b rdf:type xsd:integer)]
+//[rdfD1: (?x ?a ?l), isLiteral(?l), isDType(?l,xsd:float), makeSkolem(?b, ?l) -> (?x ?a ?b), (?b rdf:type xsd:float)]
+
+[rdfD2: (?u ?a ?y) -> (?a rdf:type rdf:Property)]
+
+//-----------------------------RDFS Entailment Rules-----------------------------
+//-> ( xsd:string  rdf:type rdfs:Datatype ) .
+//-> ( rdf:langString  rdf:type rdfs:Datatype ) .
+//-> ( xsd:boolean  rdf:type rdfs:Datatype ) .
+//-> ( xsd:date  rdf:type rdfs:Datatype ) .
+//-> ( xsd:dateTime  rdf:type rdfs:Datatype ) .
+//-> ( xsd:nonNegativeInteger  rdf:type rdfs:Datatype ) .
+//-> ( xsd:anyURI  rdf:type rdfs:Datatype ) .
+//-> ( xsd:int  rdf:type rdfs:Datatype ) .
+//-> ( xsd:integer  rdf:type rdfs:Datatype ) .
+//-> ( xsd:float  rdf:type rdfs:Datatype ) .
+
+[rdfs2: (?a rdfs:domain ?x), (?u ?a ?y) -> (?u rdf:type ?x)]
+
+[rdfs3: (?a rdfs:range ?x), ( ?u ?a ?v) -> ( ?v rdf:type ?x)]
+
+//[rdfs4a: (?u ?a ?x) -> (?u rdf:type rdfs:Resource)]
+
+//[rdfs4b: (?u ?a ?v) -> ( ?v rdf:type rdfs:Resource)]
+
+[rdfs5: (?u rdfs:subPropertyOf ?v), (?v rdfs:subPropertyOf ?x) -> (?u rdfs:subPropertyOf ?x)]
+
+[rdfs6: (?u rdf:type rdf:Property) -> (?u rdfs:subPropertyOf ?u)]
+
+[rdfs7: (?a rdfs:subPropertyOf ?b), (?u ?a ?y) -> (?u ?b ?y)]
+
+//[rdfs8: (?u rdf:type rdfs:Class) -> (?u rdfs:subClassOf rdfs:Resource)]
+
+[rdfs9: (?u rdfs:subClassOf ?x), (?v rdf:type ?u) -> (?v rdf:type ?x)]
+
+[rdfs10: (?u rdf:type rdfs:Class) -> (?u rdfs:subClassOf ?u)]
+
+[rdfs11: (?u rdfs:subClassOf ?v), (?v rdfs:subClassOf ?x) -> (?u rdfs:subClassOf ?x)]
+
+//[rdfs12: (?u rdf:type rdfs:ContainerMembershipProperty) -> (?u rdfs:subPropertyOf rdfs:member)]
+
+//[rdfs13: (?u rdf:type rdfs:Datatype) -> (?u rdfs:subClassOf rdfs:Literal)]
+
+//generalized rule
+//[GrdfD1: (?x ?a ?l), isLiteral(?l), testGrdfD1(?l) -> ]

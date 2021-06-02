@@ -1,14 +1,9 @@
 package Reasoner;
 
 import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
-import org.apache.jena.ontology.OntModel;
+import JenaBuiltins.*;
 import org.apache.jena.rdf.model.InfModel;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
@@ -19,32 +14,31 @@ import org.apache.jena.reasoner.rulesys.Rule;
 import org.apache.jena.vocabulary.ReasonerVocabulary;
 
 
-public class TracingReasoner {
+public class ReasonerLogic {
 
     /**
      * Method to create custom reasoner, reason over ontology, and record the trace of every rule producing a new triple
-     * @param ontModel
+     * @param model
      * @param ruleFile
-     * @throws FileNotFoundException
      */
-    public static InfModel reasonAndTrace(OntModel ontModel, String ruleFile) throws FileNotFoundException {
+    public static Model reasonAndLogSupports(Model model, String ruleFile) {
 
         //register for custom method used in rule file
         BuiltinRegistry.theRegistry.register(new Property_Check());
+        BuiltinRegistry.theRegistry.register(new Log_Supports_For_Two_Inputs());
+        BuiltinRegistry.theRegistry.register(new Log_Supports_For_One_Input());
+
 
         //load rules
         List<Rule> rules = Rule.rulesFromURL(ruleFile);
 
         //creates reasoner with custom rules and enables tracing
         Reasoner reasoner = new GenericRuleReasoner(rules);
-        reasoner.setDerivationLogging(true);
-        reasoner.setParameter(ReasonerVocabulary.PROPtraceOn, Boolean.TRUE);
 
         //creates an inference model using custom reasoner and the read in ontology model
         //contains the original KG and inferences
-        InfModel inf = ModelFactory.createInfModel(reasoner, ontModel);
-
-        return inf;
+        InfModel inf = ModelFactory.createInfModel(reasoner, model);
+        return inf.getDeductionsModel();
     }
 
     /**
@@ -121,5 +115,4 @@ public class TracingReasoner {
             makeWrongTriple(allSubAndObj, allPredicates, correctTriples, invalidTriples);
         }
     }
-
 }

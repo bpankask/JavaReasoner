@@ -7,7 +7,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Jena Lib" level="project" />
-    <orderEntry type="library" name="jackson-databind-2.11.0" level="project" />
+    <orderEntry type="library" name="jena-dboe-base-3.15.0" level="project" />
   </component>
 </module>

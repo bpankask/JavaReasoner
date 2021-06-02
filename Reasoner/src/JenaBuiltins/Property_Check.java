@@ -1,4 +1,4 @@
-package Reasoner;
+package JenaBuiltins;
 
 import org.apache.jena.graph.Node;
 import org.apache.jena.reasoner.rulesys.Builtin;

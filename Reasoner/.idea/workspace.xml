@@ -1,28 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="60b19ed1-ce3f-4f6f-9531-dbc7914c00da" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/Desktop.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CIS308/Lab04/.idea/Lab04.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CIS308/Lab04b/.idea/Lab04b.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CIS308/Lab05/.idea/Lab05.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CIS308/Lab2/.idea/Lab2.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CIS308/lab03/.idea/lab03.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CIS308/untitled/.idea/untitled.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CIS501/.idea/CIS308.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CIS501/TeamProjectGit/Team-04-ZA-Spring2021" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../JavaRDFSReasoner/JavaRDFSReasoner.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../JavaRDFSReasoner/OntModelForCorrectingReadIssue.ttl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../JavaRDFSReasoner/src/JSONHandler/JsonParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lab05/queue.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lab05/queue.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MyReasoner/JavaRDFSReasoner" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ParserToCheckForDatatypes/ParserToCheckForDatatypes.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/JsonDataWithInferredTriples.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OntModelForCorrectingReadIssue.ttl" beforeDir="false" />
-    </list>
+    <list default="true" id="60b19ed1-ce3f-4f6f-9531-dbc7914c00da" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +16,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="IgnoredFileRootStore">
     <option name="generatedRoots">
@@ -50,15 +29,20 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Reasoner" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Brayden Pankaskie\Desktop\JavaReasoner\Reasoner\src\Reasoner" />
       <recent name="C:\Users\Brayden Pankaskie\Desktop\JavaRDFSReasoner\src\Reasoner" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Brayden Pankaskie\Desktop\JavaReasoner\Reasoner\src\Reasoner" />
+      <recent name="C:\Users\Brayden Pankaskie\Desktop\JavaReasoner\Reasoner\src" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -79,7 +63,7 @@
       <module name="Reasoner" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Reasoner.*" />
+          <option name="PATTERN" value="JenaBuiltins.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -122,10 +106,13 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/RDFGraphManipulations/GetInformation.java</url>
-          <line>48</line>
-          <option name="timeStamp" value="7" />
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/JenaBuiltins/Log_Supports_For_One_Input.java</url>
+          <line>31</line>
+          <properties class="JenaBuiltins.Log_Supports_For_One_Input" method="headAction">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="27" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

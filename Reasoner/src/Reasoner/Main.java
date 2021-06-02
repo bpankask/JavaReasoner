@@ -1,5 +1,6 @@
 package Reasoner;
 
+import IOHandler.ReasonerLoggingCoordinator;
 import JSONHandler.CreateOntologyFromJson;
 import JSONHandler.JsonParser;
 import JSONHandler.JsonWriter;
@@ -16,8 +17,10 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args){
+        String folderPath = "C:\\Users\\Brayden Pankaskie\\Desktop\\LabStuff\\TestFiles";
+        String rulePath = "Reasoner\\Rules.txt";
 
-
+        runTimeStepReasoner(folderPath, rulePath);
 
     }//end main
 
@@ -30,6 +33,48 @@ public class Main {
         File folder = new File(folderName);
         File[] files = folder.listFiles();
         return files;
+    }
+
+    public static void runTimeStepReasoner(String sourceFolderPath, String rulePath) {
+        //gets files in specified folder
+        File[] files = getFiles(sourceFolderPath);
+
+        for(File f : files) {
+            boolean iterateReasoner = true;
+
+            //Create empty ont model.
+            OntModel ontModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);
+
+            //Reads in the ontology at specified location.
+            ontModel.read(f.toString());
+
+            //Initialized a file with base kg before any inferences.
+            ReasonerLoggingCoordinator.logBaseKG(GetInformation.getOriginalTriplesFromOntologyAsTriples(ontModel), f.getName());
+
+            //Create an empty inference model from a rule reasoner and an empty
+            // model.  Reasoner is not empty but will return nothing because default model is empty.
+           // InfModel tempModel = ModelFactory.createInfModel(new GenericRuleReasoner(Rule.rulesFromURL(rulePath)),
+                   // ModelFactory.createDefaultModel());
+            Model tempModel = ModelFactory.createDefaultModel();
+
+            while (iterateReasoner) {
+                ReasonerLoggingCoordinator.newIterationStep();
+
+                tempModel.add(ReasonerLogic.reasonAndLogSupports(ontModel, rulePath));
+                /*
+                Do above for several rule files.
+                 */
+                //Check to see if new information has been added.
+                if (!tempModel.isEmpty()) {
+                    //Add new information into model for next iteration.
+                    ontModel.add(tempModel);
+
+                    //Reset/clear tempModel so it can contain just inferences for current step.
+                    tempModel = ModelFactory.createDefaultModel();
+
+                } else {iterateReasoner = false;}
+            }//end while
+        }
     }
 
     /**
@@ -63,10 +108,10 @@ public class Main {
                       Adds axioms to the ontology that is passed to final inference model so that
                       these axioms are not in the final deductions model.
                     */
-                    InfModel axiomAddedModel = TracingReasoner.reasonAndTraceModel(model, "Reasoner\\RDF_RDFS_Axioms.txt");
+                    InfModel axiomAddedModel = ReasonerLogic.reasonAndTraceModel(model, "Reasoner\\RDF_RDFS_Axioms.txt");
 
                     //Creates inference model
-                    InfModel infModel = TracingReasoner.reasonAndTraceModel(axiomAddedModel, "Reasoner\\Rules.txt");
+                    InfModel infModel = ReasonerLogic.reasonAndTraceModel(axiomAddedModel, "Reasoner\\Rules.txt");
 
                     //creates output file
                     count++;
@@ -109,7 +154,7 @@ public class Main {
                 //creates models
                 CreateOntologyFromJson.createOntology(jp, ontModel);
 
-                InfModel infModel = TracingReasoner.reasonAndTrace(ontModel, "Reasoner\\Rules.txt");
+                InfModel infModel = ReasonerLogic.reasonAndTraceModel(ontModel, "Reasoner\\Rules.txt");
 
                 //creates output file
                 String outputFileName = "OutputFiles/" + file.getName().toString();
@@ -117,7 +162,7 @@ public class Main {
                 /*//creates noisy triples
                 List<String> correctTriples = Arrays.asList(ParseMethods.getOriginalTriplesFromOntology(ontModel));
                 List<String> invalidTriples = new ArrayList<>();
-                TracingReasoner.makeNWrongTriples(jp.getSubjects(), jp.getObjects(), jp.getPredicates(),
+                ReasonerLogic.makeNWrongTriples(jp.getSubjects(), jp.getObjects(), jp.getPredicates(),
                         correctTriples,invalidTriples, 5);
                 */
 

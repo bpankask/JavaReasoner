@@ -1,5 +1,6 @@
 package RDFGraphManipulations;
 
+import org.apache.jena.graph.Triple;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.rdf.model.*;
 
@@ -31,6 +32,25 @@ public abstract class GetInformation {
         }
 
         return list.toArray(new String[list.size()]);
+    }
+
+    /**
+     * Returns a list of all the triples in the model as a list of Jena Triple.
+     * @param model
+     * @return
+     */
+    public static List<Triple> getOriginalTriplesFromOntologyAsTriples(Model model) {
+
+        List<Triple> list = new ArrayList<Triple>();
+
+        StmtIterator iter = model.listStatements();
+
+        while (iter.hasNext()) {
+            Statement stmt = iter.nextStatement();// get next statement
+            list.add(stmt.asTriple());
+        }
+
+        return list;
     }
 
     public static String[] getOriginalTriplesFromOntologyWithoutDatatypes(OntModel model) {

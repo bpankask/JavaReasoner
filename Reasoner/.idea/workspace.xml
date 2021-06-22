@@ -11,7 +11,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="JUnit5 Test Class" />
+        <option value="Interface" />
         <option value="Class" />
+        <option value="JUnit4 Test Class" />
       </list>
     </option>
   </component>
@@ -29,20 +32,37 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Reasoner" />
+    <property name="Downloaded.Files.Path.Enabled" value="true" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.Groovy JUnit" value="" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="Reasoner" />
+      <recent name="RDFGraphManipulations" />
+      <recent name="InferenceTree" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Brayden Pankaskie\Desktop\JavaReasoner\Reasoner\tests" />
       <recent name="C:\Users\Brayden Pankaskie\Desktop\JavaReasoner\Reasoner\src\Reasoner" />
       <recent name="C:\Users\Brayden Pankaskie\Desktop\JavaRDFSReasoner\src\Reasoner" />
     </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Brayden Pankaskie\Desktop\JavaReasoner\Reasoner\src\Reasoner" />
       <recent name="C:\Users\Brayden Pankaskie\Desktop\JavaReasoner\Reasoner\src" />
+      <recent name="C:\Users\Brayden Pankaskie\Desktop\JavaReasoner\Reasoner\src\Reasoner" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -57,23 +77,102 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Reasoner.Main" />
+  <component name="RunManager" selected="JUnit.TreeManagerTest.encodeStatement_InfEncodingIsCorrectForMapAndActualValue">
+    <configuration name="All in Reasoner" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Reasoner" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainTest.createHashOfTreeNodes" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
       <module name="Reasoner" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="JenaBuiltins.*" />
+          <option name="PATTERN" value="Reasoner.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="Reasoner" />
+      <option name="MAIN_CLASS_NAME" value="Reasoner.MainTest" />
+      <option name="METHOD_NAME" value="createHashOfTreeNodes" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TreeManagerTest.assignTimeStepsAndEncoding_CorrectInferenceNodeEncodingConcatenation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Reasoner" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="InferenceTree.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="InferenceTree" />
+      <option name="MAIN_CLASS_NAME" value="InferenceTree.TreeManagerTest" />
+      <option name="METHOD_NAME" value="assignTimeStepsAndEncoding_CorrectInferenceNodeEncodingConcatenation" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TreeManagerTest.assignTimeStepsAndEncoding_CorrectInferenceNodeSupportEncodingConcatenation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Reasoner" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="InferenceTree.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="InferenceTree" />
+      <option name="MAIN_CLASS_NAME" value="InferenceTree.TreeManagerTest" />
+      <option name="METHOD_NAME" value="assignTimeStepsAndEncoding_CorrectInferenceNodeSupportEncodingConcatenation" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TreeManagerTest.encodeNode_FactEncodingIsCorrectForMapAndActualValue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Reasoner" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="InferenceTree.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="InferenceTree" />
+      <option name="MAIN_CLASS_NAME" value="InferenceTree.TreeManagerTest" />
+      <option name="METHOD_NAME" value="encodeNode_FactEncodingIsCorrectForMapAndActualValue" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TreeManagerTest.encodeStatement_InfEncodingIsCorrectForMapAndActualValue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Reasoner" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="InferenceTree.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="InferenceTree" />
+      <option name="MAIN_CLASS_NAME" value="InferenceTree.TreeManagerTest" />
+      <option name="METHOD_NAME" value="encodeStatement_InfEncodingIsCorrectForMapAndActualValue" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.TreeManagerTest.encodeStatement_InfEncodingIsCorrectForMapAndActualValue" />
+        <item itemvalue="JUnit.All in Reasoner" />
+        <item itemvalue="JUnit.TreeManagerTest.assignTimeStepsAndEncoding_CorrectInferenceNodeSupportEncodingConcatenation" />
+        <item itemvalue="JUnit.TreeManagerTest.assignTimeStepsAndEncoding_CorrectInferenceNodeEncodingConcatenation" />
+        <item itemvalue="JUnit.TreeManagerTest.encodeNode_FactEncodingIsCorrectForMapAndActualValue" />
       </list>
     </recent_temporary>
   </component>
@@ -89,6 +188,9 @@
       <updated>1602700520063</updated>
     </task>
     <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.ttl" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -107,14 +209,29 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/JenaBuiltins/Log_Supports_For_One_Input.java</url>
-          <line>31</line>
-          <properties class="JenaBuiltins.Log_Supports_For_One_Input" method="headAction">
+          <url>file://$PROJECT_DIR$/src/InferenceTree/InfTreeManager.java</url>
+          <line>18</line>
+          <properties class="InferenceTree.InfTreeManager">
             <option name="EMULATED" value="true" />
           </properties>
-          <option name="timeStamp" value="27" />
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="JUnit">
+        <watch expression="tableOfNodes.entrySet().toArray()[0]" />
+      </configuration>
+      <configuration name="Application">
+        <watch expression="((FBRuleInfGraph)((RuleDerivation)deriv).infGraph).bEngine" custom="org.apache.jena.reasoner.rulesys.RuleDerivation,org.apache.jena.reasoner.rulesys.FBRuleInfGraph" />
+        <watch expression="((FBRuleInfGraph)((RuleDerivation)deriv).infGraph).bEngine" language="JAVA" custom="org.apache.jena.reasoner.rulesys.RuleDerivation,org.apache.jena.reasoner.rulesys.FBRuleInfGraph" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Reasoner$All_in_Reasoner.ic" NAME="All in Reasoner Coverage Results" MODIFIED="1624388640100" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Reasoner$Reasoner_in_Reasoner.ic" NAME="Reasoner in Reasoner Coverage Results" MODIFIED="1622846341376" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>Reasoner.*</FILTER>
+    </SUITE>
   </component>
 </project>

@@ -5,6 +5,7 @@ import org.apache.jena.ontology.OntModel;
 import org.apache.jena.rdf.model.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public abstract class GetInformation {
@@ -39,17 +40,16 @@ public abstract class GetInformation {
      * @param model
      * @return
      */
-    public static List<Triple> getOriginalTriplesFromOntologyAsTriples(Model model) {
+    public static List<Statement> getOriginalTriplesFromOntologyAsStatements(Model model) {
 
-        List<Triple> list = new ArrayList<Triple>();
+        List<Statement> list = new ArrayList<Statement>();
 
         StmtIterator iter = model.listStatements();
 
         while (iter.hasNext()) {
             Statement stmt = iter.nextStatement();// get next statement
-            list.add(stmt.asTriple());
+            list.add(stmt);
         }
-
         return list;
     }
 
@@ -114,4 +114,5 @@ public abstract class GetInformation {
 
         return list.toArray(new String[list.size()]);
     }
+
 }

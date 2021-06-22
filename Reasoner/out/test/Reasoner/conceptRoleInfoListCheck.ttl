@@ -1,0 +1,76 @@
+@prefix gfo:   <http://www.onto-med.de/ontologies/gfo.owl#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+
+owl:TransitiveProperty
+        a       rdfs:Resource .
+
+gfo:goal_of  a              rdfs:Resource , owl:ObjectProperty ;
+        rdfs:comment        "\"goal\" here refers to \"final state\" in (Burek, 2006)."@en ;
+        rdfs:comment        [ a  rdfs:Resource , rdf:langString ] ;
+        rdfs:domain         _:b1 ;
+        rdfs:subPropertyOf  gfo:function_determinant_of ;
+        owl:inverseOf       gfo:has_goal .
+
+gfo:Relator  a            rdfs:Resource , owl:Class ;
+        rdfs:subClassOf   _:b2 , gfo:Entity , _:b3 , gfo:Item , gfo:Individual ;
+        owl:disjointWith  gfo:Property .
+
+owl:equivalentClass  a      rdfs:Resource , rdf:Property ;
+        rdfs:subPropertyOf  owl:equivalentClass .
+
+gfo:Amount_of_substrate
+        a                    rdfs:Resource , owl:Class ;
+        rdfs:subClassOf      _:b2 , gfo:Entity , _:b4 , _:b5 , gfo:Concrete , _:b3 , gfo:Item , gfo:Individual , gfo:Presential , gfo:Continuous ;
+        owl:equivalentClass  gfo:Mass_entity .
+
+gfo:Item  a               rdfs:Resource , owl:Class ;
+        rdfs:comment      "An item is everything which is not a set. Also called ur-element." ;
+        rdfs:comment      [ a  rdfs:Resource , xsd:string ] ;
+        rdfs:subClassOf   _:b2 , gfo:Entity ;
+        owl:disjointWith  gfo:Set ;
+        owl:unionOf       [ a          rdfs:Resource ;
+                            rdf:first  gfo:Category ;
+                            rdf:rest   [ a          rdfs:Resource ;
+                                         rdf:first  gfo:Individual ;
+                                       ]
+                          ] .
+
+_:b6    a                   rdfs:Resource , owl:Restriction ;
+        owl:onProperty      gfo:instantiated_by ;
+        owl:someValuesFrom  gfo:Item .
+
+gfo:Set  a                rdfs:Resource , owl:Class ;
+        rdfs:comment      "Set is a category pertaining to the individuals in the ZFC set theory." ;
+        rdfs:comment      [ a  rdfs:Resource , xsd:string ] ;
+        rdfs:subClassOf   gfo:Entity ;
+        owl:disjointWith  gfo:Item .
+
+gfo:Configuration  a      rdfs:Resource , owl:Class ;
+        rdfs:comment      "We consider a collection of presential facts which exist at the same time-boundary. Such collections may be considered themselves as presentials, and we call them configurations.\n\nIt is further required that configurations contain at least one material object." ;
+        rdfs:comment      [ a  rdfs:Resource , xsd:string ] ;
+        rdfs:subClassOf   gfo:Item , _:b4 , gfo:Entity , gfo:Concrete , _:b5 , gfo:Individual , _:b2 , _:b3 , gfo:Presential ;
+        owl:disjointWith  gfo:Material_object , gfo:Material_boundary .
+
+owl:cardinality  a          rdfs:Resource , rdf:Property ;
+        rdfs:subPropertyOf  owl:cardinality .
+
+gfo:Abstract  a           rdfs:Resource , owl:Class ;
+        rdfs:comment      "Abstract individuals are independent from time and space (they are not in time and space).\nExamples: the number \"2\" or pi."@en ;
+        rdfs:comment      [ a  rdfs:Resource , rdf:langString ] ;
+        rdfs:subClassOf   _:b2 , gfo:Entity , _:b3 , gfo:Item , gfo:Individual ;
+        owl:disjointWith  gfo:Space_time , gfo:Concrete .
+
+gfo:has_left_time_boundary
+        a                   rdfs:Resource , owl:ObjectProperty , owl:FunctionalProperty ;
+        rdfs:subPropertyOf  gfo:has_boundary , gfo:has_time_boundary ;
+        owl:inverseOf       gfo:left_boundary_of .
+
+gfo:spatial_boundary_of
+        a                   rdfs:Resource , owl:ObjectProperty ;
+        rdfs:domain         gfo:Spatial_boundary ;
+        rdfs:range          gfo:Space ;
+        rdfs:subPropertyOf  gfo:depends_on , gfo:boundary_of ;
+        owl:inverseOf       gfo:has_spatial_boundary .

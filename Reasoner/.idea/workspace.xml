@@ -48,21 +48,22 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="JSONHandler" />
       <recent name="Reasoner" />
       <recent name="RDFGraphManipulations" />
       <recent name="InferenceTree" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Brayden Pankaskie\Desktop\JavaReasoner\Reasoner\src" />
+      <recent name="C:\Users\Brayden Pankaskie\Desktop\JavaReasoner\Reasoner\src\Reasoner" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Brayden Pankaskie\Desktop\JavaReasoner\Reasoner\tests" />
       <recent name="C:\Users\Brayden Pankaskie\Desktop\JavaReasoner\Reasoner\src\Reasoner" />
       <recent name="C:\Users\Brayden Pankaskie\Desktop\JavaRDFSReasoner\src\Reasoner" />
-    </key>
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Brayden Pankaskie\Desktop\JavaReasoner\Reasoner\src" />
-      <recent name="C:\Users\Brayden Pankaskie\Desktop\JavaReasoner\Reasoner\src\Reasoner" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -77,7 +78,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.TreeManagerTest.encodeStatement_InfEncodingIsCorrectForMapAndActualValue">
+  <component name="RunManager" selected="JUnit.SerializeDeepReasonerDataTest.serializeJson_CorrectJsonOutput">
     <configuration name="All in Reasoner" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Reasoner" />
       <option name="PACKAGE_NAME" value="" />
@@ -97,6 +98,22 @@
       <option name="PACKAGE_NAME" value="Reasoner" />
       <option name="MAIN_CLASS_NAME" value="Reasoner.MainTest" />
       <option name="METHOD_NAME" value="createHashOfTreeNodes" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SerializeDeepReasonerDataTest.serializeJson_CorrectJsonOutput" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Reasoner" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="JSONHandler.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="JSONHandler" />
+      <option name="MAIN_CLASS_NAME" value="JSONHandler.SerializeDeepReasonerDataTest" />
+      <option name="METHOD_NAME" value="serializeJson_CorrectJsonOutput" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -134,22 +151,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TreeManagerTest.encodeNode_FactEncodingIsCorrectForMapAndActualValue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Reasoner" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="InferenceTree.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="InferenceTree" />
-      <option name="MAIN_CLASS_NAME" value="InferenceTree.TreeManagerTest" />
-      <option name="METHOD_NAME" value="encodeNode_FactEncodingIsCorrectForMapAndActualValue" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="TreeManagerTest.encodeStatement_InfEncodingIsCorrectForMapAndActualValue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Reasoner" />
       <extension name="coverage">
@@ -168,11 +169,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.SerializeDeepReasonerDataTest.serializeJson_CorrectJsonOutput" />
         <item itemvalue="JUnit.TreeManagerTest.encodeStatement_InfEncodingIsCorrectForMapAndActualValue" />
         <item itemvalue="JUnit.All in Reasoner" />
         <item itemvalue="JUnit.TreeManagerTest.assignTimeStepsAndEncoding_CorrectInferenceNodeSupportEncodingConcatenation" />
         <item itemvalue="JUnit.TreeManagerTest.assignTimeStepsAndEncoding_CorrectInferenceNodeEncodingConcatenation" />
-        <item itemvalue="JUnit.TreeManagerTest.encodeNode_FactEncodingIsCorrectForMapAndActualValue" />
       </list>
     </recent_temporary>
   </component>

@@ -9,19 +9,19 @@ import InferenceTree.TreeManager;
 import InferenceTree.TreeNode;
 import JSONHandler.CreateOntologyFromJson;
 import JSONHandler.JsonParser;
+import JSONHandler.*;
 import JSONHandler.JsonWriter;
 import JenaBuiltins.*;
 import RDFGraphManipulations.ChangeInformation;
-import RDFGraphManipulations.EncodeMethod;
+import RDFGraphManipulations.MapEncoding;
 import RDFGraphManipulations.GetInformation;
-import RDFGraphManipulations.ScaledIntegerEncoding;
+import RDFGraphManipulations.ScaledIntegerMappedEncoding;
 import org.apache.commons.compress.utils.FileNameUtils;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntModelSpec;
 import org.apache.jena.rdf.model.InfModel;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
-import org.apache.jena.reasoner.Reasoner;
 import org.apache.jena.reasoner.rulesys.BuiltinRegistry;
 import org.apache.jena.reasoner.rulesys.GenericRuleReasoner;
 import org.apache.jena.reasoner.rulesys.Rule;
@@ -35,9 +35,9 @@ public class ReasonerLogic {
      * formed in.
      * @param filePath
      * @param rulePath
-     * @param tracePath
+     * @param storageFilePath
      */
-    public static InfModel[] runTimeStepReasoner(String filePath, String rulePath, String preProcessingPath, String tracePath) {
+    public static InfModel[] runTimeStepReasoner(String filePath, String rulePath, String preProcessingPath, String storageFilePath) {
 
         InfModel preReasoning = null;
         InfModel inf = null;
@@ -55,10 +55,11 @@ public class ReasonerLogic {
             //Create inference model.
             inf = ReasonerLogic.reasonAndTraceModel(preReasoning, rulePath);
 
-            //Encode graph using
-            EncodeMethod sie = new ScaledIntegerEncoding(inf);
+            //Encode graph using a specific method of encoding.
+            MapEncoding sie = new ScaledIntegerMappedEncoding(inf);
 
-            //Creates Tree manager for the tree representative of an inference graph.
+            //Creates Tree manager for in inference graph and a specified encoding.
+            //It will handle all tree manipulations and queries.
             TreeManager tm = new TreeManager(inf, sie.getEncodedMap());
 
             //Creates a infTree from a hashtable of treeNodes.
@@ -71,6 +72,12 @@ public class ReasonerLogic {
                     tm.assignTimeStepsAndEncoding((InferenceNode) node);
                 }
             }//end while
+
+            // Creates Serializer object to store data in a particular json format.
+            List<ArrayList<Double>> kb = tm.getKB(20);
+            JsonSerializer js = new SerializeDeepReasonerData(kb, null,null, tm.getVectorMap(kb.size()));
+
+            js.writeJson(storageFilePath,js.serializeToJson());
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -53,17 +53,17 @@
       <recent name="RDFGraphManipulations" />
       <recent name="InferenceTree" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Brayden Pankaskie\Desktop\JavaReasoner\Reasoner\src" />
-      <recent name="C:\Users\Brayden Pankaskie\Desktop\JavaReasoner\Reasoner\src\Reasoner" />
-    </key>
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Brayden Pankaskie\Desktop\JavaReasoner\Reasoner\tests" />
       <recent name="C:\Users\Brayden Pankaskie\Desktop\JavaReasoner\Reasoner\src\Reasoner" />
       <recent name="C:\Users\Brayden Pankaskie\Desktop\JavaRDFSReasoner\src\Reasoner" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Brayden Pankaskie\Desktop\JavaReasoner\Reasoner\src" />
+      <recent name="C:\Users\Brayden Pankaskie\Desktop\JavaReasoner\Reasoner\src\Reasoner" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -78,7 +78,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.SerializeDeepReasonerDataTest.serializeJson_CorrectJsonOutput">
+  <component name="RunManager" selected="JUnit.All in Reasoner">
     <configuration name="All in Reasoner" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Reasoner" />
       <option name="PACKAGE_NAME" value="" />
@@ -119,39 +119,39 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TreeManagerTest.assignTimeStepsAndEncoding_CorrectInferenceNodeEncodingConcatenation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SerializeDeepReasonerDataTest.serializeToJson_CorrectJsonOutput" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Reasoner" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="InferenceTree.*" />
+          <option name="PATTERN" value="JSONHandler.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="InferenceTree" />
-      <option name="MAIN_CLASS_NAME" value="InferenceTree.TreeManagerTest" />
-      <option name="METHOD_NAME" value="assignTimeStepsAndEncoding_CorrectInferenceNodeEncodingConcatenation" />
+      <option name="PACKAGE_NAME" value="JSONHandler" />
+      <option name="MAIN_CLASS_NAME" value="JSONHandler.SerializeDeepReasonerDataTest" />
+      <option name="METHOD_NAME" value="serializeToJson_CorrectJsonOutput" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TreeManagerTest.assignTimeStepsAndEncoding_CorrectInferenceNodeSupportEncodingConcatenation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SerializeDeepReasonerDataTest.writeJson_JsonFileHasCorrectInput" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Reasoner" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="InferenceTree.*" />
+          <option name="PATTERN" value="JSONHandler.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="InferenceTree" />
-      <option name="MAIN_CLASS_NAME" value="InferenceTree.TreeManagerTest" />
-      <option name="METHOD_NAME" value="assignTimeStepsAndEncoding_CorrectInferenceNodeSupportEncodingConcatenation" />
+      <option name="PACKAGE_NAME" value="JSONHandler" />
+      <option name="MAIN_CLASS_NAME" value="JSONHandler.SerializeDeepReasonerDataTest" />
+      <option name="METHOD_NAME" value="writeJson_JsonFileHasCorrectInput" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TreeManagerTest.encodeStatement_InfEncodingIsCorrectForMapAndActualValue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TreeManagerTest.getVectorMap_NumOfVectorMapsIsCorrect" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Reasoner" />
       <extension name="coverage">
         <pattern>
@@ -161,7 +161,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="InferenceTree" />
       <option name="MAIN_CLASS_NAME" value="InferenceTree.TreeManagerTest" />
-      <option name="METHOD_NAME" value="encodeStatement_InfEncodingIsCorrectForMapAndActualValue" />
+      <option name="METHOD_NAME" value="getVectorMap_NumOfVectorMapsIsCorrect" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -169,11 +169,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.SerializeDeepReasonerDataTest.serializeJson_CorrectJsonOutput" />
-        <item itemvalue="JUnit.TreeManagerTest.encodeStatement_InfEncodingIsCorrectForMapAndActualValue" />
         <item itemvalue="JUnit.All in Reasoner" />
-        <item itemvalue="JUnit.TreeManagerTest.assignTimeStepsAndEncoding_CorrectInferenceNodeSupportEncodingConcatenation" />
-        <item itemvalue="JUnit.TreeManagerTest.assignTimeStepsAndEncoding_CorrectInferenceNodeEncodingConcatenation" />
+        <item itemvalue="JUnit.SerializeDeepReasonerDataTest.writeJson_JsonFileHasCorrectInput" />
+        <item itemvalue="JUnit.SerializeDeepReasonerDataTest.serializeToJson_CorrectJsonOutput" />
+        <item itemvalue="JUnit.SerializeDeepReasonerDataTest.serializeJson_CorrectJsonOutput" />
+        <item itemvalue="JUnit.TreeManagerTest.getVectorMap_NumOfVectorMapsIsCorrect" />
       </list>
     </recent_temporary>
   </component>

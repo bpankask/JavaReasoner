@@ -1,20 +1,6 @@
 package Reasoner;
 
-import InferenceTree.*;
-import JSONHandler.CreateOntologyFromJson;
-import JSONHandler.JsonParser;
-import JSONHandler.JsonWriter;
-import RDFGraphManipulations.ChangeInformation;
-import RDFGraphManipulations.EncodeMethod;
-import RDFGraphManipulations.GetInformation;
-import RDFGraphManipulations.ScaledIntegerEncoding;
-import org.apache.commons.compress.utils.FileNameUtils;
-import org.apache.jena.ontology.OntModel;
-import org.apache.jena.ontology.OntModelSpec;
-import org.apache.jena.rdf.model.*;
-
 import java.io.*;
-import java.util.*;
 
 public class Main {
 

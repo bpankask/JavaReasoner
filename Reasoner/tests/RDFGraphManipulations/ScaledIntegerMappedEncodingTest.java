@@ -8,14 +8,13 @@ import org.apache.jena.rdf.model.RDFNode;
 import org.junit.Test;
 
 import java.io.FileNotFoundException;
-import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
 
 import static org.junit.Assert.*;
 
-public class ScaledIntegerEncodingTest {
+public class ScaledIntegerMappedEncodingTest {
 
     private Model model = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM).read("conceptRoleInfoListCheck.ttl");
 
@@ -24,12 +23,12 @@ public class ScaledIntegerEncodingTest {
         OntModel model = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);
         model.read("conceptRoleCountTest.ttl");
 
-        Method method = ScaledIntegerEncoding.class.getDeclaredMethod("getConceptRoleInfo");
+        Method method = ScaledIntegerMappedEncoding.class.getDeclaredMethod("getConceptRoleInfo");
         method.setAccessible(true);
 
-        ScaledIntegerEncoding sie = new ScaledIntegerEncoding(model);
+        ScaledIntegerMappedEncoding sie = new ScaledIntegerMappedEncoding(model);
         method.invoke(sie);
-        List<RDFNode>[] info = sie.infoArray;
+        List<RDFNode>[] info = sie.conceptRoleInfoArray;
 
         assertEquals(17, info[0].size());
         assertEquals(4, info[1].size());
@@ -38,12 +37,12 @@ public class ScaledIntegerEncodingTest {
     @Test
     public void getConceptRoleInfo_ReturnsCorrectConceptValues() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, FileNotFoundException {
 
-        Method method = ScaledIntegerEncoding.class.getDeclaredMethod("getConceptRoleInfo");
+        Method method = ScaledIntegerMappedEncoding.class.getDeclaredMethod("getConceptRoleInfo");
         method.setAccessible(true);
 
-        ScaledIntegerEncoding sie = new ScaledIntegerEncoding(model);
+        ScaledIntegerMappedEncoding sie = new ScaledIntegerMappedEncoding(model);
         method.invoke(sie);
-        List<RDFNode>[] info = sie.infoArray;
+        List<RDFNode>[] info = sie.conceptRoleInfoArray;
 
         List<RDFNode> expected = new ArrayList<>();
         expected.add(model.getResource("http://www.w3.org/2002/07/owl#TransitiveProperty"));
@@ -114,16 +113,16 @@ public class ScaledIntegerEncodingTest {
 
     @Test
     public void createEncodingMap_EncodedMapMatchesConcepts() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        Method getInfo = ScaledIntegerEncoding.class.getDeclaredMethod("getConceptRoleInfo");
+        Method getInfo = ScaledIntegerMappedEncoding.class.getDeclaredMethod("getConceptRoleInfo");
         getInfo.setAccessible(true);
 
-        Method createEncoding = ScaledIntegerEncoding.class.getDeclaredMethod("createEncodingMap");
+        Method createEncoding = ScaledIntegerMappedEncoding.class.getDeclaredMethod("createEncodingMap");
         createEncoding.setAccessible(true);
 
-        ScaledIntegerEncoding sie = new ScaledIntegerEncoding(model);
+        ScaledIntegerMappedEncoding sie = new ScaledIntegerMappedEncoding(model);
 
         getInfo.invoke(sie);
-        List<RDFNode>[] info = sie.infoArray;
+        List<RDFNode>[] info = sie.conceptRoleInfoArray;
 
         List<String> concepts = new ArrayList<>();
         for(RDFNode node : info[0]){
@@ -141,16 +140,16 @@ public class ScaledIntegerEncodingTest {
 
     @Test
     public void createEncodingMap_EncodedMapMatchesRoles() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        Method getInfo = ScaledIntegerEncoding.class.getDeclaredMethod("getConceptRoleInfo");
+        Method getInfo = ScaledIntegerMappedEncoding.class.getDeclaredMethod("getConceptRoleInfo");
         getInfo.setAccessible(true);
 
-        Method createEncoding = ScaledIntegerEncoding.class.getDeclaredMethod("createEncodingMap");
+        Method createEncoding = ScaledIntegerMappedEncoding.class.getDeclaredMethod("createEncodingMap");
         createEncoding.setAccessible(true);
 
-        ScaledIntegerEncoding sie = new ScaledIntegerEncoding(model);
+        ScaledIntegerMappedEncoding sie = new ScaledIntegerMappedEncoding(model);
 
         getInfo.invoke(sie);
-        List<RDFNode>[] info = sie.infoArray;
+        List<RDFNode>[] info = sie.conceptRoleInfoArray;
 
         List<String> roles = new ArrayList<>();
         for(RDFNode node : info[1]){
@@ -168,16 +167,16 @@ public class ScaledIntegerEncodingTest {
 
     @Test
     public void createEncodingMap_KeysAreAppropriatelyPositiveAndNegative() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        Method getInfo = ScaledIntegerEncoding.class.getDeclaredMethod("getConceptRoleInfo");
+        Method getInfo = ScaledIntegerMappedEncoding.class.getDeclaredMethod("getConceptRoleInfo");
         getInfo.setAccessible(true);
 
-        Method createEncoding = ScaledIntegerEncoding.class.getDeclaredMethod("createEncodingMap");
+        Method createEncoding = ScaledIntegerMappedEncoding.class.getDeclaredMethod("createEncodingMap");
         createEncoding.setAccessible(true);
 
-        ScaledIntegerEncoding sie = new ScaledIntegerEncoding(model);
+        ScaledIntegerMappedEncoding sie = new ScaledIntegerMappedEncoding(model);
 
         getInfo.invoke(sie);
-        List<RDFNode>[] info = sie.infoArray;
+        List<RDFNode>[] info = sie.conceptRoleInfoArray;
 
         List<String> concepts = new ArrayList<>();
         for(RDFNode node : info[0]){
@@ -206,13 +205,13 @@ public class ScaledIntegerEncodingTest {
 
     @Test
     public void createEncodingMap_AllKeysAreBetweenNegOneAndPositiveOne() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        Method getInfo = ScaledIntegerEncoding.class.getDeclaredMethod("getConceptRoleInfo");
+        Method getInfo = ScaledIntegerMappedEncoding.class.getDeclaredMethod("getConceptRoleInfo");
         getInfo.setAccessible(true);
 
-        Method createEncoding = ScaledIntegerEncoding.class.getDeclaredMethod("createEncodingMap");
+        Method createEncoding = ScaledIntegerMappedEncoding.class.getDeclaredMethod("createEncodingMap");
         createEncoding.setAccessible(true);
 
-        ScaledIntegerEncoding sie = new ScaledIntegerEncoding(model);
+        ScaledIntegerMappedEncoding sie = new ScaledIntegerMappedEncoding(model);
 
         getInfo.invoke(sie);
 

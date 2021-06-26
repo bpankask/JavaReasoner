@@ -2,6 +2,6 @@ package RDFGraphManipulations;
 
 import java.util.*;
 
-public interface EncodeMethod {
+public interface MapEncoding {
     HashMap<Double, String> getEncodedMap();
 }

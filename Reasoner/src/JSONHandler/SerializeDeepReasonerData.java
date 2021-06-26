@@ -1,5 +1,6 @@
 package JSONHandler;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
@@ -8,18 +9,18 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Dictionary;
-import java.util.Hashtable;
-import java.util.List;
+import java.util.*;
 
+/**
+ * Class holding all relevent data to train a deep reasoner.  Uses Jackson Library to serialize this classes fields into json.
+ */
 public class SerializeDeepReasonerData implements JsonSerializer{
     private List<ArrayList<Double>> kB;
     private List<Double[][]> supports;
     private List<Double[][]> outputs;
-    private List<Hashtable<Double, String>> vectorMap;
+    private List<HashMap<Double, String>> vectorMap;
 
-    public SerializeDeepReasonerData(List<ArrayList<Double>> kB, List<Double[][]> supports, List<Double[][]> outputs, List<Hashtable<Double, String>> vectorMap) {
+    public SerializeDeepReasonerData(List<ArrayList<Double>> kB, List<Double[][]> supports, List<Double[][]> outputs, List<HashMap<Double, String>> vectorMap) {
         this.kB = kB;
         this.supports = supports;
         this.outputs = outputs;
@@ -27,8 +28,8 @@ public class SerializeDeepReasonerData implements JsonSerializer{
     }
 
     public SerializeDeepReasonerData(){
-        super();
     }
+
     @JsonProperty("kB")
     public List<ArrayList<Double>> getkB() {
         return kB;
@@ -57,11 +58,11 @@ public class SerializeDeepReasonerData implements JsonSerializer{
     }
 
     @JsonProperty("vectorMap")
-    public List<Hashtable<Double, String>> getVectorMap() {
+    public List<HashMap<Double, String>> getVectorMap() {
         return vectorMap;
     }
     @JsonSetter("vectorMap")
-    public void setVectorMap(List<Hashtable<Double, String>> vectorMap) {
+    public void setVectorMap(List<HashMap<Double, String>> vectorMap) {
         this.vectorMap = vectorMap;
     }
 
@@ -69,7 +70,7 @@ public class SerializeDeepReasonerData implements JsonSerializer{
      * Takes all the necessary deep reasoner data and converts to json.
      * @return
      */
-    public String serializeJson(){
+    public String serializeToJson(){
         String value = "";
 
         try {
@@ -93,6 +94,18 @@ public class SerializeDeepReasonerData implements JsonSerializer{
      * @param json
      */
     public void writeJson(String fileName, String json)  {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
 
+            ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
+
+            // convert book object to JSON file
+            writer.writeValue(Paths.get(fileName).toFile(), this);
+
+
+        } catch (Exception ex) {
+            System.out.println("...Error in Method writeToJSON in OutputWriter class...");
+        }
     }
 }

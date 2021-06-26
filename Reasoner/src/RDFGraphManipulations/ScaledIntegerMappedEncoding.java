@@ -10,12 +10,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
-public class ScaledIntegerEncoding implements EncodeMethod {
+public class ScaledIntegerMappedEncoding implements MapEncoding {
 
     private Model model;
-    public ArrayList<RDFNode>[] infoArray = new ArrayList[2];
+    public ArrayList<RDFNode>[] conceptRoleInfoArray = new ArrayList[2];
 
-    public ScaledIntegerEncoding(Model model){
+    public ScaledIntegerMappedEncoding(Model model){
         this.model = model;
         getConceptRoleInfo();
     }
@@ -38,13 +38,13 @@ public class ScaledIntegerEncoding implements EncodeMethod {
                 roles.add((s.getPredicate()));
             }
         }
-        infoArray[0] = concepts;
-        infoArray[1] = roles;
+        conceptRoleInfoArray[0] = concepts;
+        conceptRoleInfoArray[1] = roles;
     }
 
     private HashMap<Double, String> createEncodingMap(){
-        List<RDFNode> concepts = infoArray[0];
-        List<RDFNode> roles = infoArray[1];
+        List<RDFNode> concepts = conceptRoleInfoArray[0];
+        List<RDFNode> roles = conceptRoleInfoArray[1];
 
         int numConcepts = concepts.size();
         int numRoles = roles.size();

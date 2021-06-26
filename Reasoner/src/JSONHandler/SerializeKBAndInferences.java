@@ -63,7 +63,7 @@ public class SerializeKBAndInferences implements JsonSerializer{
      * Take all the triples from graph created by reasoning over original graph and converts them to a json format.
      * @return
      */
-    public String serializeJson(){
+    public String serializeToJson(){
         String value = "";
 
         try {

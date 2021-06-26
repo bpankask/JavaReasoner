@@ -2,16 +2,23 @@ package JSONHandler;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 
 import static org.junit.Assert.*;
 
 public class SerializeDeepReasonerDataTest {
 
-    @Test
-    public void serializeJson_CorrectJsonOutput() throws JsonProcessingException {
+    private SerializeDeepReasonerData serializeClass = null;
+
+    @Before
+    public void setUp(){
         List<ArrayList<Double>> kb = new ArrayList<ArrayList<Double>>();
         ArrayList<Double> list1 = new ArrayList<Double>();
         list1.add(.1);
@@ -40,21 +47,37 @@ public class SerializeDeepReasonerDataTest {
         outputs1[3][3] = .03;
         outputs.add(outputs1);
 
-        List<Hashtable<Double, String>> vectorMap = new ArrayList<Hashtable<Double, String>>();
-        Hashtable<Double, String> dict = new Hashtable<Double, String>();
+        List<HashMap<Double, String>> vectorMap = new ArrayList<HashMap<Double, String>>();
+        HashMap<Double, String> dict = new HashMap<Double, String>();
         dict.put(.00, "rdf");
         dict.put(.01, "rdfs");
         dict.put(.02, "owl");
         vectorMap.add(dict);
 
-        SerializeDeepReasonerData actual = new SerializeDeepReasonerData(kb, supp, outputs, vectorMap);
-        String json = actual.serializeJson();
+        this.serializeClass = new SerializeDeepReasonerData(kb, supp, outputs, vectorMap);
+    }
+
+    @Test
+    public void serializeToJson_CorrectJsonOutput() throws JsonProcessingException {
+
+        String json = this.serializeClass.serializeToJson();
 
         SerializeDeepReasonerData expected = new ObjectMapper().readerFor(SerializeDeepReasonerData.class).readValue(json);
 
-        assertEquals(expected.getkB(), actual.getkB());
-        assertArrayEquals(expected.getOutputs().toArray(), actual.getOutputs().toArray());
-        assertArrayEquals(expected.getSupports().toArray(), actual.getSupports().toArray());
-        assertEquals(expected.getVectorMap(), actual.getVectorMap());
+        assertEquals(expected.getkB(), this.serializeClass.getkB());
+        assertArrayEquals(expected.getOutputs().toArray(), this.serializeClass.getOutputs().toArray());
+        assertArrayEquals(expected.getSupports().toArray(), this.serializeClass.getSupports().toArray());
+        assertEquals(expected.getVectorMap(), this.serializeClass.getVectorMap());
+    }
+
+    @Test
+    public void writeJson_JsonFileHasCorrectInput() throws IOException {
+        this.serializeClass.writeJson("C:\\Users\\Brayden Pankaskie\\Desktop\\JavaReasoner\\Reasoner\\tests\\jsonWriterTest.json",
+                this.serializeClass.serializeToJson());
+
+        File jsonFile = new File("C:\\Users\\Brayden Pankaskie\\Desktop\\JavaReasoner\\Reasoner\\tests\\jsonWriterTest.json");
+
+        SerializeDeepReasonerData actual = new ObjectMapper().readerFor(SerializeDeepReasonerData.class).readValue(jsonFile);
+        assertEquals(this.serializeClass.serializeToJson(), actual.serializeToJson());
     }
 }

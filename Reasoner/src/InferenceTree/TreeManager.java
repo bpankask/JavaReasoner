@@ -213,7 +213,7 @@ public class TreeManager {
 //    public List<Double[][]> getSupports(){
 //
 //    }
-//
+
 //    /**
 //     * Gets encoded supporting statements for this TreeManagers Inference Graph.  Each array in the list has shape
 //     * (numMaxReasoningSteps, ???)

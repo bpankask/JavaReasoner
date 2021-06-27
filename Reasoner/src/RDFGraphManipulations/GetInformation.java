@@ -1,9 +1,11 @@
 package RDFGraphManipulations;
 
+import org.apache.jena.graph.Triple;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.rdf.model.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public abstract class GetInformation {
@@ -31,6 +33,24 @@ public abstract class GetInformation {
         }
 
         return list.toArray(new String[list.size()]);
+    }
+
+    /**
+     * Returns a list of all the triples in the model as a list of Jena Triple.
+     * @param model
+     * @return
+     */
+    public static List<Statement> getOriginalTriplesFromOntologyAsStatements(Model model) {
+
+        List<Statement> list = new ArrayList<Statement>();
+
+        StmtIterator iter = model.listStatements();
+
+        while (iter.hasNext()) {
+            Statement stmt = iter.nextStatement();// get next statement
+            list.add(stmt);
+        }
+        return list;
     }
 
     public static String[] getOriginalTriplesFromOntologyWithoutDatatypes(OntModel model) {
@@ -94,4 +114,5 @@ public abstract class GetInformation {
 
         return list.toArray(new String[list.size()]);
     }
+
 }

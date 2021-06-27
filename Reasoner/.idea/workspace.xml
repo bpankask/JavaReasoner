@@ -1,28 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="60b19ed1-ce3f-4f6f-9531-dbc7914c00da" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/Desktop.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CIS308/Lab04/.idea/Lab04.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CIS308/Lab04b/.idea/Lab04b.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CIS308/Lab05/.idea/Lab05.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CIS308/Lab2/.idea/Lab2.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CIS308/lab03/.idea/lab03.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CIS308/untitled/.idea/untitled.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CIS501/.idea/CIS308.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CIS501/TeamProjectGit/Team-04-ZA-Spring2021" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../JavaRDFSReasoner/JavaRDFSReasoner.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../JavaRDFSReasoner/OntModelForCorrectingReadIssue.ttl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../JavaRDFSReasoner/src/JSONHandler/JsonParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lab05/queue.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lab05/queue.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MyReasoner/JavaRDFSReasoner" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ParserToCheckForDatatypes/ParserToCheckForDatatypes.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/JsonDataWithInferredTriples.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OntModelForCorrectingReadIssue.ttl" beforeDir="false" />
-    </list>
+    <list default="true" id="60b19ed1-ce3f-4f6f-9531-dbc7914c00da" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,12 +11,15 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="JUnit5 Test Class" />
+        <option value="Interface" />
         <option value="Class" />
+        <option value="JUnit4 Test Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="IgnoredFileRootStore">
     <option name="generatedRoots">
@@ -50,15 +32,38 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="Downloaded.Files.Path.Enabled" value="true" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.Groovy JUnit" value="" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="JSONHandler" />
+      <recent name="Reasoner" />
+      <recent name="RDFGraphManipulations" />
+      <recent name="InferenceTree" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Brayden Pankaskie\Desktop\JavaReasoner\Reasoner\tests" />
+      <recent name="C:\Users\Brayden Pankaskie\Desktop\JavaReasoner\Reasoner\src\Reasoner" />
       <recent name="C:\Users\Brayden Pankaskie\Desktop\JavaRDFSReasoner\src\Reasoner" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Brayden Pankaskie\Desktop\JavaReasoner\Reasoner\src" />
+      <recent name="C:\Users\Brayden Pankaskie\Desktop\JavaReasoner\Reasoner\src\Reasoner" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -73,9 +78,16 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Reasoner.Main" />
+  <component name="RunManager" selected="JUnit.All in Reasoner">
+    <configuration name="All in Reasoner" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Reasoner" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainTest.createHashOfTreeNodes" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
       <module name="Reasoner" />
       <extension name="coverage">
         <pattern>
@@ -83,13 +95,85 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="Reasoner" />
+      <option name="MAIN_CLASS_NAME" value="Reasoner.MainTest" />
+      <option name="METHOD_NAME" value="createHashOfTreeNodes" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SerializeDeepReasonerDataTest.serializeJson_CorrectJsonOutput" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Reasoner" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="JSONHandler.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="JSONHandler" />
+      <option name="MAIN_CLASS_NAME" value="JSONHandler.SerializeDeepReasonerDataTest" />
+      <option name="METHOD_NAME" value="serializeJson_CorrectJsonOutput" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SerializeDeepReasonerDataTest.serializeToJson_CorrectJsonOutput" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Reasoner" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="JSONHandler.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="JSONHandler" />
+      <option name="MAIN_CLASS_NAME" value="JSONHandler.SerializeDeepReasonerDataTest" />
+      <option name="METHOD_NAME" value="serializeToJson_CorrectJsonOutput" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SerializeDeepReasonerDataTest.writeJson_JsonFileHasCorrectInput" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Reasoner" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="JSONHandler.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="JSONHandler" />
+      <option name="MAIN_CLASS_NAME" value="JSONHandler.SerializeDeepReasonerDataTest" />
+      <option name="METHOD_NAME" value="writeJson_JsonFileHasCorrectInput" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TreeManagerTest.getVectorMap_NumOfVectorMapsIsCorrect" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Reasoner" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="InferenceTree.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="InferenceTree" />
+      <option name="MAIN_CLASS_NAME" value="InferenceTree.TreeManagerTest" />
+      <option name="METHOD_NAME" value="getVectorMap_NumOfVectorMapsIsCorrect" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.All in Reasoner" />
+        <item itemvalue="JUnit.SerializeDeepReasonerDataTest.writeJson_JsonFileHasCorrectInput" />
+        <item itemvalue="JUnit.SerializeDeepReasonerDataTest.serializeToJson_CorrectJsonOutput" />
+        <item itemvalue="JUnit.SerializeDeepReasonerDataTest.serializeJson_CorrectJsonOutput" />
+        <item itemvalue="JUnit.TreeManagerTest.getVectorMap_NumOfVectorMapsIsCorrect" />
       </list>
     </recent_temporary>
   </component>
@@ -105,6 +189,9 @@
       <updated>1602700520063</updated>
     </task>
     <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.ttl" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -122,12 +209,30 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/RDFGraphManipulations/GetInformation.java</url>
-          <line>48</line>
-          <option name="timeStamp" value="7" />
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/InferenceTree/InfTreeManager.java</url>
+          <line>18</line>
+          <properties class="InferenceTree.InfTreeManager">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="JUnit">
+        <watch expression="tableOfNodes.entrySet().toArray()[0]" />
+      </configuration>
+      <configuration name="Application">
+        <watch expression="((FBRuleInfGraph)((RuleDerivation)deriv).infGraph).bEngine" custom="org.apache.jena.reasoner.rulesys.RuleDerivation,org.apache.jena.reasoner.rulesys.FBRuleInfGraph" />
+        <watch expression="((FBRuleInfGraph)((RuleDerivation)deriv).infGraph).bEngine" language="JAVA" custom="org.apache.jena.reasoner.rulesys.RuleDerivation,org.apache.jena.reasoner.rulesys.FBRuleInfGraph" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Reasoner$All_in_Reasoner.ic" NAME="All in Reasoner Coverage Results" MODIFIED="1624388640100" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Reasoner$Reasoner_in_Reasoner.ic" NAME="Reasoner in Reasoner Coverage Results" MODIFIED="1622846341376" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>Reasoner.*</FILTER>
+    </SUITE>
   </component>
 </project>

@@ -4,9 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
-import InferenceTree.InferenceNode;
-import InferenceTree.TreeManager;
-import InferenceTree.TreeNode;
+import RDFSupportGenerationTree.*;
 import JSONHandler.CreateOntologyFromJson;
 import JSONHandler.JsonParser;
 import JSONHandler.*;
@@ -16,6 +14,7 @@ import RDFGraphManipulations.ChangeInformation;
 import RDFGraphManipulations.MapEncoding;
 import RDFGraphManipulations.GetInformation;
 import RDFGraphManipulations.ScaledIntegerMappedEncoding;
+import com.sun.nio.sctp.PeerAddressChangeNotification;
 import org.apache.commons.compress.utils.FileNameUtils;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntModelSpec;
@@ -62,7 +61,7 @@ public class ReasonerLogic {
             //It will handle all tree manipulations and queries.
             TreeManager tm = new TreeManager(inf, sie.getEncodedMap());
 
-            //Creates a infTree from a hashtable of treeNodes.
+            //a infTree from a hashtable of treeNodes.
             List<TreeNode> tree = tm.createTree(tm.createTreeNodes());
 
             //Assign time steps for each tree node.
@@ -73,11 +72,16 @@ public class ReasonerLogic {
                 }
             }//end while
 
-            // Creates Serializer object to store data in a particular json format.
-            List<ArrayList<Double>> kb = tm.getKB(20);
-            JsonSerializer js = new SerializeDeepReasonerData(kb, null,null, tm.getVectorMap(kb.size()));
+            tree.sort(new SortByTimeStep());
+            PackageTreeData ptd = new PackageTreeData(tm, 20);
+            /*
+            Need to implement stuff here to create kb, outputs, supports.
+             */
 
-            js.writeJson(storageFilePath,js.serializeToJson());
+            // Creates Serializer object to store data in a particular json format.
+            //JsonSerializer js = new SerializeDeepReasonerData(kb, null,null, tm.getVectorMap(kb.size()));
+
+            //js.writeJson(storageFilePath,js.serializeToJson());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -213,33 +217,6 @@ public class ReasonerLogic {
     }
 
     /**
-     * Creates noisy triples using parts of existing triples
-     * @param allSubAndObj
-     * @param allPredicates
-     * @param correctTriples
-     * @param invalidTriples
-     */
-    private static void makeWrongTriple(String[] allSubAndObj, String[] allPredicates,
-                                       List<String> correctTriples, List<String> invalidTriples){
-
-        Random rand = new Random();
-
-        //builds potential invalid triple
-        StringBuilder sb = new StringBuilder();
-        String subject = allSubAndObj[rand.nextInt(allSubAndObj.length)];
-        String predicate = allPredicates[rand.nextInt(allPredicates.length)];
-        String object = allSubAndObj[rand.nextInt(allSubAndObj.length)];
-
-        sb.append(subject + " ");
-        sb.append(predicate + " ");
-        sb.append(object);
-
-        if(!correctTriples.contains(sb.toString())){
-            invalidTriples.add(sb.toString());
-        }
-    }
-
-    /**
      * Method to make n number of invalid triples
      * @param allSubjects
      * @param allObjects
@@ -258,6 +235,33 @@ public class ReasonerLogic {
 
         while(invalidTriples.size() < n){
             makeWrongTriple(allSubAndObj, allPredicates, correctTriples, invalidTriples);
+        }
+    }
+
+    /**
+     * Creates noisy triples using parts of existing triples
+     * @param allSubAndObj
+     * @param allPredicates
+     * @param correctTriples
+     * @param invalidTriples
+     */
+    private static void makeWrongTriple(String[] allSubAndObj, String[] allPredicates,
+                                        List<String> correctTriples, List<String> invalidTriples){
+
+        Random rand = new Random();
+
+        //builds potential invalid triple
+        StringBuilder sb = new StringBuilder();
+        String subject = allSubAndObj[rand.nextInt(allSubAndObj.length)];
+        String predicate = allPredicates[rand.nextInt(allPredicates.length)];
+        String object = allSubAndObj[rand.nextInt(allSubAndObj.length)];
+
+        sb.append(subject + " ");
+        sb.append(predicate + " ");
+        sb.append(object);
+
+        if(!correctTriples.contains(sb.toString())){
+            invalidTriples.add(sb.toString());
         }
     }
 }

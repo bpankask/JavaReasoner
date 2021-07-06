@@ -1,13 +1,16 @@
-package InferenceTree;
+package RDFSupportGenerationTree.InferenceTree;
 
 import RDFGraphManipulations.ScaledIntegerMappedEncoding;
+import RDFSupportGenerationTree.FactNode;
+import RDFSupportGenerationTree.InferenceNode;
+import RDFSupportGenerationTree.TreeManager;
+import RDFSupportGenerationTree.TreeNode;
 import Reasoner.ReasonerLogic;
 import org.apache.jena.graph.Triple;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntModelSpec;
 import org.apache.jena.rdf.model.*;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -192,65 +195,6 @@ public class TreeManagerTest {
         }
 
         assertArrayEquals(expected.toArray(), actual.toArray());
-    }
-
-    @Test
-    public void getKB_IfTreeNotCreatedThenShouldReturnNull(){
-        assertEquals(null, tm.getKB(10));
-    }
-
-    @Test
-    public void getKB_IfTreeCreatedThenShouldNotReturnNull(){
-        tm.createTree(tm.createTreeNodes());
-        assertFalse(tm.getKB(10).equals(null));
-    }
-
-    @Test
-    public void getKB_LengthOfEachVectorShouldBeTheSame(){
-        tm.createTree(tm.createTreeNodes());
-        List<ArrayList<Double>> kb = tm.getKB(1);
-        int size = kb.get(0).size();
-        for(ArrayList<Double> vect : kb){
-            assertEquals(size, vect.size());
-        }
-    }
-
-    @Test
-    public void getKB_ListReturnedIsComplete(){
-        List<TreeNode> tree = tm.createTree(tm.createTreeNodes());
-
-        List<ArrayList<Double>> kb = tm.getKB(2);
-        List<Double> actual = new ArrayList<Double>();
-
-        List<Double> expected = new ArrayList<Double>();
-        for(TreeNode node : tree){
-            if(node instanceof FactNode){
-                expected.addAll(node.getEncoding());
-            }
-        }
-        for(ArrayList<Double> list: kb){
-            actual.addAll(list);
-        }
-
-        assertArrayEquals(expected.toArray(), actual.toArray());
-    }
-
-    @Test
-    public void getVectorMap_AllVectorsAreTheSame(){
-        tm.createTree(tm.createTreeNodes());
-        List<HashMap<Double, String>> mapList = tm.getVectorMap(10);
-
-        for(int i=0; i<mapList.size()-1; i++){
-            assertEquals(mapList.get(i), mapList.get(i+1));
-        }
-    }
-
-    @Test
-    public void getVectorMap_NumOfVectorMapsIsCorrect(){
-        tm.createTree(tm.createTreeNodes());
-        List<HashMap<Double, String>> mapList = tm.getVectorMap(14);
-
-        assertEquals(14, mapList.size());
     }
 
 }//end class

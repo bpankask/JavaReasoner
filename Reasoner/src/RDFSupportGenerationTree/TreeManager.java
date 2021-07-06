@@ -1,4 +1,4 @@
-package InferenceTree;
+package RDFSupportGenerationTree;
 
 import org.apache.jena.rdf.model.InfModel;
 import org.apache.jena.rdf.model.Model;
@@ -8,11 +8,15 @@ import org.apache.jena.reasoner.rulesys.RuleDerivation;
 
 import java.util.*;
 
+/**
+ * Entry point class for working with a support tree. Creates and manipulates a tree like structure
+ * of inferences and facts from the KB.
+ */
 public class TreeManager {
 
-    private InfModel infModel;
-    private Model baseModel;
-    private List<TreeNode> tree = null;
+    public InfModel infModel;
+    public Model baseModel;
+    public List<TreeNode> tree = null;
     public HashMap<Double, String> encodingMap;
 
     public TreeManager(InfModel inf, HashMap<Double, String> map){
@@ -174,37 +178,6 @@ public class TreeManager {
         return encoding;
     }
 
-    /**
-     * Gets the KB encoded vectors for this TreeManagers knowledge graph.
-     * @param numStmPerSample Approximate number of desired triples per sample.  Will decrease or increase to make even number of samples.
-     * @return
-     */
-    public List<ArrayList<Double>> getKB(int numStmPerSample){
-        if(this.tree != null){
-            long sizeKB = baseModel.size();
-            while(sizeKB % numStmPerSample != 0){
-                numStmPerSample--;
-            }
-
-            List<ArrayList<Double>> kB = new ArrayList<ArrayList<Double>>();
-            ArrayList<Double> curList = new ArrayList<Double>();
-
-            for(int i=0; i<this.tree.size(); i++){
-                if(tree.get(i) instanceof FactNode){
-                    curList.addAll(tree.get(i).getEncoding());
-                }
-                if(curList.size()/3 == numStmPerSample){
-                    kB.add(curList);
-                    curList = new ArrayList<Double>();
-                }
-            }
-            return kB;
-        }
-        else{
-            return null;
-        }
-    }
-
 //    /**
 //     * Gets encoded supporting statements for this TreeManagers Inference Graph.  Each array in the list has shape
 //     * (numMaxReasoningSteps, ???)
@@ -222,16 +195,4 @@ public class TreeManager {
 //    public List<Double[][]> getOutputs(){
 //
 //    }
-
-    /**
-     * Gets a mapping from a double to its corresponding string which is a subject, predicate, or object of a triple.
-     * @return
-     */
-    public List<HashMap<Double, String>> getVectorMap(int listLength){
-        List<HashMap<Double, String>> listMap = new ArrayList<>();
-        for(int i=0; i<listLength; i++){
-            listMap.add((HashMap) encodingMap);
-        }
-        return listMap;
-    }
 }

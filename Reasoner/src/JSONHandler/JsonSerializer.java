@@ -1,7 +1,7 @@
 package JSONHandler;
 
 /**
- * All Json Serializer classes must contain a method to write to a json file.
+ * Interface for classes used to serialize reasoner data into json format.
  */
 public interface JsonSerializer {
     String serializeToJson();

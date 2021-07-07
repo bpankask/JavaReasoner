@@ -7,14 +7,16 @@ import java.util.*;
  */
 public class PackageTreeData {
 
-    private TreeManager tm = null;
-    private List<HashMap<Double, String>> vectorMap = null;
+    private TreeManager tm;
     private List<ArrayList<FactNode>> messyKB = null;
     private List<ArrayList<InferenceNode>> messyOutputs = null;
-    private HashMap<InferenceNode, List<FactNode>> messyInfToFactsMap = null;
+    private HashMap<InferenceNode, List<FactNode>> messyInfToFactsMap;
+    private int timeStepIndexChecker;
 
     public PackageTreeData(TreeManager tm, int sizeOfKBs){
         this.tm = tm;
+        this.tm.tree.sort(new SortByTimeStep());
+        timeStepIndexChecker = this.tm.tree.get(0).getTimeStep()+1;
         messyInfToFactsMap = assignFactsToInferenceNodes();
         setMessyKBAndOuts(sizeOfKBs);
         //vectorMap = getVectorMap(1);
@@ -34,9 +36,8 @@ public class PackageTreeData {
             }
             kb.add(tempSample);
         }
-
         return kb;
-    }//!!!Needs testing!!!
+    }
 
 //    public List<Double[][]> getOutputsEncoded(){
 //        List<Double[][]> outs = new ArrayList<Double[][]>();
@@ -90,10 +91,12 @@ public class PackageTreeData {
 
         List<Boolean> timeStepAdded = new ArrayList<Boolean>();
         //Makes sure that first node represents highest timestep.
-        tm.tree.sort(new SortByTimeStep());
-        for(int i=0; i<tm.tree.get(0).getTimeStep(); i++){
+        for(int i=0; i<timeStepIndexChecker-1; i++){
             timeStepAdded.add(false);
         }
+
+        int kbSizeTest = kb.size();
+        int counter = 0;
 
         //Loop until all inferences are included.
         while(inferences.size() > 0 || tempKB.size() != 0){
@@ -101,10 +104,13 @@ public class PackageTreeData {
             if(tempKB.size() < sizeOfKBs){
                 boolean found = false;
                 for(int i=0; i<facts.size(); i++){
-                    if(tempKB.size() + facts.get(i).size() <= sizeOfKBs){
-                        if(shouldAddFacts(inferences, facts, timeStepAdded, i, sizeOfKBs-tempKB.size())){
+                    int factSize = facts.get(i).size();
+                    if(tempKB.size() + factSize <= sizeOfKBs && ((InferenceNode)inferences.get(i)).getTimeStep() < timeStepIndexChecker){
+                        if(shouldAddFacts(inferences, facts, timeStepAdded, i, sizeOfKBs-tempKB.size(), false)){
                             tempKB.addAll(facts.get(i));
                             tempOuts.add((InferenceNode) inferences.get(i));
+                            tempKB = removeDuplicates(tempKB);
+                            tempOuts = removeDuplicates(tempOuts);
                             facts.remove(i);
                             inferences.remove(i);
                             found = true;
@@ -120,11 +126,16 @@ public class PackageTreeData {
                     List<List<FactNode>> tempFacts = new ArrayList<>();
                     tempIter.forEachRemaining(fact -> tempFacts.add((List<FactNode>) fact));
                     for(int i=0; i<tempFacts.size(); i++){
-                        if(tempKB.size() + tempFacts.get(i).size() <= sizeOfKBs){
-                            if(shouldAddFacts(tempInf, tempFacts, timeStepAdded, i, sizeOfKBs-tempKB.size())){
+                        if(tempKB.size() + tempFacts.get(i).size() <= sizeOfKBs && ((InferenceNode)tempInf.get(i)).getTimeStep() < timeStepIndexChecker){
+                            if(shouldAddFacts(tempInf, tempFacts, timeStepAdded, i, sizeOfKBs-tempKB.size(), true)){
                                 tempKB.addAll(tempFacts.get(i));
                                 tempOuts.add((InferenceNode) tempInf.get(i));
-                                break;
+                                int temp = tempKB.size();
+                                removeDuplicates(tempKB);
+                                removeDuplicates(tempOuts);
+                                if(temp == tempKB.size()){
+                                    break;
+                                }
                             }
                         }
                     }//end for
@@ -137,13 +148,23 @@ public class PackageTreeData {
                 tempKB = new ArrayList<FactNode>();
                 tempOuts = new ArrayList<InferenceNode>();
                 resetTimeStepCounter(timeStepAdded);
+                timeStepIndexChecker = tm.tree.get(0).getTimeStep()+1;
             }
+            if(kb.size() == kbSizeTest)
+                counter++;
+            else{
+                counter = 0;
+            }
+
+            if(counter > 20)
+                System.out.println("NOOO");
+            kbSizeTest = kb.size();
+
         }//end main loop
 
         messyKB = kb;
         messyOutputs = outputs;
     }
-
 
     /**
      * Helper to set all values of a list to false indicating that those timesteps are still needed for sample it represents.
@@ -155,6 +176,32 @@ public class PackageTreeData {
         }
     }
 
+    /**
+     *
+     * @param list
+     * @param <T>
+     * @return
+     */
+    //From: https://www.geeksforgeeks.org/how-to-remove-duplicates-from-arraylist-in-java/#:~:text=Hence%20LinkedHashSet%20is%20the%20best%20option%20available%20as,insertion%20order.%20Get%20the%20ArrayList%20with%20duplicate%20values.
+    private <T> ArrayList<T> removeDuplicates(ArrayList<T> list)
+    {
+
+        // Create a new LinkedHashSet
+        Set<T> set = new LinkedHashSet<>();
+
+        // Add the elements to set
+        set.addAll(list);
+
+        // Clear the list
+        list.clear();
+
+        // add the elements of set
+        // with no duplicates to the list
+        list.addAll(set);
+
+        // return the list
+        return list;
+    }
 
     /**
      * Logic to determine if kb facts should be added based on the corresponding inferences.  Seeks to ensure that each
@@ -164,7 +211,7 @@ public class PackageTreeData {
      * @param index The current index in the inferences.
      * @return Whether or not the kb facts should be added.
      */
-    private boolean shouldAddFacts(List inferences, List<List<FactNode>> facts, List<Boolean> timeStepAdded, int index, int size){
+    private boolean shouldAddFacts(List inferences, List<List<FactNode>> facts, List<Boolean> timeStepAdded, int index, int size, boolean fullList){
         //True if all necessary value are filled so any value will work.
         if(!timeStepAdded.contains(false)){
             return true;
@@ -178,10 +225,16 @@ public class PackageTreeData {
         else if(listContainsObjectWithDesiredTimeStep(inferences, facts,timeStepAdded.indexOf(false)+1, size)){
             return false;
         }
-        //If it gets to this it .
+        //If it gets to this it.
         else{
-            timeStepAdded.set(timeStepAdded.indexOf(false), true);
-            return true;
+            if(fullList){
+                timeStepIndexChecker = timeStepAdded.indexOf(false);
+                for(int i=timeStepIndexChecker; i<timeStepAdded.size(); i++){
+                    timeStepAdded.set(i, true);
+                }
+                return true;
+            }
+            return false;
         }
     }
 

@@ -1,4 +1,4 @@
-package RDFSupportGenerationTree.InferenceTree;
+package RDFSupportGenerationTree;
 
 import RDFSupportGenerationTree.InferenceNode;
 import org.apache.jena.graph.Triple;

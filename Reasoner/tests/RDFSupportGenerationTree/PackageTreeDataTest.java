@@ -252,35 +252,61 @@ public class PackageTreeDataTest {
 
     @Test
     public void setMessyKBAndOuts_NoGapsInInferenceTimeSteps(){
+        for (TreeNode tn : tm.tree) {
+            TreeNode node = tn;
+            if (node instanceof InferenceNode) {
+                tm.assignTimeStepsAndEncoding((InferenceNode) node);
+            }
+        }//end while
+        tm.tree.sort(new SortByTimeStep());
 
+        PackageTreeData ptd = new PackageTreeData(tm, 20);
+
+        for(ArrayList<InferenceNode> outs : ptd.getMessyOutputs()){
+            ArrayList<Boolean> gapCheck = new ArrayList<Boolean>();
+            for(int i=0; i<tm.tree.get(0).getTimeStep(); i++){
+                gapCheck.add(false);
+            }
+
+            for(InferenceNode inf : outs){
+                gapCheck.set(inf.getTimeStep()-1, true);
+            }
+
+            int index = gapCheck.indexOf(false);
+            if(index != -1) {
+                for (int i = index; i < gapCheck.size(); i++) {
+                    assertFalse(gapCheck.get(i));
+                }
+            }
+        }
     }
 
-//    @Test
-//    public void setMessyKBAndOuts_AllKGAxiomsPresentForInferences(){
-//        for (TreeNode tn : tm.tree) {
-//            TreeNode node = tn;
-//            if (node instanceof InferenceNode) {
-//                tm.assignTimeStepsAndEncoding((InferenceNode) node);
-//            }
-//        }
-//
-//        PackageTreeData ptd = new PackageTreeData(tm, 20);
-//
-//        List<ArrayList<InferenceNode>> infLists = ptd.getMessyOutputs();
-//        List<ArrayList<FactNode>> factLists = ptd.getMessyKB();
-//
-//        int counter = 0;
-//        for(ArrayList<InferenceNode> infList : infLists){
-//            List<FactNode> tempFacts = new ArrayList<>();
-//            for(InferenceNode inf : infList){
-//                tempFacts.addAll(ptd.getMessyInfToFactsMap().get(inf));
-//            }
-//            for(FactNode fact : tempFacts){
-//                assertTrue(factLists.get(counter).contains(fact));
-//            }
-//            counter++;
-//        }
-//    }
+    @Test
+    public void setMessyKBAndOuts_AllKBAxiomsPresentForInferences(){
+        for (TreeNode tn : tm.tree) {
+            TreeNode node = tn;
+            if (node instanceof InferenceNode) {
+                tm.assignTimeStepsAndEncoding((InferenceNode) node);
+            }
+        }
+
+        PackageTreeData ptd = new PackageTreeData(tm, 20);
+
+        List<ArrayList<InferenceNode>> infLists = ptd.getMessyOutputs();
+        List<ArrayList<FactNode>> factLists = ptd.getMessyKB();
+
+        int counter = 0;
+        for(ArrayList<InferenceNode> infList : infLists){
+            List<FactNode> tempFacts = new ArrayList<>();
+            for(InferenceNode inf : infList){
+                tempFacts.addAll(ptd.getMessyInfToFactsMap().get(inf));
+            }
+            for(FactNode fact : tempFacts){
+                assertTrue(factLists.get(counter).contains(fact));
+            }
+            counter++;
+        }
+    }
 
     @Test
     public void shouldAddFacts_CaseWhereDesiredTimeStepAndTSAtIndexAreEqual() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
@@ -314,17 +340,18 @@ public class PackageTreeDataTest {
         for(int i=0; i<4; i++){
             timeStepAdded.add(false);
         }
-        Class[] args = new Class[5];
+        Class[] args = new Class[6];
         args[0] = List.class;
         args[1] = List.class;
         args[2] = List.class;
         args[3] = int.class;
         args[4] = int.class;
+        args[5] = boolean.class;
 
         Method method = PackageTreeData.class.getDeclaredMethod("shouldAddFacts", args);
         method.setAccessible(true);
 
-        assertEquals(true, method.invoke(pd, rawInferences, tempFacts, timeStepAdded, index, 20));
+        assertEquals(true, method.invoke(pd, rawInferences, tempFacts, timeStepAdded, index, 20, false));
     }
 
     @Test
@@ -360,17 +387,18 @@ public class PackageTreeDataTest {
             timeStepAdded.add(true);
         }
 
-        Class[] args = new Class[5];
+        Class[] args = new Class[6];
         args[0] = List.class;
         args[1] = List.class;
         args[2] = List.class;
         args[3] = int.class;
         args[4] = int.class;
+        args[5] = boolean.class;
 
         Method method = PackageTreeData.class.getDeclaredMethod("shouldAddFacts", args);
         method.setAccessible(true);
 
-        assertEquals(true, method.invoke(pd, rawInferences, tempFacts, timeStepAdded, index, 20));
+        assertEquals(true, method.invoke(pd, rawInferences, tempFacts, timeStepAdded, index, 20, false));
     }
 
     @Test
@@ -399,17 +427,18 @@ public class PackageTreeDataTest {
         }
         desiredTimesteps.add(false);
 
-        Class[] args = new Class[5];
+        Class[] args = new Class[6];
         args[0] = List.class;
         args[1] = List.class;
         args[2] = List.class;
         args[3] = int.class;
         args[4] = int.class;
+        args[5] = boolean.class;
 
         Method method = PackageTreeData.class.getDeclaredMethod("shouldAddFacts", args);
         method.setAccessible(true);
 
-        assertEquals(true, method.invoke(pd, rawInferences, tempFacts, desiredTimesteps, index, 20));
+        assertEquals(true, method.invoke(pd, rawInferences, tempFacts, desiredTimesteps, index, 20, true));
     }
 
     @Test
@@ -445,16 +474,17 @@ public class PackageTreeDataTest {
             timeStepAdded.add(true);
         }
 
-        Class[] args = new Class[5];
+        Class[] args = new Class[6];
         args[0] = List.class;
         args[1] = List.class;
         args[2] = List.class;
         args[3] = int.class;
         args[4] = int.class;
+        args[5] = boolean.class;
 
         Method method = PackageTreeData.class.getDeclaredMethod("shouldAddFacts", args);
         method.setAccessible(true);
 
-        assertEquals(false, method.invoke(pd, rawInferences, tempFacts, timeStepAdded, index, 20));
+        assertEquals(false, method.invoke(pd, rawInferences, tempFacts, timeStepAdded, index, 20, true));
     }
 }

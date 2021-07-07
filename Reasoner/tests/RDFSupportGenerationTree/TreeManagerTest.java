@@ -1,4 +1,4 @@
-package RDFSupportGenerationTree.InferenceTree;
+package RDFSupportGenerationTree;
 
 import RDFGraphManipulations.ScaledIntegerMappedEncoding;
 import RDFSupportGenerationTree.FactNode;

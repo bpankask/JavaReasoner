@@ -2,29 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="60b19ed1-ce3f-4f6f-9531-dbc7914c00da" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OutputFiles/traceTest" beforeDir="false" afterPath="$PROJECT_DIR$/OutputFiles/traceTest" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jsonWriterTest.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Reasoner/InferenceTree/FactNode.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Reasoner/InferenceTree/InferenceNode.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Reasoner/InferenceTree/TreeManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Reasoner/InferenceTree/TreeNode.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Reasoner/Reasoner/ReasonerLogic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Reasoner/Reasoner/ReasonerLogic.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/Reasoner/InferenceTree/InferenceNodeTest$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/Reasoner/InferenceTree/InferenceNodeTest$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/Reasoner/InferenceTree/InferenceNodeTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/Reasoner/InferenceTree/TreeManagerTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/Reasoner/Reasoner/ReasonerLogicTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/Reasoner/Reasoner/ReasonerLogicTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/InferenceTree/FactNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RDFSupportGenerationTree/FactNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/InferenceTree/InferenceNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RDFSupportGenerationTree/InferenceNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/InferenceTree/TreeManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RDFSupportGenerationTree/TreeManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/InferenceTree/TreeNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RDFSupportGenerationTree/TreeNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JSONHandler/JsonSerializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JSONHandler/JsonSerializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Reasoner/ReasonerLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Reasoner/ReasonerLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/InferenceTree/InferenceNodeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/RDFSupportGenerationTree/InferenceNodeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/InferenceTree/TreeManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/RDFSupportGenerationTree/TreeManagerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Reasoner/ReasonerLogicTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Reasoner/ReasonerLogicTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/RDFSupportGenerationTree/PackageTreeData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RDFSupportGenerationTree/PackageTreeData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/RDFSupportGenerationTree/InferenceNodeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/RDFSupportGenerationTree/InferenceNodeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/RDFSupportGenerationTree/PackageTreeDataTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/RDFSupportGenerationTree/PackageTreeDataTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/RDFSupportGenerationTree/TreeManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/RDFSupportGenerationTree/TreeManagerTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -70,7 +52,7 @@
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
@@ -140,7 +122,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PackageTreeDataTest.shouldAddFacts_CaseWhereDesiredTimeStepAndTSAtIndexAreEqual" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PackageTreeDataTest.setMessyKBAndOuts_NoGapsInInferenceTimeSteps" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Reasoner" />
       <extension name="coverage">
         <pattern>
@@ -150,7 +132,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="RDFSupportGenerationTree" />
       <option name="MAIN_CLASS_NAME" value="RDFSupportGenerationTree.PackageTreeDataTest" />
-      <option name="METHOD_NAME" value="shouldAddFacts_CaseWhereDesiredTimeStepAndTSAtIndexAreEqual" />
+      <option name="METHOD_NAME" value="setMessyKBAndOuts_NoGapsInInferenceTimeSteps" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -210,7 +192,7 @@
         <item itemvalue="JUnit.PackageTreeDataTest.shouldAddFacts_CaseWhereDesiredTimeStepIsInListJustNotAtIndex" />
         <item itemvalue="JUnit.PackageTreeDataTest.shouldAddFacts_CaseWhereDesiredValueIsNotInTheList" />
         <item itemvalue="JUnit.PackageTreeDataTest.shouldAddFacts_CaseWhereEveryTimeStepIsFilled" />
-        <item itemvalue="JUnit.PackageTreeDataTest.shouldAddFacts_CaseWhereDesiredTimeStepAndTSAtIndexAreEqual" />
+        <item itemvalue="JUnit.PackageTreeDataTest.setMessyKBAndOuts_NoGapsInInferenceTimeSteps" />
       </list>
     </recent_temporary>
   </component>
@@ -259,13 +241,19 @@
           </properties>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/RDFSupportGenerationTree/PackageTreeData.java</url>
+          <line>159</line>
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/RDFSupportGenerationTree/PackageTreeData.java</url>
+          <line>164</line>
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
-      <configuration name="JUnit">
-        <watch expression="tableOfNodes.entrySet().toArray()[0]" />
-        <watch expression="tree.get(13)" />
-      </configuration>
       <configuration name="Application">
         <watch expression="((FBRuleInfGraph)((RuleDerivation)deriv).infGraph).bEngine" custom="org.apache.jena.reasoner.rulesys.RuleDerivation,org.apache.jena.reasoner.rulesys.FBRuleInfGraph" />
         <watch expression="((FBRuleInfGraph)((RuleDerivation)deriv).infGraph).bEngine" language="JAVA" custom="org.apache.jena.reasoner.rulesys.RuleDerivation,org.apache.jena.reasoner.rulesys.FBRuleInfGraph" />

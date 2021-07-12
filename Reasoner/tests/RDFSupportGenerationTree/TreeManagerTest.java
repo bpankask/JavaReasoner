@@ -1,10 +1,6 @@
 package RDFSupportGenerationTree;
 
 import RDFGraphManipulations.ScaledIntegerMappedEncoding;
-import RDFSupportGenerationTree.FactNode;
-import RDFSupportGenerationTree.InferenceNode;
-import RDFSupportGenerationTree.TreeManager;
-import RDFSupportGenerationTree.TreeNode;
 import Reasoner.ReasonerLogic;
 import org.apache.jena.graph.Triple;
 import org.apache.jena.ontology.OntModel;
@@ -154,7 +150,7 @@ public class TreeManagerTest {
     }
 
     @Test
-    public void assignTimeStepsAndEncoding_CorrectInferenceNodeSupportEncodingConcatenation(){
+    public void assignTimeStepsAndSuppEncoding_CorrectInferenceNodeSupportEncodingConcatenation(){
         List<TreeNode> tree = tm.createTree(tm.createTreeNodes());
 
         List<Double> actual = new ArrayList<>();
@@ -163,7 +159,7 @@ public class TreeManagerTest {
         for(TreeNode tn : tree){
             TreeNode node = tn;
             if(node instanceof InferenceNode){
-                tm.assignTimeStepsAndEncoding((InferenceNode)node);
+                tm.assignTimeStepsAndSuppEncoding((InferenceNode)node);
             }
         }//end while
 

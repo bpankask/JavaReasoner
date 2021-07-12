@@ -1,5 +1,6 @@
 package RDFSupportGenerationTree;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 /**
@@ -16,10 +17,11 @@ public class PackageTreeData {
     public PackageTreeData(TreeManager tm, int sizeOfKBs){
         this.tm = tm;
         this.tm.tree.sort(new SortByTimeStep());
+
         timeStepIndexChecker = this.tm.tree.get(0).getTimeStep()+1;
+
         messyInfToFactsMap = assignFactsToInferenceNodes();
         setMessyKBAndOuts(sizeOfKBs);
-        //vectorMap = getVectorMap(1);
     }
 
     /**
@@ -39,14 +41,17 @@ public class PackageTreeData {
         return kb;
     }
 
-//    public List<Double[][]> getOutputsEncoded(){
-//        List<Double[][]> outs = new ArrayList<Double[][]>();
-//
-//        for(ArrayList<InferenceNode> outSample : this.messyOutputs){
-//            List<InferenceNode> os = (List<InferenceNode>) outSample;
-//
-//        }
-//    }
+    /**
+     * Gets final outputs which are encoded and ready to be passed to an RNN type model.
+     * @return Polished data.
+     */
+    public List<ArrayList[]> getOutputsEncoded(){
+        return encodeMessyOutputs(separateTimeSteps(this.messyOutputs));
+    }
+
+    public List<ArrayList[]> getSupportsEncoded(){
+        return encodeMessySupports(separateTimeSteps(this.messyOutputs));
+    }
 
     /**
      * Gets a mapping from a double to its corresponding string which is a subject, predicate, or object of a triple.
@@ -71,6 +76,91 @@ public class PackageTreeData {
 
     public HashMap<InferenceNode, List<FactNode>> getMessyInfToFactsMap(){
         return messyInfToFactsMap;
+    }
+
+    //Helpers to generate clean output-----------------------------------------------------
+
+    /**
+     * Converts list of inferences seperated by timestep into the correct encoding.
+     * @param messyD List of messy InferenceNode.
+     * @return Encoded messy data.
+     */
+    private List<ArrayList[]> encodeMessyOutputs(List<ArrayList[]> messyD){
+        List<ArrayList[]> returnable = new ArrayList<>();
+
+
+        for(ArrayList[] infList : messyD){
+
+            //Sets up array for time steps.
+            ArrayList[] encodedTimeStepArray = new ArrayList[infList.length];
+            for(int x=0; x<encodedTimeStepArray.length; x++){
+                encodedTimeStepArray[x] = new ArrayList();
+            }
+
+            //List for each timestep of infList
+            int counter = 0;
+            for(ArrayList timeSteps : infList){
+                ArrayList<Double> temp = new ArrayList<>();
+                //Encoding each inf
+                for(Object obj : timeSteps){
+                    temp.addAll( ((InferenceNode) obj).getEncoding() );
+                }
+                encodedTimeStepArray[counter].addAll(temp);
+                counter++;
+            }
+            returnable.add(encodedTimeStepArray);
+        }
+        return returnable;
+    }
+
+    private List<ArrayList[]> encodeMessySupports(List<ArrayList[]> messyD){
+        List<ArrayList[]> returnable = new ArrayList<>();
+
+        for(ArrayList[] infList : messyD){
+
+            //Sets up array for time steps.
+            ArrayList[] encodedTimeStepArray = new ArrayList[infList.length];
+            for(int x=0; x<encodedTimeStepArray.length; x++){
+                encodedTimeStepArray[x] = new ArrayList();
+            }
+
+            //List for each timestep of infList
+            int counter = 0;
+            for(ArrayList timeSteps : infList){
+                ArrayList<Double> temp = new ArrayList<>();
+                //Encoding each inf
+                for(Object obj : timeSteps){
+                    temp.addAll( ((InferenceNode) obj).getSupportEncoding());
+                }
+                encodedTimeStepArray[counter].addAll(temp);
+                counter++;
+            }
+            returnable.add(encodedTimeStepArray);
+        }
+        return returnable;
+    }
+
+    /**
+     * Separates lists of InferenceNodes by timestep so that each sample will be an array of InferenceNode.  The array
+     * index is equal to the InferenceNode timestep.
+     * @param messyD Messy output data.
+     * @return List of List arrays.
+     */
+    private List<ArrayList[]> separateTimeSteps(List<ArrayList<InferenceNode>> messyD){
+        List<ArrayList[]> returnable = new ArrayList<>();
+
+        for(ArrayList<InferenceNode> list : messyD){
+            //Size of the longest timestep.
+            ArrayList[] timeStepArray = new ArrayList[this.tm.tree.get(0).getTimeStep()];
+            for(int i=0; i<timeStepArray.length; i++){
+                timeStepArray[i] = new ArrayList<InferenceNode>();
+            }
+            for(InferenceNode inf : list){
+                timeStepArray[inf.getTimeStep()-1].add(inf);
+            }
+            returnable.add(timeStepArray);
+        }
+        return returnable;
     }
 
     /**
@@ -225,7 +315,7 @@ public class PackageTreeData {
         else if(listContainsObjectWithDesiredTimeStep(inferences, facts,timeStepAdded.indexOf(false)+1, size)){
             return false;
         }
-        //If it gets to this it.
+        //If it gets to this it still wants a value but there isn't a good value.
         else{
             if(fullList){
                 timeStepIndexChecker = timeStepAdded.indexOf(false);

@@ -111,7 +111,7 @@ public class TreeManager {
      * @param node
      * @return
      */
-    public int assignTimeStepsAndEncoding(TreeNode node){
+    public int assignTimeStepsAndSuppEncoding(TreeNode node){
         if(node.getTimeStep() > 0)
             return node.getTimeStep() + 1;
 
@@ -120,11 +120,11 @@ public class TreeManager {
 
         InferenceNode infNode = (InferenceNode) node;
         int v1 = 0;
-        v1 += assignTimeStepsAndEncoding(infNode.support1);
+        v1 += assignTimeStepsAndSuppEncoding(infNode.support1);
 
         int v2 = 0;
         if(infNode.support2 != null){
-            v2 += assignTimeStepsAndEncoding(infNode.support2);
+            v2 += assignTimeStepsAndSuppEncoding(infNode.support2);
         }
 
         if(infNode.getSupportEncoding() == null){

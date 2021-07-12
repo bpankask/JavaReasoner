@@ -17,10 +17,10 @@ import java.util.*;
 public class SerializeDeepReasonerData implements JsonSerializer{
     private List<ArrayList<Double>> kB;
     private List<Double[][]> supports;
-    private List<Double[][]> outputs;
+    private List<ArrayList[]> outputs;
     private List<HashMap<Double, String>> vectorMap;
 
-    public SerializeDeepReasonerData(List<ArrayList<Double>> kB, List<Double[][]> supports, List<Double[][]> outputs, List<HashMap<Double, String>> vectorMap) {
+    public SerializeDeepReasonerData(List<ArrayList<Double>> kB, List<Double[][]> supports, List<ArrayList[]> outputs, List<HashMap<Double, String>> vectorMap) {
         this.kB = kB;
         this.supports = supports;
         this.outputs = outputs;
@@ -49,11 +49,11 @@ public class SerializeDeepReasonerData implements JsonSerializer{
     }
 
     @JsonProperty("outputs")
-    public List<Double[][]> getOutputs() {
+    public List<ArrayList[]> getOutputs() {
         return outputs;
     }
     @JsonSetter("outputs")
-    public void setOutputs(List<Double[][]> outputs) {
+    public void setOutputs(List<ArrayList[]> outputs) {
         this.outputs = outputs;
     }
 

@@ -7,14 +7,12 @@ import java.util.*;
 import RDFSupportGenerationTree.*;
 import JSONHandler.CreateOntologyFromJson;
 import JSONHandler.JsonParser;
-import JSONHandler.*;
 import JSONHandler.JsonWriter;
 import JenaBuiltins.*;
 import RDFGraphManipulations.ChangeInformation;
 import RDFGraphManipulations.MapEncoding;
 import RDFGraphManipulations.GetInformation;
 import RDFGraphManipulations.ScaledIntegerMappedEncoding;
-import com.sun.nio.sctp.PeerAddressChangeNotification;
 import org.apache.commons.compress.utils.FileNameUtils;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntModelSpec;
@@ -68,7 +66,7 @@ public class ReasonerLogic {
             for (TreeNode tn : tree) {
                 TreeNode node = tn;
                 if (node instanceof InferenceNode) {
-                    tm.assignTimeStepsAndEncoding((InferenceNode) node);
+                    tm.assignTimeStepsAndSuppEncoding((InferenceNode) node);
                 }
             }//end while
 

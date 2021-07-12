@@ -17,45 +17,45 @@ public class SerializeDeepReasonerDataTest {
 
     private SerializeDeepReasonerData serializeClass = null;
 
-    @Before
-    public void setUp(){
-        List<ArrayList<Double>> kb = new ArrayList<ArrayList<Double>>();
-        ArrayList<Double> list1 = new ArrayList<Double>();
-        list1.add(.1);
-        list1.add(.2);
-        list1.add(.3);
-        ArrayList<Double> list2 = new ArrayList<Double>();
-        list2.add(.7);
-        list2.add(.8);
-        list2.add(.9);
-        kb.add(list1);
-        kb.add(list2);
-
-        List<Double[][]> supp = new ArrayList<Double[][]>();
-        Double[][] supp1 = new Double[4][4];
-        supp1[0][0] = .00;
-        supp1[1][1] = .01;
-        supp1[2][2] = .02;
-        supp1[3][3] = .03;
-        supp.add(supp1);
-
-        List<Double[][]> outputs = new ArrayList<Double[][]>();
-        Double[][] outputs1 = new Double[4][4];
-        outputs1[0][0] = .00;
-        outputs1[1][1] = .01;
-        outputs1[2][2] = .02;
-        outputs1[3][3] = .03;
-        outputs.add(outputs1);
-
-        List<HashMap<Double, String>> vectorMap = new ArrayList<HashMap<Double, String>>();
-        HashMap<Double, String> dict = new HashMap<Double, String>();
-        dict.put(.00, "rdf");
-        dict.put(.01, "rdfs");
-        dict.put(.02, "owl");
-        vectorMap.add(dict);
-
-        this.serializeClass = new SerializeDeepReasonerData(kb, supp, outputs, vectorMap);
-    }
+//    @Before
+//    public void setUp(){
+//        List<ArrayList<Double>> kb = new ArrayList<ArrayList<Double>>();
+//        ArrayList<Double> list1 = new ArrayList<Double>();
+//        list1.add(.1);
+//        list1.add(.2);
+//        list1.add(.3);
+//        ArrayList<Double> list2 = new ArrayList<Double>();
+//        list2.add(.7);
+//        list2.add(.8);
+//        list2.add(.9);
+//        kb.add(list1);
+//        kb.add(list2);
+//
+//        List<Double[][]> supp = new ArrayList<Double[][]>();
+//        Double[][] supp1 = new Double[4][4];
+//        supp1[0][0] = .00;
+//        supp1[1][1] = .01;
+//        supp1[2][2] = .02;
+//        supp1[3][3] = .03;
+//        supp.add(supp1);
+//
+//        List<Double[][]> outputs = new ArrayList<Double[][]>();
+//        Double[][] outputs1 = new Double[4][4];
+//        outputs1[0][0] = .00;
+//        outputs1[1][1] = .01;
+//        outputs1[2][2] = .02;
+//        outputs1[3][3] = .03;
+//        outputs.add(outputs1);
+//
+//        List<HashMap<Double, String>> vectorMap = new ArrayList<HashMap<Double, String>>();
+//        HashMap<Double, String> dict = new HashMap<Double, String>();
+//        dict.put(.00, "rdf");
+//        dict.put(.01, "rdfs");
+//        dict.put(.02, "owl");
+//        vectorMap.add(dict);
+//
+//        this.serializeClass = new SerializeDeepReasonerData(kb, supp, outputs, vectorMap);
+//    }
 
     @Test
     public void serializeToJson_CorrectJsonOutput() throws JsonProcessingException {

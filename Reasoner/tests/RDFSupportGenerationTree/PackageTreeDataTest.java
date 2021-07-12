@@ -5,11 +5,8 @@ import Reasoner.ReasonerLogic;
 import org.apache.jena.graph.Triple;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntModelSpec;
-import org.apache.jena.rdf.model.InfModel;
-import org.apache.jena.rdf.model.Model;
-import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.rdf.model.*;
 import org.apache.jena.reasoner.rulesys.RuleDerivation;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.lang.reflect.InvocationTargetException;
@@ -37,54 +34,189 @@ public class PackageTreeDataTest {
 
         TreeManager treem = new TreeManager(inf, sie.getEncodedMap());
         treem.createTree(treem.createTreeNodes());
+        for (TreeNode tn : treem.tree) {
+            TreeNode node = tn;
+            if (node instanceof InferenceNode) {
+                treem.assignTimeStepsAndSuppEncoding((InferenceNode) node);
+            }
+        }//end while
         return treem;
     }
 
-//    @Test
-//    public void getKB_IfTreeNotCreatedThenShouldReturnNull(){
-//        PackageTreeData ptd = new PackageTreeData(tm);
-//        assertEquals(null, ptd.getKB(10));
-//    }
-//
-//    @Test
-//    public void getKB_IfTreeCreatedThenShouldNotReturnNull(){
-//        PackageTreeData ptd = new PackageTreeData(tm);
-//        tm.createTree(tm.createTreeNodes());
-//        assertFalse(ptd.getKB(10).equals(null));
-//    }
-//
-//    @Test
-//    public void getKB_LengthOfEachVectorShouldBeTheSame(){
-//        PackageTreeData ptd = new PackageTreeData(tm);
-//        tm.createTree(tm.createTreeNodes());
-//        List<ArrayList<Double>> kb = ptd.getKB(1);
-//        int size = kb.get(0).size();
-//        for(ArrayList<Double> vect : kb){
-//            assertEquals(size, vect.size());
-//        }
-//    }
-//
-//    @Test
-//    public void getKB_ListReturnedIsComplete(){
-//        PackageTreeData ptd = new PackageTreeData(tm);
-//
-//        List<TreeNode> tree = tm.createTree(tm.createTreeNodes());
-//
-//        List<ArrayList<Double>> kb = ptd.getKB(2);
-//        List<Double> actual = new ArrayList<Double>();
-//
-//        List<Double> expected = new ArrayList<Double>();
-//        for(TreeNode node : tree){
-//            if(node instanceof FactNode){
-//                expected.addAll(node.getEncoding());
-//            }
-//        }
-//        for(ArrayList<Double> list: kb){
-//            actual.addAll(list);
-//        }
-//
-//        assertArrayEquals(expected.toArray(), actual.toArray());
-//    }
+    //Polished data-----------------------------------------------------------------------------------------------------
+    @Test
+    public void getKBEncoded_LengthOfEachVectorShouldBeTheSame(){
+        PackageTreeData ptd = new PackageTreeData(tm, 20);
+        List<ArrayList<Double>> kb = ptd.getKBEncoded();
+        int size = kb.get(0).size();
+        for(ArrayList<Double> vect : kb){
+            assertEquals(size, vect.size());
+        }
+    }
+
+    @Test
+    public void getKBEncoded_CanConvertBackToSameTriplesAsMessyData(){
+        PackageTreeData ptd = new PackageTreeData(tm, 20);
+        List<ArrayList<Double>> kb = ptd.getKBEncoded();
+
+        List<ArrayList<Triple>> actual = new ArrayList<ArrayList<Triple>>();
+        for(ArrayList<Double> encodedSample : kb){
+            ArrayList<Triple> temp = new ArrayList<>();
+            List<String> split = new ArrayList<String>();
+
+            for(int i=1; i<= encodedSample.size(); i++){
+                String tString = tm.encodingMap.get(encodedSample.get(i-1));
+                split.add(tString);
+                if(i % 3 == 0){
+                    temp.add(tm.infModel.createStatement(tm.infModel.getResource(split.get(0)), tm.infModel.getProperty(split.get(1)),
+                            tm.infModel.getResource(split.get(2))).asTriple());
+                    split.clear();
+                }
+            }
+            actual.add(temp);
+            temp.clear();
+        }
+
+        List<ArrayList<Triple>> expected = new ArrayList<ArrayList<Triple>>();
+        for(ArrayList<FactNode> sample : ptd.getMessyKB()){
+            ArrayList<Triple> temp = new ArrayList<>();
+            for(FactNode fact : sample){
+                temp.add(fact.getValue());
+            }
+            expected.add(temp);
+            temp.clear();
+        }
+
+        assertArrayEquals(expected.toArray(), actual.toArray());
+    }
+
+    @Test
+    public void getKBEncoded_SameLengthAsMessyData(){
+        PackageTreeData ptd = new PackageTreeData(tm, 20);
+        List<ArrayList<FactNode>> messyKB = ptd.getMessyKB();
+        List<ArrayList<Double>> kb = ptd.getKBEncoded();
+
+        int size = messyKB.get(0).size();
+
+        for(ArrayList<Double> factList : kb){
+            assertEquals(size, factList.size()/3);
+        }
+    }
+
+    @Test
+    public void getOutputsEncoded_CanConvertBackToSameTriplesAsMessyData() throws NoSuchMethodException {
+        PackageTreeData ptd = new PackageTreeData(tm, 20);
+
+        List<ArrayList[]> results = ptd.getOutputsEncoded();
+
+        List<ArrayList<Triple>> actual = new ArrayList<>();
+        List<ArrayList<Triple>> expected = new ArrayList<>();
+        List<ArrayList<InferenceNode>> messyOuts = ptd.getMessyOutputs();
+
+        //Each sample split into timesteps
+        for(int j=0; j<results.size(); j++){
+            ArrayList<Triple> temp = new ArrayList<>();
+            //Each timestep list
+            for(ArrayList list : results.get(j)){
+                //Each double in a timestep
+                List<String> split = new ArrayList<>();
+                for(int i=1; i<=list.size(); i++){
+                    String tString = tm.encodingMap.get(list.get(i-1));
+                    split.add(tString);
+                    if(i % 3 == 0){
+                        temp.add(tm.infModel.createStatement(tm.infModel.getResource(split.get(0)), tm.infModel.getProperty(split.get(1)),
+                                tm.infModel.getResource(split.get(2))).asTriple());
+                        split.clear();
+                    }
+                }
+            }
+            actual.add(temp);
+        }
+
+        //Gets expected values
+        for(ArrayList<InferenceNode> list : messyOuts){
+            ArrayList<Triple> temp1 = new ArrayList<>();
+            for(InferenceNode inf : list){
+                temp1.add(inf.getValue());
+            }
+            expected.add(temp1);
+        }
+
+        for(int i=0; i<expected.size(); i++) {
+            for (Triple t : expected.get(i)) {
+                boolean cont = false;
+                for(Triple t1 : actual.get(i)){
+                    if(t1.toString().equals(t.toString())){
+                        cont = true;
+                    }
+                }
+                assertTrue(cont);
+            }
+        }
+
+        for(int i=0; i<actual.size(); i++) {
+            for (Triple t : actual.get(i)) {
+                boolean cont = false;
+                for(Triple t1 : expected.get(i)){
+                    if(t1.toString().equals(t.toString())){
+                        cont = true;
+                    }
+                }
+                assertTrue(cont);
+            }
+        }
+    }
+
+    @Test
+    public void separateTimeSteps_AllTimeStepArraysAreSameLength() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        PackageTreeData ptd = new PackageTreeData(tm, 20);
+        Method method = PackageTreeData.class.getDeclaredMethod("separateTimeSteps", new Class[]{List.class});
+        method.setAccessible(true);
+
+        List<ArrayList[]> results = (List<ArrayList[]>) method.invoke(ptd, ptd.getMessyOutputs());
+        int maxTimeStep = tm.tree.get(0).getTimeStep();
+        for(ArrayList[] arr : results){
+            assertEquals(maxTimeStep, arr.length);
+        }
+    }
+
+    @Test
+    public void separateTimeSteps_TimeStepIsCorrectForPositionInArray() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        PackageTreeData ptd = new PackageTreeData(tm, 20);
+        Method method = PackageTreeData.class.getDeclaredMethod("separateTimeSteps", new Class[]{List.class});
+        method.setAccessible(true);
+
+        List<ArrayList[]> results = (List<ArrayList[]>) method.invoke(ptd, ptd.getMessyOutputs());
+        int maxTimeStep = tm.tree.get(0).getTimeStep();
+        for(ArrayList[] timeStepArray : results){
+            for(int i=0; i<timeStepArray.length; i++){
+                for(Object obj : timeStepArray[i]){
+                    InferenceNode inf = (InferenceNode) obj;
+                    assertEquals(i+1, inf.getTimeStep());
+                }
+            }
+        }
+    }
+
+    @Test
+    public void separateTimeSteps_SameInferencesAsMessyData() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        PackageTreeData ptd = new PackageTreeData(tm, 20);
+        Method method = PackageTreeData.class.getDeclaredMethod("separateTimeSteps", new Class[]{List.class});
+        method.setAccessible(true);
+
+        List<ArrayList[]> results = (List<ArrayList[]>) method.invoke(ptd, ptd.getMessyOutputs());
+        for(int j=0; j<results.size(); j++){
+            ArrayList<InferenceNode> actual = new ArrayList<>();
+            for(int i=0; i<results.get(j).length; i++){
+                for(Object obj : results.get(j)[i]){
+                    InferenceNode inf = (InferenceNode) obj;
+                    assertTrue(ptd.getMessyOutputs().get(j).contains(inf));
+                    actual.add(inf);
+                }
+            }
+            assertEquals(ptd.getMessyOutputs().get(j).size(), actual.size() );
+        }
+    }
 
     @Test
     public void getVectorMap_AllVectorsAreTheSame(){
@@ -126,7 +258,7 @@ public class PackageTreeDataTest {
     }
 
     @Test
-    public void findAllFactsForInference_CheckAgainstSintheticData() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public void findAllFactsForInference_CheckAgainstSyntheticData() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         //Create Synthetic tree of nodes
         Model model = ModelFactory.createDefaultModel();
         Triple t1 = model.createStatement(model.createResource("s1"), model.createProperty("p1"),
@@ -209,21 +341,15 @@ public class PackageTreeDataTest {
         assertArrayEquals(expected.toArray(), actual.toArray());
     }
 
+    //Messy Data Tests--------------------------------------------------------------------------------------------------
     @Test
-    public void setMessyKBAndOuts_MessyDatasAreSameSize(){
+    public void setMessyKBAndOuts_MessyDataSamplesAreSameSize(){
         PackageTreeData ptd = new PackageTreeData(tm, 20);
         assertEquals(ptd.getMessyKB().size(), ptd.getMessyOutputs().size());
     }
 
     @Test
     public void setMessyKBAndOuts_MakeSureAllInferencesArePresentInMessyData(){
-        for (TreeNode tn : tm.tree) {
-            TreeNode node = tn;
-            if (node instanceof InferenceNode) {
-                tm.assignTimeStepsAndEncoding((InferenceNode) node);
-            }
-        }//end while
-
         PackageTreeData ptd = new PackageTreeData(tm, 20);
 
         List<InferenceNode> expectedInferences = new ArrayList<>();
@@ -252,14 +378,6 @@ public class PackageTreeDataTest {
 
     @Test
     public void setMessyKBAndOuts_NoGapsInInferenceTimeSteps(){
-        for (TreeNode tn : tm.tree) {
-            TreeNode node = tn;
-            if (node instanceof InferenceNode) {
-                tm.assignTimeStepsAndEncoding((InferenceNode) node);
-            }
-        }//end while
-        tm.tree.sort(new SortByTimeStep());
-
         PackageTreeData ptd = new PackageTreeData(tm, 20);
 
         for(ArrayList<InferenceNode> outs : ptd.getMessyOutputs()){
@@ -283,13 +401,6 @@ public class PackageTreeDataTest {
 
     @Test
     public void setMessyKBAndOuts_AllKBAxiomsPresentForInferences(){
-        for (TreeNode tn : tm.tree) {
-            TreeNode node = tn;
-            if (node instanceof InferenceNode) {
-                tm.assignTimeStepsAndEncoding((InferenceNode) node);
-            }
-        }
-
         PackageTreeData ptd = new PackageTreeData(tm, 20);
 
         List<ArrayList<InferenceNode>> infLists = ptd.getMessyOutputs();
@@ -308,6 +419,8 @@ public class PackageTreeDataTest {
         }
     }
 
+    //Helper Methods----------------------------------------------------------------------------------------------------
+
     @Test
     public void shouldAddFacts_CaseWhereDesiredTimeStepAndTSAtIndexAreEqual() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         //List inferences, List<Boolean> timeStepAdded, int index
@@ -323,7 +436,7 @@ public class PackageTreeDataTest {
         for (Object tn : rawInferences) {
             TreeNode node = (TreeNode) tn;
             if (node instanceof InferenceNode) {
-                tm.assignTimeStepsAndEncoding((InferenceNode) node);
+                tm.assignTimeStepsAndSuppEncoding((InferenceNode) node);
             }
         }//end while
         int index = 0;
@@ -369,7 +482,7 @@ public class PackageTreeDataTest {
         for (Object tn : rawInferences) {
             TreeNode node = (TreeNode) tn;
             if (node instanceof InferenceNode) {
-                tm.assignTimeStepsAndEncoding((InferenceNode) node);
+                tm.assignTimeStepsAndSuppEncoding((InferenceNode) node);
             }
         }//end while
         int index = 0;
@@ -416,7 +529,7 @@ public class PackageTreeDataTest {
         for (Object tn : rawInferences) {
             TreeNode node = (TreeNode) tn;
             if (node instanceof InferenceNode) {
-                tm.assignTimeStepsAndEncoding((InferenceNode) node);
+                tm.assignTimeStepsAndSuppEncoding((InferenceNode) node);
             }
         }//end while
         int index = 10;
@@ -456,7 +569,7 @@ public class PackageTreeDataTest {
         for (Object tn : rawInferences) {
             TreeNode node = (TreeNode) tn;
             if (node instanceof InferenceNode) {
-                tm.assignTimeStepsAndEncoding((InferenceNode) node);
+                tm.assignTimeStepsAndSuppEncoding((InferenceNode) node);
             }
         }//end while
         int index = 0;
@@ -486,5 +599,17 @@ public class PackageTreeDataTest {
         method.setAccessible(true);
 
         assertEquals(false, method.invoke(pd, rawInferences, tempFacts, timeStepAdded, index, 20, true));
+    }
+
+    @Test
+    public void makeSureTreeSupportEncodingsContainAllFactsThatWereUsedInItsCreation(){
+        tm.createTree(tm.createTreeNodes());
+        for(TreeNode tn : tm.tree){
+            if(tn instanceof InferenceNode){
+                tm.assignTimeStepsAndSuppEncoding(tn);
+            }
+        }
+
+
     }
 }

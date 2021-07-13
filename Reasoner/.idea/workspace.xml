@@ -3,15 +3,25 @@
   <component name="ChangeListManager">
     <list default="true" id="60b19ed1-ce3f-4f6f-9531-dbc7914c00da" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OutputFiles/traceTest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Reasoner.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Reasoner/JSONHandler/JsonSerializer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Reasoner/JSONHandler/JsonSerializer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Reasoner/JSONHandler/SerializeDeepReasonerData.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Reasoner/JSONHandler/SerializeDeepReasonerData.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Reasoner/JSONHandler/SerializeKBAndInferences.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Reasoner/JSONHandler/SerializeKBAndInferences.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Reasoner/RDFSupportGenerationTree/PackageTreeData.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Reasoner/RDFSupportGenerationTree/PackageTreeData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/Reasoner/JSONHandler/SerializeDeepReasonerDataTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/Reasoner/JSONHandler/SerializeDeepReasonerDataTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Reasoner/RDFSupportGenerationTree/TreeManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Reasoner/RDFSupportGenerationTree/TreeManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Reasoner/Reasoner/ReasonerLogic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Reasoner/Reasoner/ReasonerLogic.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Reasoner/JSONHandler/SerializeDeepReasonerDataTest.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/test/Reasoner/RDFSupportGenerationTree/PackageTreeDataTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/Reasoner/RDFSupportGenerationTree/PackageTreeDataTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Reasoner/RDFSupportGenerationTree/TreeManagerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/Reasoner/RDFSupportGenerationTree/TreeManagerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Reasoner/Reasoner/ReasonerLogicTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JSONHandler/JsonSerializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JSONHandler/JsonSerializer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/JSONHandler/SerializeDeepReasonerData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JSONHandler/SerializeDeepReasonerData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JSONHandler/SerializeKBAndInferences.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JSONHandler/SerializeKBAndInferences.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RDFSupportGenerationTree/PackageTreeData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RDFSupportGenerationTree/PackageTreeData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RDFSupportGenerationTree/TreeManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RDFSupportGenerationTree/TreeManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Reasoner/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Reasoner/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Reasoner/ReasonerLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Reasoner/ReasonerLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/JSONHandler/SerializeDeepReasonerDataTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/JSONHandler/SerializeDeepReasonerDataTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/RDFSupportGenerationTree/PackageTreeDataTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/RDFSupportGenerationTree/PackageTreeDataTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/RDFSupportGenerationTree/TreeManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/RDFSupportGenerationTree/TreeManagerTest.java" afterDir="false" />
     </list>
@@ -97,26 +107,24 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.PackageTreeDataTest.getOutputsEncoded_CanConvertBackToSameTriplesAsMessyData">
-    <configuration name="All in Reasoner" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Reasoner.Main" />
       <module name="Reasoner" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Reasoner.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="InferenceNodeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="All in Reasoner" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Reasoner" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="RDFSupportGenerationTree.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="RDFSupportGenerationTree" />
-      <option name="MAIN_CLASS_NAME" value="RDFSupportGenerationTree.InferenceNodeTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -137,7 +145,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PackageTreeDataTest.getOutputsEncoded_CanConvertBackToSameTriplesAsMessyData" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PackageTreeDataTest.makeSureTreeSupportEncodingsContainAllFactsThatWereUsedInItsCreation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Reasoner" />
       <extension name="coverage">
         <pattern>
@@ -147,13 +155,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="RDFSupportGenerationTree" />
       <option name="MAIN_CLASS_NAME" value="RDFSupportGenerationTree.PackageTreeDataTest" />
-      <option name="METHOD_NAME" value="getOutputsEncoded_CanConvertBackToSameTriplesAsMessyData" />
+      <option name="METHOD_NAME" value="makeSureTreeSupportEncodingsContainAllFactsThatWereUsedInItsCreation" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PackageTreeDataTest.separateTimeSteps_SameInferencesAsMessyData" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PackageTreeDataTest.setMessyKBAndOuts_MakeSureAllInferencesArePresentInMessyData" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Reasoner" />
       <extension name="coverage">
         <pattern>
@@ -163,33 +171,35 @@
       </extension>
       <option name="PACKAGE_NAME" value="RDFSupportGenerationTree" />
       <option name="MAIN_CLASS_NAME" value="RDFSupportGenerationTree.PackageTreeDataTest" />
-      <option name="METHOD_NAME" value="separateTimeSteps_SameInferencesAsMessyData" />
+      <option name="METHOD_NAME" value="setMessyKBAndOuts_MakeSureAllInferencesArePresentInMessyData" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Reasoner in Reasoner" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PackageTreeDataTest.setMessyKBAndOuts_MessyDataSamplesAreSameSize" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Reasoner" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Reasoner.*" />
+          <option name="PATTERN" value="RDFSupportGenerationTree.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="Reasoner" />
-      <option name="TEST_OBJECT" value="package" />
+      <option name="PACKAGE_NAME" value="RDFSupportGenerationTree" />
+      <option name="MAIN_CLASS_NAME" value="RDFSupportGenerationTree.PackageTreeDataTest" />
+      <option name="METHOD_NAME" value="setMessyKBAndOuts_MessyDataSamplesAreSameSize" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.PackageTreeDataTest.getOutputsEncoded_CanConvertBackToSameTriplesAsMessyData" />
-        <item itemvalue="JUnit.Reasoner in Reasoner" />
-        <item itemvalue="JUnit.InferenceNodeTest" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.PackageTreeDataTest.setMessyKBAndOuts_MakeSureAllInferencesArePresentInMessyData" />
+        <item itemvalue="JUnit.PackageTreeDataTest.setMessyKBAndOuts_MessyDataSamplesAreSameSize" />
         <item itemvalue="JUnit.All in Reasoner" />
-        <item itemvalue="JUnit.PackageTreeDataTest.separateTimeSteps_SameInferencesAsMessyData" />
+        <item itemvalue="JUnit.PackageTreeDataTest.makeSureTreeSupportEncodingsContainAllFactsThatWereUsedInItsCreation" />
       </list>
     </recent_temporary>
   </component>
@@ -237,6 +247,26 @@
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/RDFSupportGenerationTree/PackageTreeData.java</url>
+          <line>123</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/tests/RDFSupportGenerationTree/PackageTreeDataTest.java</url>
+          <line>644</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Reasoner/ReasonerLogic.java</url>
+          <line>74</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/RDFSupportGenerationTree/PackageTreeData.java</url>
+          <line>247</line>
+          <option name="timeStamp" value="37" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

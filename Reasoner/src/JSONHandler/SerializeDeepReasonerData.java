@@ -16,11 +16,11 @@ import java.util.*;
  */
 public class SerializeDeepReasonerData implements JsonSerializer{
     private List<ArrayList<Double>> kB;
-    private List<Double[][]> supports;
+    private List<ArrayList[]> supports;
     private List<ArrayList[]> outputs;
     private List<HashMap<Double, String>> vectorMap;
 
-    public SerializeDeepReasonerData(List<ArrayList<Double>> kB, List<Double[][]> supports, List<ArrayList[]> outputs, List<HashMap<Double, String>> vectorMap) {
+    public SerializeDeepReasonerData(List<ArrayList<Double>> kB, List<ArrayList[]> supports, List<ArrayList[]> outputs, List<HashMap<Double, String>> vectorMap) {
         this.kB = kB;
         this.supports = supports;
         this.outputs = outputs;
@@ -40,11 +40,11 @@ public class SerializeDeepReasonerData implements JsonSerializer{
     }
 
     @JsonProperty("supports")
-    public List<Double[][]> getSupports() {
+    public List<ArrayList[]> getSupports() {
         return supports;
     }
     @JsonSetter("supports")
-    public void setSupports(List<Double[][]> supports) {
+    public void setSupports(List<ArrayList[]> supports) {
         this.supports = supports;
     }
 
@@ -91,9 +91,8 @@ public class SerializeDeepReasonerData implements JsonSerializer{
     /**
      * Writes this classes data to a json file.
      * @param fileName
-     * @param json
      */
-    public void writeJson(String fileName, String json)  {
+    public void writeJson(String fileName)  {
         try {
             ObjectMapper mapper = new ObjectMapper();
             mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);

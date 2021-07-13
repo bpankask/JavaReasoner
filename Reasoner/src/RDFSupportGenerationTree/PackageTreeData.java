@@ -21,7 +21,9 @@ public class PackageTreeData {
         timeStepIndexChecker = this.tm.tree.get(0).getTimeStep()+1;
 
         messyInfToFactsMap = assignFactsToInferenceNodes();
+        System.out.println("Setting messy data: Processing");
         setMessyKBAndOuts(sizeOfKBs);
+        System.out.println("Package Tree Created: True");
     }
 
     /**
@@ -240,15 +242,6 @@ public class PackageTreeData {
                 resetTimeStepCounter(timeStepAdded);
                 timeStepIndexChecker = tm.tree.get(0).getTimeStep()+1;
             }
-            if(kb.size() == kbSizeTest)
-                counter++;
-            else{
-                counter = 0;
-            }
-
-            if(counter > 20)
-                System.out.println("NOOO");
-            kbSizeTest = kb.size();
 
         }//end main loop
 

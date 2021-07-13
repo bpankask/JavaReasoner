@@ -159,7 +159,7 @@ public class TreeManagerTest {
         for(TreeNode tn : tree){
             TreeNode node = tn;
             if(node instanceof InferenceNode){
-                tm.assignTimeStepsAndSuppEncoding((InferenceNode)node);
+                tm.assignTimeSteps((InferenceNode)node);
             }
         }//end while
 

@@ -37,7 +37,7 @@ public class PackageTreeDataTest {
         for (TreeNode tn : treem.tree) {
             TreeNode node = tn;
             if (node instanceof InferenceNode) {
-                treem.assignTimeStepsAndSuppEncoding((InferenceNode) node);
+                treem.assignTimeSteps((InferenceNode) node);
             }
         }//end while
         return treem;
@@ -344,13 +344,13 @@ public class PackageTreeDataTest {
     //Messy Data Tests--------------------------------------------------------------------------------------------------
     @Test
     public void setMessyKBAndOuts_MessyDataSamplesAreSameSize(){
-        PackageTreeData ptd = new PackageTreeData(tm, 20);
+        PackageTreeData ptd = new PackageTreeData(tm, 17);
         assertEquals(ptd.getMessyKB().size(), ptd.getMessyOutputs().size());
     }
 
     @Test
     public void setMessyKBAndOuts_MakeSureAllInferencesArePresentInMessyData(){
-        PackageTreeData ptd = new PackageTreeData(tm, 20);
+        PackageTreeData ptd = new PackageTreeData(tm, 24);
 
         List<InferenceNode> expectedInferences = new ArrayList<>();
         for(TreeNode tn : tm.tree){
@@ -436,7 +436,7 @@ public class PackageTreeDataTest {
         for (Object tn : rawInferences) {
             TreeNode node = (TreeNode) tn;
             if (node instanceof InferenceNode) {
-                tm.assignTimeStepsAndSuppEncoding((InferenceNode) node);
+                tm.assignTimeSteps((InferenceNode) node);
             }
         }//end while
         int index = 0;
@@ -482,7 +482,7 @@ public class PackageTreeDataTest {
         for (Object tn : rawInferences) {
             TreeNode node = (TreeNode) tn;
             if (node instanceof InferenceNode) {
-                tm.assignTimeStepsAndSuppEncoding((InferenceNode) node);
+                tm.assignTimeSteps((InferenceNode) node);
             }
         }//end while
         int index = 0;
@@ -529,7 +529,7 @@ public class PackageTreeDataTest {
         for (Object tn : rawInferences) {
             TreeNode node = (TreeNode) tn;
             if (node instanceof InferenceNode) {
-                tm.assignTimeStepsAndSuppEncoding((InferenceNode) node);
+                tm.assignTimeSteps((InferenceNode) node);
             }
         }//end while
         int index = 10;
@@ -569,7 +569,7 @@ public class PackageTreeDataTest {
         for (Object tn : rawInferences) {
             TreeNode node = (TreeNode) tn;
             if (node instanceof InferenceNode) {
-                tm.assignTimeStepsAndSuppEncoding((InferenceNode) node);
+                tm.assignTimeSteps((InferenceNode) node);
             }
         }//end while
         int index = 0;
@@ -603,13 +603,49 @@ public class PackageTreeDataTest {
 
     @Test
     public void makeSureTreeSupportEncodingsContainAllFactsThatWereUsedInItsCreation(){
-        tm.createTree(tm.createTreeNodes());
+        PackageTreeData ptd = new PackageTreeData(tm, 20);
+
+        HashMap<InferenceNode, List<FactNode>> map = ptd.getMessyInfToFactsMap();
+        HashMap<String, List<String>> expected = new HashMap<>();
+        //Converts mapping to factnode into the string representation.
+        for(Map.Entry<InferenceNode, List<FactNode>> entry : map.entrySet()){
+            List<String> list = new ArrayList<>();
+            for(FactNode fact : entry.getValue()){
+                list.add(fact.getValue().toString().replace("\"", ""));
+            }
+
+            expected.put(entry.getKey().getValue().toString().replace("\"", ""),list);
+        }
+
+        HashMap<String, List<String>> actual = new HashMap<>();
         for(TreeNode tn : tm.tree){
             if(tn instanceof InferenceNode){
-                tm.assignTimeStepsAndSuppEncoding(tn);
+                List<Double> suppEncoding = ((InferenceNode) tn).getSupportEncoding();
+                List<String> temp = new ArrayList<>();
+                List<String> split = new ArrayList<>();
+                for(int i=0; i<suppEncoding.size(); i++){
+                    split.add(tm.encodingMap.get(suppEncoding.get(i)));
+                    if((i+1) % 3 == 0){
+                        Triple t = (tm.infModel.createStatement(tm.infModel.getResource(split.get(0)), tm.infModel.getProperty(split.get(1)),
+                                    tm.infModel.getResource(split.get(2))).asTriple());
+                        split.clear();
+                        temp.add(t.toString().replace("\"", ""));
+                    }
+                }
+                actual.put(tn.getValue().toString().replace("\"", ""), temp);
+            }//end if
+        }//end for
+
+        for(Map.Entry<String, List<String>> entry : expected.entrySet()){
+            for(String s1 : entry.getValue()){
+                List<String> list = actual.get(entry.getKey());
+                try {
+                    assertTrue(list.contains(s1));
+                }catch(AssertionError e){
+                    System.out.println();
+                }
             }
         }
 
-
-    }
+    }//end test
 }

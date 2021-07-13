@@ -5,9 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 import RDFSupportGenerationTree.*;
-import JSONHandler.CreateOntologyFromJson;
-import JSONHandler.JsonParser;
-import JSONHandler.JsonWriter;
+import JSONHandler.*;
 import JenaBuiltins.*;
 import RDFGraphManipulations.ChangeInformation;
 import RDFGraphManipulations.MapEncoding;
@@ -66,20 +64,18 @@ public class ReasonerLogic {
             for (TreeNode tn : tree) {
                 TreeNode node = tn;
                 if (node instanceof InferenceNode) {
-                    tm.assignTimeStepsAndSuppEncoding((InferenceNode) node);
+                    tm.assignTimeSteps((InferenceNode) node);
                 }
             }//end while
 
-            tree.sort(new SortByTimeStep());
-            PackageTreeData ptd = new PackageTreeData(tm, 20);
-            /*
-            Need to implement stuff here to create kb, outputs, supports.
-             */
+            //Wraps up all the data for serialization.
+            PackageTreeData ptd = new PackageTreeData(tm, 25);
 
-            // Creates Serializer object to store data in a particular json format.
-            //JsonSerializer js = new SerializeDeepReasonerData(kb, null,null, tm.getVectorMap(kb.size()));
+            //Creates Serializer object to serialize data in a particular json format.
+            JsonSerializer js = new SerializeDeepReasonerData(ptd.getKBEncoded(), ptd.getSupportsEncoded(),
+                    ptd.getOutputsEncoded(), ptd.getVectorMap(ptd.getKBEncoded().size()));
 
-            //js.writeJson(storageFilePath,js.serializeToJson());
+            js.writeJson(storageFilePath);
 
         } catch (Exception e) {
             e.printStackTrace();

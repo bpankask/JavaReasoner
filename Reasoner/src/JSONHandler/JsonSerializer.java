@@ -5,5 +5,5 @@ package JSONHandler;
  */
 public interface JsonSerializer {
     String serializeToJson();
-    void writeJson(String fileName, String json);
+    void writeJson(String fileName);
 }

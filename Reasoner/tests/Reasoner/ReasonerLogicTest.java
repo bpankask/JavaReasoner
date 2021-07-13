@@ -1,6 +1,5 @@
 package Reasoner;
 
-import InferenceTree.InferenceNode;
 import org.apache.jena.rdf.model.InfModel;
 import org.apache.jena.rdf.model.Statement;
 import org.apache.jena.rdf.model.StmtIterator;

@@ -1,5 +1,6 @@
-package InferenceTree;
+package RDFSupportGenerationTree;
 
+import RDFSupportGenerationTree.InferenceNode;
 import org.apache.jena.graph.Triple;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;

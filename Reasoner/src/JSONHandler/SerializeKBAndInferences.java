@@ -84,9 +84,8 @@ public class SerializeKBAndInferences implements JsonSerializer{
     /**
      * Writes this classes data to a json file.
      * @param fileName
-     * @param json
      */
-    public void writeJson(String fileName, String json)  {
+    public void writeJson(String fileName)  {
 
     }
 }

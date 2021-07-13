@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args){
         String filePath = "C:\\Users\\Brayden Pankaskie\\Desktop\\LabStuff\\TestFiles\\gfo-1.0.owl";
         String rulePath = "src\\RulesTimeStep.txt";
-        String tracePath = "OutputFiles\\traceTest";
+        String tracePath = "OutputFiles\\test1.1.json";
         String preProcessingPath = "src\\PreprocessingTimeStep.txt";
 
         ReasonerLogic.runTimeStepReasoner(filePath, rulePath, preProcessingPath, tracePath);

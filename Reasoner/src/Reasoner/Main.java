@@ -5,9 +5,9 @@ import java.io.*;
 public class Main {
 
     public static void main(String[] args){
-        String filePath = "C:\\Users\\Brayden Pankaskie\\Desktop\\LabStuff\\TestFiles\\gfo-1.0.owl";
+        String filePath = "C:\\Users\\Brayden Pankaskie\\Desktop\\LabStuff\\real_world_ontology_input\\real_world_ontology_working_data\\schemaorg.owl";
         String rulePath = "src\\RulesTimeStep.txt";
-        String tracePath = "OutputFiles\\test1.1.json";
+        String tracePath = "OutputFiles\\schemaorg.json";
         String preProcessingPath = "src\\PreprocessingTimeStep.txt";
 
         ReasonerLogic.runTimeStepReasoner(filePath, rulePath, preProcessingPath, tracePath);

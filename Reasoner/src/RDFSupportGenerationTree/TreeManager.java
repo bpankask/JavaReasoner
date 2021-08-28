@@ -178,6 +178,27 @@ public class TreeManager {
         return encoding;
     }
 
+    /**
+     * Separates the tree by time step value.
+     * @return Map from time step number to list of tree node.
+     */
+    public HashMap<Integer, ArrayList<InferenceNode>> seperateByTimestep(){
+        HashMap<Integer, ArrayList<InferenceNode>> timesteps = new HashMap<>();
+        for(TreeNode tn : this.tree){
+            if(tn instanceof InferenceNode){
+                int ts = tn.getTimeStep();
+                if(timesteps.containsKey(ts)){
+                    timesteps.get(ts).add((InferenceNode)tn);
+                }
+                else{
+                    timesteps.put(ts, new ArrayList<>());
+                    timesteps.get(ts).add((InferenceNode)tn);
+                }
+            }
+        }
+        return timesteps;
+    }
+
 //    /**
 //     * Gets encoded supporting statements for this TreeManagers Inference Graph.  Each array in the list has shape
 //     * (numMaxReasoningSteps, ???)

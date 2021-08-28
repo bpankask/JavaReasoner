@@ -1,0 +1,41 @@
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix rel:   <http://www.perceive.net/schemas/relationship/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+
+<http://example.org/#green-goblin>
+        a            rdfs:Resource , foaf:Person ;
+        rel:enemyOf  <http://example.org/#spiderman> ;
+        foaf:name    "Green Goblin" ;
+        foaf:name    [ a  rdfs:Resource , xsd:string ] .
+
+rdf:langString  a  rdfs:Resource .
+
+rdfs:Resource  a  rdfs:Resource .
+
+rdfs:subPropertyOf  a       rdfs:Resource , rdf:Property ;
+        rdfs:subPropertyOf  rdfs:subPropertyOf .
+
+foaf:name  a                rdfs:Resource , rdf:Property ;
+        rdfs:subPropertyOf  foaf:name .
+
+rdf:type  a                 rdfs:Resource , rdf:Property ;
+        rdfs:subPropertyOf  rdf:type .
+
+rdf:Property  a  rdfs:Resource .
+
+foaf:Person  a  rdfs:Resource .
+
+xsd:string  a   rdfs:Resource .
+
+rel:enemyOf  a              rdfs:Resource , rdf:Property ;
+        rdfs:subPropertyOf  rel:enemyOf .
+
+<http://example.org/#spiderman>
+        a            rdfs:Resource , foaf:Person ;
+        rel:enemyOf  <http://example.org/#green-goblin> ;
+        foaf:name    "Человек-паук"@ru , "Spiderman" ;
+        foaf:name    [ a  rdfs:Resource , rdf:langString ] ;
+        foaf:name    [ a  rdfs:Resource , xsd:string ] .

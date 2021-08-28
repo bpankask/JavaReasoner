@@ -225,4 +225,104 @@ public class ScaledIntegerMappedEncodingTest {
         }
     }
 
+    @Test
+    public void labelMap_ConceptsAreMappedToPosativeInt(){
+        ScaledIntegerMappedEncoding sie = new ScaledIntegerMappedEncoding(model);
+        sie.getEncodedMapAndPopLabelMap();
+
+        HashMap<Integer, String> labelMap = sie.labelMap;
+
+        // Creating a list of concept strings to remove from.
+        List<RDFNode> concepts = sie.conceptRoleInfoArray[0];
+        List<String> conceptsStrings = new ArrayList<>();
+        for(RDFNode node : concepts){
+            conceptsStrings.add(node.toString());
+        }
+
+        for(Map.Entry<Integer, String> entry : labelMap.entrySet()){
+            if(entry.getKey() > 0){
+                conceptsStrings.remove(entry.getValue());
+            }
+        }
+
+        assertTrue(conceptsStrings.isEmpty());
+    }
+
+    @Test
+    public void labelMap_RolesAreMappedToNegativeInt(){
+        ScaledIntegerMappedEncoding sie = new ScaledIntegerMappedEncoding(model);
+        sie.getEncodedMapAndPopLabelMap();
+
+        HashMap<Integer, String> labelMap = sie.labelMap;
+
+        // Creating a list of concept strings to remove from.
+        List<RDFNode> roles = sie.conceptRoleInfoArray[1];
+        List<String> roleStrings = new ArrayList<>();
+        for(RDFNode node : roles){
+            roleStrings.add(node.toString());
+        }
+
+        for(Map.Entry<Integer, String> entry : labelMap.entrySet()){
+            if(entry.getKey() < 0){
+                roleStrings.remove(entry.getValue());
+            }
+        }
+
+        assertTrue(roleStrings.isEmpty());
+    }
+
+    @Test
+    public void labelMap_AllRolesAndConceptsAreInMap(){
+        ScaledIntegerMappedEncoding sie = new ScaledIntegerMappedEncoding(model);
+        sie.getEncodedMapAndPopLabelMap();
+
+        HashMap<Integer, String> labelMap = sie.labelMap;
+        List<RDFNode> concepts = sie.conceptRoleInfoArray[0];
+        List<RDFNode> roles = sie.conceptRoleInfoArray[1];
+
+        int numConceptsInMap = 0;
+        int numRolesInMap = 0;
+
+        for(Map.Entry<Integer, String> entry : labelMap.entrySet()){
+            if(entry.getKey() > 0)
+                numConceptsInMap++;
+            else
+                numRolesInMap++;
+        }
+
+        assertEquals(concepts.size() + roles.size(), labelMap.size());
+        assertEquals(concepts.size(), numConceptsInMap);
+        assertEquals(roles.size(), numRolesInMap);
+    }
+
+    @Test
+    public void labelMapAndEncodedMapAreSameSize(){
+        ScaledIntegerMappedEncoding sie = new ScaledIntegerMappedEncoding(model);
+
+        HashMap<Double, String> encodedMap = sie.getEncodedMapAndPopLabelMap();
+        HashMap<Integer, String> labelMap = sie.labelMap;
+
+        assertEquals(labelMap.size(), encodedMap.size());
+    }
+
+    @Test
+    public void canGoBackAndForthBetweenLabelMapAndEncodedMap(){
+        ScaledIntegerMappedEncoding sie = new ScaledIntegerMappedEncoding(model);
+
+        HashMap<Double, String> encodedMap = sie.getEncodedMapAndPopLabelMap();
+        HashMap<Integer, String> labelMap = sie.labelMap;
+        int numConcepts = sie.conceptRoleInfoArray[0].size();
+        int numRoles = sie.conceptRoleInfoArray[1].size();
+
+        for(Map.Entry<Double, String> entry : encodedMap.entrySet()){
+            if(entry.getKey() > 0){
+                int key = (int) (entry.getKey() * numConcepts);
+                assertEquals(labelMap.get(key), entry.getValue());
+            }
+            else{
+                int key = (int) (entry.getKey() * numRoles);
+                assertEquals(labelMap.get(key), entry.getValue());
+            }
+        }
+    }
 }

@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 import RDFSupportGenerationTree.*;
-import JSONHandler.*;
+import JsonHandler.*;
 import JenaBuiltins.*;
 import RDFGraphManipulations.ChangeInformation;
 import RDFGraphManipulations.MapEncoding;
@@ -34,6 +34,8 @@ public class ReasonerLogic {
      */
     public static InfModel[] runTimeStepReasoner(String filePath, String rulePath, String preProcessingPath, String storageFilePath) {
 
+        int sizeOfOuts = 14;
+
         InfModel preReasoning = null;
         InfModel inf = null;
 
@@ -42,7 +44,7 @@ public class ReasonerLogic {
 
         //Reads in the ontology at specified location.
         ontModel.read(filePath);
-
+        System.out.println("Load File: Completed");
         try {
             //Adds pre-reasoning information to graph such as axioms and Datatype information.
             preReasoning = ReasonerLogic.reasonAndTraceModel(ontModel, preProcessingPath);
@@ -50,30 +52,37 @@ public class ReasonerLogic {
             //Create inference model.
             inf = ReasonerLogic.reasonAndTraceModel(preReasoning, rulePath);
 
+            System.out.println("Model reasoning: Completed\n");
+
             //Encode graph using a specific method of encoding.
-            MapEncoding sie = new ScaledIntegerMappedEncoding(inf);
+            ScaledIntegerMappedEncoding sie = new ScaledIntegerMappedEncoding(inf);
 
             //Creates Tree manager for in inference graph and a specified encoding.
             //It will handle all tree manipulations and queries.
-            TreeManager tm = new TreeManager(inf, sie.getEncodedMap());
+            TreeManager tm = new TreeManager(inf, sie.getEncodedMapAndPopLabelMap());
 
             //a infTree from a hashtable of treeNodes.
             List<TreeNode> tree = tm.createTree(tm.createTreeNodes());
 
             //Assign time steps for each tree node.
             for (TreeNode tn : tree) {
-                TreeNode node = tn;
-                if (node instanceof InferenceNode) {
-                    tm.assignTimeSteps((InferenceNode) node);
+                if (tn instanceof InferenceNode) {
+                    tm.assignTimeSteps((InferenceNode) tn);
                 }
             }//end while
+            System.out.println("Creating tree: Completed");
 
+            tm.seperateByTimestep();
+            System.out.println("Separating timesteps: Completed\n");
+
+            System.out.println("Packaging data: Beginning");
             //Wraps up all the data for serialization.
-            PackageTreeData ptd = new PackageTreeData(tm, 25);
+            PackageTreeData ptd = new PackageTreeData(tm, sizeOfOuts);
+            System.out.println("Packaging data: Completed\n");
 
             //Creates Serializer object to serialize data in a particular json format.
             JsonSerializer js = new SerializeDeepReasonerData(ptd.getKBEncoded(), ptd.getSupportsEncoded(),
-                    ptd.getOutputsEncoded(), ptd.getVectorMap(ptd.getKBEncoded().size()));
+                    ptd.getOutputsEncoded(), ptd.getVectorMap(), sie.labelMap);
 
             js.writeJson(storageFilePath);
 

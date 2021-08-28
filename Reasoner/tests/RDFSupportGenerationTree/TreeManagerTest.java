@@ -34,7 +34,7 @@ public class TreeManagerTest {
 
         ScaledIntegerMappedEncoding sie = new ScaledIntegerMappedEncoding(inf);
 
-        tm = new TreeManager(inf, sie.getEncodedMap());
+        tm = new TreeManager(inf, sie.getEncodedMapAndPopLabelMap());
     }
 
     @Test

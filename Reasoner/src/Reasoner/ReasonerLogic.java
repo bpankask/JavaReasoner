@@ -82,7 +82,8 @@ public class ReasonerLogic {
 
             //Creates Serializer object to serialize data in a particular json format.
             JsonSerializer js = new SerializeDeepReasonerData(ptd.getKBEncoded(), ptd.getSupportsEncoded(),
-                    ptd.getOutputsEncoded(), ptd.getVectorMap(), sie.labelMap);
+                    ptd.getOutputsEncoded(), ptd.getVectorMap(), sie.labelMap, sie.conceptRoleInfoArray[0].size(),
+                    sie.conceptRoleInfoArray[1].size());
 
             js.writeJson(storageFilePath);
 

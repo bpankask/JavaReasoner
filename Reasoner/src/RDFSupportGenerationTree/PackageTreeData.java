@@ -76,7 +76,9 @@ public class PackageTreeData {
 
             //Sets up array for time steps.
             ArrayList[] encodedTimeStepArray = new ArrayList[infList.length];
-            Arrays.fill(encodedTimeStepArray, new ArrayList());
+            for(int i=0; i<encodedTimeStepArray.length; i++){
+                encodedTimeStepArray[i] = new ArrayList();
+            }
 
             //List for each timestep of infList
             int counter = 0;
@@ -101,7 +103,9 @@ public class PackageTreeData {
 
             //Sets up array for time steps.
             ArrayList[] encodedTimeStepArray = new ArrayList[sample.length];
-            Arrays.fill(encodedTimeStepArray, new ArrayList());
+            for(int i=0; i<encodedTimeStepArray.length; i++){
+                encodedTimeStepArray[i] = new ArrayList();
+            }
 
             //List for each timestep of sample
             int counter = 0;
@@ -162,6 +166,8 @@ public class PackageTreeData {
 
                 allSamplesForOuputAtTimeStep.add(triplesForOutsAtTimeStep);
                 allSamplesForKBAtTimeStep.add(triplesForKBAtTimeStep);
+
+                System.out.println("PackageData: Sample: " + k);
             }
             mapFromTimeStepToSamples.put(i, allSamplesForOuputAtTimeStep);
             mapFromTimeStepToKB.put(i, allSamplesForKBAtTimeStep);

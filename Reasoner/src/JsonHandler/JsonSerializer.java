@@ -1,4 +1,4 @@
-package JSONHandler;
+package JsonHandler;
 
 /**
  * Interface for classes used to serialize reasoner data into json format.

@@ -25,38 +25,38 @@ public class PackageTreeDataTest {
 
         InfModel inf = null;
 
-        try{
-            inf = ReasonerLogic.reasonAndTraceModel(model, "TestRules.txt");
-        }
-        catch(Exception e){e.printStackTrace();}
+        try {
+            InfModel preReasoning = ReasonerLogic.reasonAndTraceModel(model, "src\\PreprocessingTimeStep.txt");
 
+            //Create inference model.
+            inf = ReasonerLogic.reasonAndTraceModel(preReasoning, "TestRules.txt");
+        }catch(Exception e){
+            System.out.println("");
+        }
+
+        //Encode graph using a specific method of encoding.
         ScaledIntegerMappedEncoding sie = new ScaledIntegerMappedEncoding(inf);
 
-        TreeManager treem = new TreeManager(inf, sie.getEncodedMap());
-        treem.createTree(treem.createTreeNodes());
-        for (TreeNode tn : treem.tree) {
+        //Creates Tree manager for in inference graph and a specified encoding.
+        //It will handle all tree manipulations and queries.
+        TreeManager tm = new TreeManager(inf, sie.getEncodedMapAndPopLabelMap());
+        tm.createTree(tm.createTreeNodes());
+
+        for (TreeNode tn : tm.tree) {
             TreeNode node = tn;
             if (node instanceof InferenceNode) {
-                treem.assignTimeSteps((InferenceNode) node);
+                tm.assignTimeSteps((InferenceNode) node);
             }
         }//end while
-        return treem;
+
+        return tm;
     }
 
     //Polished data-----------------------------------------------------------------------------------------------------
-    @Test
-    public void getKBEncoded_LengthOfEachVectorShouldBeTheSame(){
-        PackageTreeData ptd = new PackageTreeData(tm, 20);
-        List<ArrayList<Double>> kb = ptd.getKBEncoded();
-        int size = kb.get(0).size();
-        for(ArrayList<Double> vect : kb){
-            assertEquals(size, vect.size());
-        }
-    }
 
     @Test
     public void getKBEncoded_CanConvertBackToSameTriplesAsMessyData(){
-        PackageTreeData ptd = new PackageTreeData(tm, 20);
+        PackageTreeData ptd = new PackageTreeData(tm, 14);
         List<ArrayList<Double>> kb = ptd.getKBEncoded();
 
         List<ArrayList<Triple>> actual = new ArrayList<ArrayList<Triple>>();
@@ -92,26 +92,28 @@ public class PackageTreeDataTest {
 
     @Test
     public void getKBEncoded_SameLengthAsMessyData(){
-        PackageTreeData ptd = new PackageTreeData(tm, 20);
+        PackageTreeData ptd = new PackageTreeData(tm, 9);
         List<ArrayList<FactNode>> messyKB = ptd.getMessyKB();
         List<ArrayList<Double>> kb = ptd.getKBEncoded();
 
-        int size = messyKB.get(0).size();
-
+        // Makes sure no data is lost.
+        int counter = 0;
         for(ArrayList<Double> factList : kb){
+            int size = messyKB.get(counter).size();
             assertEquals(size, factList.size()/3);
+            counter++;
         }
     }
 
     @Test
     public void getOutputsEncoded_CanConvertBackToSameTriplesAsMessyData() throws NoSuchMethodException {
-        PackageTreeData ptd = new PackageTreeData(tm, 20);
+        PackageTreeData ptd = new PackageTreeData(tm, 10);
 
         List<ArrayList[]> results = ptd.getOutputsEncoded();
 
         List<ArrayList<Triple>> actual = new ArrayList<>();
         List<ArrayList<Triple>> expected = new ArrayList<>();
-        List<ArrayList<InferenceNode>> messyOuts = ptd.getMessyOutputs();
+        List<ArrayList[]> messyOuts = ptd.getMessyOutputs();
 
         //Each sample split into timesteps
         for(int j=0; j<results.size(); j++){
@@ -134,10 +136,12 @@ public class PackageTreeDataTest {
         }
 
         //Gets expected values
-        for(ArrayList<InferenceNode> list : messyOuts){
+        for(ArrayList[] array : messyOuts){
             ArrayList<Triple> temp1 = new ArrayList<>();
-            for(InferenceNode inf : list){
-                temp1.add(inf.getValue());
+            for(ArrayList list : array){
+                for(Object inf : list){
+                    temp1.add(((InferenceNode) inf).getValue());
+                }
             }
             expected.add(temp1);
         }
@@ -165,96 +169,6 @@ public class PackageTreeDataTest {
                 assertTrue(cont);
             }
         }
-    }
-
-    @Test
-    public void separateTimeSteps_AllTimeStepArraysAreSameLength() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        PackageTreeData ptd = new PackageTreeData(tm, 20);
-        Method method = PackageTreeData.class.getDeclaredMethod("separateTimeSteps", new Class[]{List.class});
-        method.setAccessible(true);
-
-        List<ArrayList[]> results = (List<ArrayList[]>) method.invoke(ptd, ptd.getMessyOutputs());
-        int maxTimeStep = tm.tree.get(0).getTimeStep();
-        for(ArrayList[] arr : results){
-            assertEquals(maxTimeStep, arr.length);
-        }
-    }
-
-    @Test
-    public void separateTimeSteps_TimeStepIsCorrectForPositionInArray() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        PackageTreeData ptd = new PackageTreeData(tm, 20);
-        Method method = PackageTreeData.class.getDeclaredMethod("separateTimeSteps", new Class[]{List.class});
-        method.setAccessible(true);
-
-        List<ArrayList[]> results = (List<ArrayList[]>) method.invoke(ptd, ptd.getMessyOutputs());
-        int maxTimeStep = tm.tree.get(0).getTimeStep();
-        for(ArrayList[] timeStepArray : results){
-            for(int i=0; i<timeStepArray.length; i++){
-                for(Object obj : timeStepArray[i]){
-                    InferenceNode inf = (InferenceNode) obj;
-                    assertEquals(i+1, inf.getTimeStep());
-                }
-            }
-        }
-    }
-
-    @Test
-    public void separateTimeSteps_SameInferencesAsMessyData() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        PackageTreeData ptd = new PackageTreeData(tm, 20);
-        Method method = PackageTreeData.class.getDeclaredMethod("separateTimeSteps", new Class[]{List.class});
-        method.setAccessible(true);
-
-        List<ArrayList[]> results = (List<ArrayList[]>) method.invoke(ptd, ptd.getMessyOutputs());
-        for(int j=0; j<results.size(); j++){
-            ArrayList<InferenceNode> actual = new ArrayList<>();
-            for(int i=0; i<results.get(j).length; i++){
-                for(Object obj : results.get(j)[i]){
-                    InferenceNode inf = (InferenceNode) obj;
-                    assertTrue(ptd.getMessyOutputs().get(j).contains(inf));
-                    actual.add(inf);
-                }
-            }
-            assertEquals(ptd.getMessyOutputs().get(j).size(), actual.size() );
-        }
-    }
-
-    @Test
-    public void getVectorMap_AllVectorsAreTheSame(){
-        PackageTreeData ptd = new PackageTreeData(tm, 20);
-
-        List<HashMap<Double, String>> mapList = ptd.getVectorMap(10);
-
-        for(int i=0; i<mapList.size()-1; i++){
-            assertEquals(mapList.get(i), mapList.get(i+1));
-        }
-    }
-
-    @Test
-    public void getVectorMap_NumOfVectorMapsIsCorrect(){
-
-        PackageTreeData ptd = new PackageTreeData(tm, 20);
-
-        List<HashMap<Double, String>> mapList = ptd.getVectorMap(14);
-
-        assertEquals(14, mapList.size());
-    }
-
-    @Test
-    public void assignFactsToInferenceNodes_MapShouldContainAllInferencesAndOnlyInferences() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        Method method = PackageTreeData.class.getDeclaredMethod("assignFactsToInferenceNodes");
-        method.setAccessible(true);
-
-        PackageTreeData ptd = new PackageTreeData(tm, 20);
-        HashMap<InferenceNode, List<FactNode>> map  = (HashMap<InferenceNode, List<FactNode>>) method.invoke(ptd);
-
-        int counter = 0;
-        for(TreeNode tn : tm.tree){
-            if(tn instanceof InferenceNode){
-                counter++;
-            }
-        }
-
-        assertEquals(counter,map.size());
     }
 
     @Test
@@ -344,26 +258,30 @@ public class PackageTreeDataTest {
     //Messy Data Tests--------------------------------------------------------------------------------------------------
     @Test
     public void setMessyKBAndOuts_MessyDataSamplesAreSameSize(){
-        PackageTreeData ptd = new PackageTreeData(tm, 17);
+        PackageTreeData ptd = new PackageTreeData(tm, 20);
         assertEquals(ptd.getMessyKB().size(), ptd.getMessyOutputs().size());
     }
 
     @Test
     public void setMessyKBAndOuts_MakeSureAllInferencesArePresentInMessyData(){
-        PackageTreeData ptd = new PackageTreeData(tm, 24);
+        PackageTreeData ptd = new PackageTreeData(tm, 20);
 
         List<InferenceNode> expectedInferences = new ArrayList<>();
         for(TreeNode tn : tm.tree){
             if(tn instanceof InferenceNode){
-                expectedInferences.add((InferenceNode) tn);
+                if(!expectedInferences.contains(tn)){
+                    expectedInferences.add((InferenceNode) tn);
+                }
             }
         }
 
         List<InferenceNode> actualInferences = new ArrayList<>();
-        for(ArrayList<InferenceNode> list : ptd.getMessyOutputs()){
-            for(InferenceNode inf : list){
-                if(!actualInferences.contains(inf)){
-                    actualInferences.add(inf);
+        for(ArrayList[] array : ptd.getMessyOutputs()){
+            for(ArrayList list : array){
+                for(Object inf : list){
+                    if(!actualInferences.contains(inf)){
+                        actualInferences.add((InferenceNode) inf);
+                    }
                 }
             }
         }
@@ -377,235 +295,122 @@ public class PackageTreeDataTest {
     }
 
     @Test
-    public void setMessyKBAndOuts_NoGapsInInferenceTimeSteps(){
-        PackageTreeData ptd = new PackageTreeData(tm, 20);
+    public void setMessyKBAndOuts_EveryTimestepPresentForEachSample(){
+        PackageTreeData ptd = new PackageTreeData(tm, 15);
 
-        for(ArrayList<InferenceNode> outs : ptd.getMessyOutputs()){
+        for(ArrayList[] outs : ptd.getMessyOutputs()){
             ArrayList<Boolean> gapCheck = new ArrayList<Boolean>();
             for(int i=0; i<tm.tree.get(0).getTimeStep(); i++){
                 gapCheck.add(false);
             }
 
-            for(InferenceNode inf : outs){
-                gapCheck.set(inf.getTimeStep()-1, true);
+            for(ArrayList array : outs){
+                for(Object inf : array){
+                    InferenceNode infN = (InferenceNode) inf;
+                    gapCheck.set(infN.getTimeStep()-1, true);
+                }
             }
 
             int index = gapCheck.indexOf(false);
-            if(index != -1) {
-                for (int i = index; i < gapCheck.size(); i++) {
-                    assertFalse(gapCheck.get(i));
+            assertEquals(-1, index);
+//            if(index != -1) {
+//                for (int i = index; i < gapCheck.size(); i++) {
+//                    assertFalse(gapCheck.get(i));
+//                }
+//            }
+        }
+    }
+
+    @Test
+    public void setMessyKBAndOuts_CorrectNumberOfSupportsForEachSample(){
+        // This test only works because I know that the data I am using to test has 7 timesteps.
+        PackageTreeData ptd = new PackageTreeData(tm, 25);
+        List<ArrayList[]> outs = ptd.getMessyOutputs();
+
+        for(ArrayList[] sample : outs){
+            int count = 0;
+            for(ArrayList ts : sample){
+                count += ts.size();
+            }
+            assertEquals(count, 25);
+        }
+    }
+
+    @Test
+    public void setMessyKBAndOuts_CorrectNumberOfTimeStepInferenceBasedOnNumberOfDesiredInferences(){
+        int sizeOfOuts = 21;
+        PackageTreeData ptd = new PackageTreeData(tm, sizeOfOuts);
+        double numberOfTimesteps = tm.tree.get(0).getTimeStep();
+        List<ArrayList[]> outs = ptd.getMessyOutputs();
+
+        int mainQuota = (int) Math.floor(sizeOfOuts / numberOfTimesteps);
+        int leftOver = mainQuota + 1;
+        int tsIndexAndUp = (int) (sizeOfOuts - (mainQuota * numberOfTimesteps));
+
+        if(mainQuota > 0){
+            for(ArrayList[] sample : outs){
+                for(int index=0; index<sample.length; index++){
+                    if(index < tsIndexAndUp) {
+                        assertEquals(leftOver, sample[index].size());
+                    }
+                    else{
+                        assertEquals(mainQuota, sample[index].size());
+                    }
                 }
             }
         }
+        else
+            fail();
+
     }
 
     @Test
     public void setMessyKBAndOuts_AllKBAxiomsPresentForInferences(){
         PackageTreeData ptd = new PackageTreeData(tm, 20);
 
-        List<ArrayList<InferenceNode>> infLists = ptd.getMessyOutputs();
+        List<ArrayList[]> infLists = ptd.getMessyOutputs();
         List<ArrayList<FactNode>> factLists = ptd.getMessyKB();
 
         int counter = 0;
-        for(ArrayList<InferenceNode> infList : infLists){
-            List<FactNode> tempFacts = new ArrayList<>();
-            for(InferenceNode inf : infList){
-                tempFacts.addAll(ptd.getMessyInfToFactsMap().get(inf));
+        for(ArrayList[] infArray : infLists){
+            List<FactNode> trueFacts = new ArrayList<>();
+            for(ArrayList infList : infArray){
+                for(Object inf : infList){
+                    trueFacts.addAll(ptd.findAllFactsForInference((InferenceNode) inf));
+                }
             }
-            for(FactNode fact : tempFacts){
+
+            // Removes duplicates
+            Set set = new LinkedHashSet<>(trueFacts);
+            trueFacts.clear();
+            trueFacts.addAll(set);
+
+            // Checks to make sure that the true KB and the messy KB
+            assertEquals(trueFacts.size(), factLists.get(counter).size());
+
+            for(FactNode fact : trueFacts){
+                // Assures that every fact that should be there is there.
                 assertTrue(factLists.get(counter).contains(fact));
+                factLists.get(counter).remove(fact);
             }
+            // Makes sure that extra facts aren't included in the messyKB.
+            assertEquals(0, factLists.get(counter).size());
             counter++;
         }
     }
 
-    //Helper Methods----------------------------------------------------------------------------------------------------
-
-    @Test
-    public void shouldAddFacts_CaseWhereDesiredTimeStepAndTSAtIndexAreEqual() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        //List inferences, List<Boolean> timeStepAdded, int index
-        PackageTreeData pd = new PackageTreeData(tm, 20);
-        Method assignFactsToInferenceNodes = PackageTreeData.class.getDeclaredMethod("assignFactsToInferenceNodes");
-        assignFactsToInferenceNodes.setAccessible(true);
-        HashMap<InferenceNode, List<FactNode>> messyMap = (HashMap<InferenceNode, List<FactNode>>) assignFactsToInferenceNodes.invoke(pd);
-
-        List rawInferences = new ArrayList(Arrays.asList(messyMap.keySet().toArray()));
-        Iterator tempIter = pd.getMessyInfToFactsMap().values().iterator();
-        List<List<FactNode>> tempFacts = new ArrayList<>();
-        tempIter.forEachRemaining(fact -> tempFacts.add((List<FactNode>) fact));
-        for (Object tn : rawInferences) {
-            TreeNode node = (TreeNode) tn;
-            if (node instanceof InferenceNode) {
-                tm.assignTimeSteps((InferenceNode) node);
-            }
-        }//end while
-        int index = 0;
-        while(index < rawInferences.size()){
-            InferenceNode inf = (InferenceNode) rawInferences.get(index);
-            if(inf.getTimeStep() == 2){
-                break;
-            }
-            index++;
-        }
-
-        List<Boolean> timeStepAdded = new ArrayList<Boolean>();
-        timeStepAdded.add(true);
-        for(int i=0; i<4; i++){
-            timeStepAdded.add(false);
-        }
-        Class[] args = new Class[6];
-        args[0] = List.class;
-        args[1] = List.class;
-        args[2] = List.class;
-        args[3] = int.class;
-        args[4] = int.class;
-        args[5] = boolean.class;
-
-        Method method = PackageTreeData.class.getDeclaredMethod("shouldAddFacts", args);
-        method.setAccessible(true);
-
-        assertEquals(true, method.invoke(pd, rawInferences, tempFacts, timeStepAdded, index, 20, false));
-    }
-
-    @Test
-    public void shouldAddFacts_CaseWhereEveryTimeStepIsFilled() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        //List inferences, List<Boolean> timeStepAdded, int index
-        PackageTreeData pd = new PackageTreeData(tm, 20);
-        Method assignFactsToInferenceNodes = PackageTreeData.class.getDeclaredMethod("assignFactsToInferenceNodes");
-        assignFactsToInferenceNodes.setAccessible(true);
-        HashMap<InferenceNode, List<FactNode>> messyMap = (HashMap<InferenceNode, List<FactNode>>) assignFactsToInferenceNodes.invoke(pd);
-
-        List rawInferences = new ArrayList(Arrays.asList(messyMap.keySet().toArray()));
-        Iterator tempIter = pd.getMessyInfToFactsMap().values().iterator();
-        List<List<FactNode>> tempFacts = new ArrayList<>();
-        tempIter.forEachRemaining(fact -> tempFacts.add((List<FactNode>) fact));
-        for (Object tn : rawInferences) {
-            TreeNode node = (TreeNode) tn;
-            if (node instanceof InferenceNode) {
-                tm.assignTimeSteps((InferenceNode) node);
-            }
-        }//end while
-        int index = 0;
-        while(index < rawInferences.size()){
-            InferenceNode inf = (InferenceNode) rawInferences.get(index);
-            if(inf.getTimeStep() == 2){
-                break;
-            }
-            index++;
-        }
-
-        List<Boolean> timeStepAdded = new ArrayList<Boolean>();
-        timeStepAdded.add(true);
-        for(int i=0; i<4; i++){
-            timeStepAdded.add(true);
-        }
-
-        Class[] args = new Class[6];
-        args[0] = List.class;
-        args[1] = List.class;
-        args[2] = List.class;
-        args[3] = int.class;
-        args[4] = int.class;
-        args[5] = boolean.class;
-
-        Method method = PackageTreeData.class.getDeclaredMethod("shouldAddFacts", args);
-        method.setAccessible(true);
-
-        assertEquals(true, method.invoke(pd, rawInferences, tempFacts, timeStepAdded, index, 20, false));
-    }
-
-    @Test
-    public void shouldAddFacts_CaseWhereDesiredValueIsNotInTheList() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        //List inferences, List<Boolean> desiredTimesteps, int index
-        PackageTreeData pd = new PackageTreeData(tm, 20);
-        Method assignFactsToInferenceNodes = PackageTreeData.class.getDeclaredMethod("assignFactsToInferenceNodes");
-        assignFactsToInferenceNodes.setAccessible(true);
-        HashMap<InferenceNode, List<FactNode>> messyMap = (HashMap<InferenceNode, List<FactNode>>) assignFactsToInferenceNodes.invoke(pd);
-
-        List rawInferences = new ArrayList(Arrays.asList(messyMap.keySet().toArray()));
-        Iterator tempIter = pd.getMessyInfToFactsMap().values().iterator();
-        List<List<FactNode>> tempFacts = new ArrayList<>();
-        tempIter.forEachRemaining(fact -> tempFacts.add((List<FactNode>) fact));
-        for (Object tn : rawInferences) {
-            TreeNode node = (TreeNode) tn;
-            if (node instanceof InferenceNode) {
-                tm.assignTimeSteps((InferenceNode) node);
-            }
-        }//end while
-        int index = 10;
-
-        List<Boolean> desiredTimesteps = new ArrayList<Boolean>();
-        for(int i=0; i<8; i++){
-            desiredTimesteps.add(true);
-        }
-        desiredTimesteps.add(false);
-
-        Class[] args = new Class[6];
-        args[0] = List.class;
-        args[1] = List.class;
-        args[2] = List.class;
-        args[3] = int.class;
-        args[4] = int.class;
-        args[5] = boolean.class;
-
-        Method method = PackageTreeData.class.getDeclaredMethod("shouldAddFacts", args);
-        method.setAccessible(true);
-
-        assertEquals(true, method.invoke(pd, rawInferences, tempFacts, desiredTimesteps, index, 20, true));
-    }
-
-    @Test
-    public void shouldAddFacts_CaseWhereDesiredTimeStepIsInListJustNotAtIndex() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        //List inferences, List<Boolean> timeStepAdded, int index
-        PackageTreeData pd = new PackageTreeData(tm, 20);
-        Method assignFactsToInferenceNodes = PackageTreeData.class.getDeclaredMethod("assignFactsToInferenceNodes");
-        assignFactsToInferenceNodes.setAccessible(true);
-        HashMap<InferenceNode, List<FactNode>> messyMap = (HashMap<InferenceNode, List<FactNode>>) assignFactsToInferenceNodes.invoke(pd);
-
-        List rawInferences = new ArrayList(Arrays.asList(messyMap.keySet().toArray()));
-        Iterator tempIter = pd.getMessyInfToFactsMap().values().iterator();
-        List<List<FactNode>> tempFacts = new ArrayList<>();
-        tempIter.forEachRemaining(fact -> tempFacts.add((List<FactNode>) fact));
-        for (Object tn : rawInferences) {
-            TreeNode node = (TreeNode) tn;
-            if (node instanceof InferenceNode) {
-                tm.assignTimeSteps((InferenceNode) node);
-            }
-        }//end while
-        int index = 0;
-        while(index < rawInferences.size()){
-            InferenceNode inf = (InferenceNode) rawInferences.get(index);
-            if(inf.getTimeStep() == 3){
-                break;
-            }
-            index++;
-        }
-
-        List<Boolean> timeStepAdded = new ArrayList<Boolean>();
-        timeStepAdded.add(false);
-        for(int i=0; i<2; i++){
-            timeStepAdded.add(true);
-        }
-
-        Class[] args = new Class[6];
-        args[0] = List.class;
-        args[1] = List.class;
-        args[2] = List.class;
-        args[3] = int.class;
-        args[4] = int.class;
-        args[5] = boolean.class;
-
-        Method method = PackageTreeData.class.getDeclaredMethod("shouldAddFacts", args);
-        method.setAccessible(true);
-
-        assertEquals(false, method.invoke(pd, rawInferences, tempFacts, timeStepAdded, index, 20, true));
-    }
-
     @Test
     public void makeSureTreeSupportEncodingsContainAllFactsThatWereUsedInItsCreation(){
-        PackageTreeData ptd = new PackageTreeData(tm, 20);
+        PackageTreeData ptd = new PackageTreeData(tm, 21);
 
-        HashMap<InferenceNode, List<FactNode>> map = ptd.getMessyInfToFactsMap();
+        // Gathers what should be the supports.
+        HashMap<InferenceNode, List<FactNode>> map = new HashMap<>();
+        for(TreeNode tn : tm.tree){
+            if(tn instanceof InferenceNode){
+                map.put((InferenceNode) tn, ptd.findAllFactsForInference(tn));
+            }
+        }
+
         HashMap<String, List<String>> expected = new HashMap<>();
         //Converts mapping to factnode into the string representation.
         for(Map.Entry<InferenceNode, List<FactNode>> entry : map.entrySet()){
@@ -641,11 +446,10 @@ public class PackageTreeDataTest {
                 List<String> list = actual.get(entry.getKey());
                 try {
                     assertTrue(list.contains(s1));
-                }catch(AssertionError e){
+                } catch(AssertionError e){
                     System.out.println();
                 }
             }
         }
-
     }//end test
 }

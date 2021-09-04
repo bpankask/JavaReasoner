@@ -1,9 +1,8 @@
-package JSONHandler;
+package JsonHandler;
 
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRawValue;
 
 /**
  * Class to provide necessary objects for Jackson library to convert to JSON in the OutputWriter class.

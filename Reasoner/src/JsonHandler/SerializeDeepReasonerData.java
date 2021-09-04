@@ -1,6 +1,5 @@
-package JSONHandler;
+package JsonHandler;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
@@ -18,13 +17,19 @@ public class SerializeDeepReasonerData implements JsonSerializer{
     private List<ArrayList<Double>> kB;
     private List<ArrayList[]> supports;
     private List<ArrayList[]> outputs;
-    private List<HashMap<Double, String>> vectorMap;
+    private HashMap<Double, String> vectorMap;
+    private int concepts = 0;
+    private int roles = 0;
 
-    public SerializeDeepReasonerData(List<ArrayList<Double>> kB, List<ArrayList[]> supports, List<ArrayList[]> outputs, List<HashMap<Double, String>> vectorMap) {
+    public SerializeDeepReasonerData(List<ArrayList<Double>> kB, List<ArrayList[]> supports, List<ArrayList[]> outputs,
+                                     HashMap<Double, String> vectorMap, HashMap<Integer, String> labelMap, int concepts,
+                                     int roles) {
         this.kB = kB;
         this.supports = supports;
         this.outputs = outputs;
         this.vectorMap = vectorMap;
+        this.concepts = concepts;
+        this.roles = roles;
     }
 
     public SerializeDeepReasonerData(){
@@ -57,12 +62,30 @@ public class SerializeDeepReasonerData implements JsonSerializer{
         this.outputs = outputs;
     }
 
+    @JsonProperty("concepts")
+    public int getConcepts() {
+        return this.concepts;
+    }
+    @JsonSetter("concepts")
+    public void setConcepts(int concepts) {
+        this.concepts = concepts;
+    }
+
+    @JsonProperty("roles")
+    public int getRoles() {
+        return this.roles;
+    }
+    @JsonSetter("roles")
+    public void setRoles(int roles) {
+        this.roles = roles;
+    }
+
     @JsonProperty("vectorMap")
-    public List<HashMap<Double, String>> getVectorMap() {
+    public HashMap<Double, String> getVectorMap() {
         return vectorMap;
     }
     @JsonSetter("vectorMap")
-    public void setVectorMap(List<HashMap<Double, String>> vectorMap) {
+    public void setVectorMap(HashMap<Double, String> vectorMap) {
         this.vectorMap = vectorMap;
     }
 

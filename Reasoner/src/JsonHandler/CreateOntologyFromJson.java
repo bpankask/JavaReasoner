@@ -1,9 +1,6 @@
-package JSONHandler;
+package JsonHandler;
 
-import org.apache.jena.graph.Node;
-import org.apache.jena.graph.Triple;
 import org.apache.jena.ontology.OntModel;
-import org.apache.jena.ontology.Ontology;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdf.model.Statement;

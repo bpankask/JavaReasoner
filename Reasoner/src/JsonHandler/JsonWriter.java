@@ -1,16 +1,11 @@
-package JSONHandler;
+package JsonHandler;
 
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.SerializableString;
-import com.fasterxml.jackson.core.io.CharacterEscapes;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import org.apache.jena.rdf.model.*;
 
 import java.nio.file.Paths;
-import java.util.List;
 import java.util.Map;
 
 public abstract class JsonWriter {

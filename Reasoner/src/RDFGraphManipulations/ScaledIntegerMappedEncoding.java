@@ -14,6 +14,7 @@ public class ScaledIntegerMappedEncoding implements MapEncoding {
 
     private Model model;
     public ArrayList<RDFNode>[] conceptRoleInfoArray = new ArrayList[2];
+    public HashMap<Integer, String> labelMap;
 
     public ScaledIntegerMappedEncoding(Model model){
         this.model = model;
@@ -51,39 +52,40 @@ public class ScaledIntegerMappedEncoding implements MapEncoding {
 
         //Map to hold encoding as key and string representing role/concept as string.
         HashMap<Double, String> map = new HashMap<>();
+        HashMap<Integer, String> labelMap = new HashMap<>();
 
         Random random = new Random();
 
-        double key = 1;
+        int key = 1;
         //Map concepts.
         for(RDFNode concept : concepts){
-            double rand;
 
-            while(map.containsKey(key)){
-                rand =  random.nextInt(numConcepts-1) + 1;
-                key = rand/numConcepts;
+            while(labelMap.containsKey(key)){
+                key =  random.nextInt(numConcepts) + 1;
             }
 
-            map.put(key, concept.toString());
+            map.put((double)key/numConcepts, concept.toString());
+            labelMap.put(key, concept.toString());
         }
 
         key = -1;
         //Map roles
         for(RDFNode role : roles){
-            double rand;
-
-            while(map.containsKey(key)){
-                rand = random.nextInt(numRoles - 1) + 1;
-                key = -(rand/numRoles);
+            while(labelMap.containsKey(key)){
+                key = -1 * (random.nextInt(numRoles) + 1);
             }
 
-            map.put(key, role.toString());
+            map.put((double)key/numRoles, role.toString());
+            labelMap.put(key, role.toString());
         }
+
+        this.labelMap = labelMap;
         return map;
     }
 
     @Override
-    public HashMap<Double, String> getEncodedMap() {
+    public HashMap<Double, String> getEncodedMapAndPopLabelMap() {
         return createEncodingMap();
     }
+
 }

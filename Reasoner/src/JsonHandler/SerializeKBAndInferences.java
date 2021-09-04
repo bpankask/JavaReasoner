@@ -1,4 +1,4 @@
-package JSONHandler;
+package JsonHandler;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
-import java.nio.file.Paths;
 import java.util.Map;
 
 public class SerializeKBAndInferences implements JsonSerializer{

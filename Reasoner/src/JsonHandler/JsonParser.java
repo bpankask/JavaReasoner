@@ -1,9 +1,8 @@
-package JSONHandler;
+package JsonHandler;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.commons.lang3.StringEscapeUtils;
 
 import java.io.File;
 import java.io.IOException;

@@ -19,10 +19,9 @@ public class TreeManager {
     public List<TreeNode> tree = null;
     public HashMap<Double, String> encodingMap;
 
-    public TreeManager(InfModel inf, HashMap<Double, String> map){
+    public TreeManager(InfModel inf){
         this.infModel = inf;
         baseModel = inf.getRawModel();
-        this.encodingMap = map;
     }
 
     public InfModel getInfModelUsed() {
@@ -48,7 +47,7 @@ public class TreeManager {
                 //If statement is a fact then it won't have derivation.
                 if( baseModel.contains(s)){
                     FactNode fn = new FactNode(s.asTriple());
-                    fn.setEncoding(encodeStatement(s));
+                    //fn.setEncoding(encodeStatement(s));
                     tableOfNodes.put(s.asTriple().toString(), fn);
                 }
                 else {
@@ -58,7 +57,7 @@ public class TreeManager {
                         //Creates node from derivation/inference.
                         RuleDerivation deriv = (RuleDerivation) id.next();
                         InferenceNode node = new InferenceNode(deriv, infModel);
-                        node.setEncoding(encodeStatement(s));
+                        //node.setEncoding(encodeStatement(s));
 
                         if (!tableOfNodes.contains(node.toString())) {
                             tableOfNodes.put(node.toString(), node);
@@ -127,9 +126,9 @@ public class TreeManager {
             v2 += assignTimeSteps(infNode.support2);
         }
 
-        if(infNode.getSupportEncoding() == null){
-            infNode.setSupportEncoding();
-        }
+//        if(infNode.getSupportEncoding() == null){
+//            infNode.setSupportEncoding();
+//        }
 
         if(v1 >= v2){
             infNode.setTimeStep(v1);

@@ -3,16 +3,22 @@
   <component name="ChangeListManager">
     <list default="true" id="60b19ed1-ce3f-4f6f-9531-dbc7914c00da" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OutputFiles/gfo-1.0.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OutputFiles/schemaorg.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reasoner.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Reasoner.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Reasoner/JSONHandler/SerializeDeepReasonerData.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Reasoner/JSONHandler/SerializeDeepReasonerData.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Reasoner/RDFSupportGenerationTree/PackageTreeData.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Reasoner/RDFSupportGenerationTree/PackageTreeData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Reasoner/Reasoner/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Reasoner/Reasoner/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Reasoner/RDFSupportGenerationTree/TreeManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Reasoner/RDFSupportGenerationTree/TreeManager.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Reasoner/Reasoner/ReasonerLogic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Reasoner/Reasoner/ReasonerLogic.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Reasoner/RDFSupportGenerationTree/InferenceNodeTest$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Reasoner/RDFSupportGenerationTree/InferenceNodeTest$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Reasoner/RDFSupportGenerationTree/InferenceNodeTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Reasoner/RDFSupportGenerationTree/PackageTreeDataTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Reasoner/RDFSupportGenerationTree/TreeManagerTest.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/JsonHandler/SerializeDeepReasonerData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JsonHandler/SerializeDeepReasonerData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RDFSupportGenerationTree/PackageTreeData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RDFSupportGenerationTree/PackageTreeData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Reasoner/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Reasoner/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/RDFSupportGenerationTree/TreeManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RDFSupportGenerationTree/TreeManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Reasoner/ReasonerLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Reasoner/ReasonerLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/RDFSupportGenerationTree/PackageTreeDataTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/RDFSupportGenerationTree/PackageTreeDataTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/RDFSupportGenerationTree/TreeManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/RDFSupportGenerationTree/TreeManagerTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -253,11 +259,6 @@
           <url>file://$PROJECT_DIR$/tests/RDFGraphManipulations/ScaledIntegerMappedEncodingTest.java</url>
           <line>322</line>
           <option name="timeStamp" value="44" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/RDFSupportGenerationTree/PackageTreeData.java</url>
-          <line>90</line>
-          <option name="timeStamp" value="49" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

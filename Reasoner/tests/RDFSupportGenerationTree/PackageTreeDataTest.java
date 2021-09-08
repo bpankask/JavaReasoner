@@ -57,7 +57,7 @@ public class PackageTreeDataTest {
     @Test
     public void getKBEncoded_CanConvertBackToSameTriplesAsMessyData(){
         PackageTreeData ptd = new PackageTreeData(tm, 14);
-        List<ArrayList<Double>> kb = ptd.getKBEncoded();
+        List<ArrayList<Double>> kb = ptd.KB;
 
         List<ArrayList<Triple>> actual = new ArrayList<ArrayList<Triple>>();
         for(ArrayList<Double> encodedSample : kb){

@@ -17,17 +17,14 @@ public class SerializeDeepReasonerData implements JsonSerializer{
     private List<ArrayList<Double>> kB;
     private List<ArrayList[]> supports;
     private List<ArrayList[]> outputs;
-    private HashMap<Double, String> vectorMap;
     private int concepts = 0;
     private int roles = 0;
 
     public SerializeDeepReasonerData(List<ArrayList<Double>> kB, List<ArrayList[]> supports, List<ArrayList[]> outputs,
-                                     HashMap<Double, String> vectorMap, HashMap<Integer, String> labelMap, int concepts,
-                                     int roles) {
+                                     int concepts, int roles) {
         this.kB = kB;
         this.supports = supports;
         this.outputs = outputs;
-        this.vectorMap = vectorMap;
         this.concepts = concepts;
         this.roles = roles;
     }
@@ -78,15 +75,6 @@ public class SerializeDeepReasonerData implements JsonSerializer{
     @JsonSetter("roles")
     public void setRoles(int roles) {
         this.roles = roles;
-    }
-
-    @JsonProperty("vectorMap")
-    public HashMap<Double, String> getVectorMap() {
-        return vectorMap;
-    }
-    @JsonSetter("vectorMap")
-    public void setVectorMap(HashMap<Double, String> vectorMap) {
-        this.vectorMap = vectorMap;
     }
 
     /**

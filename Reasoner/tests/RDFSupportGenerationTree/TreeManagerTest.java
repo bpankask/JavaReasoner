@@ -32,9 +32,7 @@ public class TreeManagerTest {
         }
         catch(Exception e){e.printStackTrace();}
 
-        ScaledIntegerMappedEncoding sie = new ScaledIntegerMappedEncoding(inf);
-
-        tm = new TreeManager(inf, sie.getEncodedMapAndPopLabelMap());
+        tm = new TreeManager(inf);
     }
 
     @Test

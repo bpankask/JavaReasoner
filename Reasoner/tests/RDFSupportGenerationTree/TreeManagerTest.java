@@ -56,7 +56,6 @@ public class TreeManagerTest {
         assertEquals(0, tableSize);
     }
 
-
     @Test
     public void createTree_TestSupportsAreSameAsMatchList(){
         List<TreeNode> tree = tm.createTree(tm.createTreeNodes());
@@ -111,84 +110,6 @@ public class TreeManagerTest {
 
         boolean test = supportsInTreeInfo.contains(false);
         assertFalse(test);
-    }
-
-    @Test
-    public void encodeStatement_FactEncodingIsCorrectForMapAndActualValue(){
-        List<TreeNode> tree = tm.createTree(tm.createTreeNodes());
-        HashMap<Double, String> map = tm.encodingMap;
-
-        for(TreeNode node : tree){
-            if(node instanceof FactNode){
-                List<Double> encoding = node.getEncoding();
-
-                String expected = map.get(encoding.get(0)) + " " + map.get(encoding.get(1)) + " " + map.get(encoding.get(2));
-                String actual = node.getValue().getSubject().toString() + " " +
-                        node.getValue().getPredicate().toString() + " " + node.getValue().getObject().toString().replaceAll("\"", "");
-                assertEquals(expected, actual);
-            }
-        }
-    }
-
-    @Test
-    public void encodeStatement_InfEncodingIsCorrectForMapAndActualValue(){
-        List<TreeNode> tree = tm.createTree(tm.createTreeNodes());
-        HashMap<Double, String> map = tm.encodingMap;
-
-        for(TreeNode node : tree){
-            if(node instanceof InferenceNode){
-                List<Double> encoding = node.getEncoding();
-
-                String expected = map.get(encoding.get(0)) + " " + map.get(encoding.get(1)) + " " + map.get(encoding.get(2));
-                String actual = node.getValue().getSubject().toString() + " " +
-                        node.getValue().getPredicate().toString() + " " + node.getValue().getObject().toString().replaceAll("\"", "");
-                assertEquals(expected, actual);
-            }
-        }
-    }
-
-    @Test
-    public void assignTimeStepsAndSuppEncoding_CorrectInferenceNodeSupportEncodingConcatenation(){
-        List<TreeNode> tree = tm.createTree(tm.createTreeNodes());
-
-        List<Double> actual = new ArrayList<>();
-        List<Double> expected = new ArrayList<>();
-
-        for(TreeNode tn : tree){
-            TreeNode node = tn;
-            if(node instanceof InferenceNode){
-                tm.assignTimeSteps((InferenceNode)node);
-            }
-        }//end while
-
-        for(TreeNode node : tree){
-
-            if(node instanceof InferenceNode){
-                InferenceNode infNode = (InferenceNode) node;
-
-                if(infNode.support1 instanceof FactNode){
-                    expected.addAll(infNode.support1.getEncoding());
-                }
-                else{
-                    InferenceNode in = (InferenceNode) infNode.support1;
-                    expected.addAll(in.getSupportEncoding());
-                }
-
-                if(infNode.support2 != null){
-                    if(infNode.support2 instanceof FactNode){
-                        expected.addAll(infNode.support2.getEncoding());
-                    }
-                    else{
-                        InferenceNode in = (InferenceNode) infNode.support2;
-                        expected.addAll(in.getSupportEncoding());
-                    }
-                }
-
-                actual.addAll(((InferenceNode) node).getSupportEncoding());
-            }
-        }
-
-        assertArrayEquals(expected.toArray(), actual.toArray());
     }
 
 }//end class

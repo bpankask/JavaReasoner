@@ -7,7 +7,6 @@
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/tests/JSONHandler" />
       <excludeFolder url="file://$MODULE_DIR$/tests/RDFGraphManipulations" />
-      <excludeFolder url="file://$MODULE_DIR$/tests/Reasoner" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

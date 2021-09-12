@@ -17,6 +17,7 @@ public class PackageTreeData {
     public List<ArrayList<Double>> KB = null;
     public List<ArrayList[]> Outputs = null;
     public List<ArrayList[]> Supports = null;
+    public List<HashMap<String, Integer>[]> labelToIRIMaps = null;
     public double[] encodingInfo = null;
 
     public PackageTreeData(TreeManager tm, int sizeOfOuts){
@@ -74,7 +75,7 @@ public class PackageTreeData {
                 allSamplesForOuputAtTimeStep.add(triplesForOutsAtTimeStep);
                 allSamplesForKBAtTimeStep.add(triplesForKBAtTimeStep);
 
-                System.out.println("PackageData: Sample: " + k);
+//                System.out.println("PackageData: Sample: " + k);
             }
             mapFromTimeStepToSamples.put(i, allSamplesForOuputAtTimeStep);
             mapFromTimeStepToKB.put(i, allSamplesForKBAtTimeStep);
@@ -162,6 +163,7 @@ public class PackageTreeData {
                 double s = labelMap[0].get(((TreeNode) obj).getValue().getSubject().toString()) / encodingInfo[0];
                 double p = labelMap[1].get(((TreeNode) obj).getValue().getPredicate().toString()) / encodingInfo[1];
                 double o = labelMap[0].get(((TreeNode) obj).getValue().getObject().toString()) / encodingInfo[0];
+
                 temp.add(s);
                 temp.add(p);
                 temp.add(o);
@@ -197,6 +199,7 @@ public class PackageTreeData {
         this.KB = encodedKb;
         this.Outputs = encodedOuts;
         this.Supports = encodedSupp;
+        this.labelToIRIMaps = mapList;
     }
 
     /**

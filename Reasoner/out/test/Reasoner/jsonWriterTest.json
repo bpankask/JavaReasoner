@@ -1,10 +1,7 @@
 {
   "kB" : [ [ 0.1, 0.2, 0.3 ], [ 0.7, 0.8, 0.9 ] ],
-  "supports" : [ [ [ 0.0, null, null, null ], [ null, 0.01, null, null ], [ null, null, 0.02, null ], [ null, null, null, 0.03 ] ] ],
-  "outputs" : [ [ [ 0.0, null, null, null ], [ null, 0.01, null, null ], [ null, null, 0.02, null ], [ null, null, null, 0.03 ] ] ],
-  "vectorMap" : [ {
-    "0.0" : "rdf",
-    "0.01" : "rdfs",
-    "0.02" : "owl"
-  } ]
+  "supports" : [ [ [ 0.01, 0.02 ], [ 0.11, 0.12 ] ], [ [ 0.11, 0.12 ], [ 0.21, 0.22 ] ] ],
+  "outputs" : [ [ [ 0.01, 0.02 ], [ 0.11, 0.12 ] ], [ [ 0.11, 0.12 ], [ 0.21, 0.22 ] ] ],
+  "concepts" : 10,
+  "roles" : 5
 }

@@ -3,13 +3,26 @@
   <component name="ChangeListManager">
     <list default="true" id="60b19ed1-ce3f-4f6f-9531-dbc7914c00da" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OutputFiles/Descriptions_and_Situations.json" beforeDir="false" afterPath="$PROJECT_DIR$/OutputFiles/Descriptions_and_Situations.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OutputFiles/Descriptions_and_Situations.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OutputFiles/traceTest" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Reasoner.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Reasoner.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Reasoner/RDFSupportGenerationTree/PackageTreeData.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Reasoner/RDFSupportGenerationTree/PackageTreeData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/Reasoner/RDFGraphManipulations/ScaledIntegerMappedEncodingTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Reasoner/RDFSupportGenerationTree/TreeManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Reasoner/RDFSupportGenerationTree/TreeManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Reasoner/Reasoner/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Reasoner/Reasoner/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Reasoner/RDFSupportGenerationTree/TreeManagerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/Reasoner/RDFSupportGenerationTree/TreeManagerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Reasoner/Reasoner/ReasonerLogicTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/Reasoner/Reasoner/ReasonerLogicTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Reasoner/jsonWriterTest.json" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/Reasoner/jsonWriterTest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Reasoner/testGraph.ttl" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RDFSupportGenerationTree/PackageTreeData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RDFSupportGenerationTree/PackageTreeData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/RDFSupportGenerationTree/PackageTreeDataTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/RDFSupportGenerationTree/PackageTreeDataTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/RDFSupportGenerationTree/TreeManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RDFSupportGenerationTree/TreeManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Reasoner/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Reasoner/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Reasoner/ReasonerLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Reasoner/ReasonerLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/JSONHandler/SerializeDeepReasonerDataTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/JSONHandler/SerializeDeepReasonerDataTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/RDFGraphManipulations/ScaledIntegerMappedEncodingTest.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/RDFSupportGenerationTree/TreeManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/RDFSupportGenerationTree/TreeManagerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Reasoner/ReasonerLogicTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Reasoner/ReasonerLogicTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/jsonWriterTest.json" beforeDir="false" afterPath="$PROJECT_DIR$/tests/jsonWriterTest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/testGraph.ttl" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -51,7 +64,7 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.Groovy JUnit" value="" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -65,20 +78,20 @@
       <recent name="RDFGraphManipulations" />
       <recent name="InferenceTree" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Brayden Pankaskie\Desktop\JavaReasoner\Reasoner\src" />
+      <recent name="C:\Users\Brayden Pankaskie\Desktop\JavaReasoner\Reasoner\src\Reasoner" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="RDFSupportGenerationTree" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Brayden Pankaskie\Desktop\JavaReasoner\Reasoner\tests" />
       <recent name="C:\Users\Brayden Pankaskie\Desktop\JavaReasoner\Reasoner\src\Reasoner" />
       <recent name="C:\Users\Brayden Pankaskie\Desktop\JavaRDFSReasoner\src\Reasoner" />
-    </key>
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Brayden Pankaskie\Desktop\JavaReasoner\Reasoner\src" />
-      <recent name="C:\Users\Brayden Pankaskie\Desktop\JavaReasoner\Reasoner\src\Reasoner" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -93,7 +106,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.TreeManagerTest">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Reasoner.Main" />
+      <module name="Reasoner" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Reasoner.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MainTest.createHashOfTreeNodes" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
       <module name="Reasoner" />
       <extension name="coverage">
@@ -105,69 +131,6 @@
       <option name="PACKAGE_NAME" value="Reasoner" />
       <option name="MAIN_CLASS_NAME" value="Reasoner.MainTest" />
       <option name="METHOD_NAME" value="createHashOfTreeNodes" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PackageTreeDataTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Reasoner" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="RDFSupportGenerationTree.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="RDFSupportGenerationTree" />
-      <option name="MAIN_CLASS_NAME" value="RDFSupportGenerationTree.PackageTreeDataTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PackageTreeDataTest.createSamplesFromSuppTimesteps_CorrectSampleCreationAndRemovalOfDuplicates" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Reasoner" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="RDFSupportGenerationTree.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="RDFSupportGenerationTree" />
-      <option name="MAIN_CLASS_NAME" value="RDFSupportGenerationTree.PackageTreeDataTest" />
-      <option name="METHOD_NAME" value="createSamplesFromSuppTimesteps_CorrectSampleCreationAndRemovalOfDuplicates" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PackageTreeDataTest.getOutputsEncoded_CanConvertBackToSameTriplesAsMessyData" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Reasoner" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="RDFSupportGenerationTree.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="RDFSupportGenerationTree" />
-      <option name="MAIN_CLASS_NAME" value="RDFSupportGenerationTree.PackageTreeDataTest" />
-      <option name="METHOD_NAME" value="getOutputsEncoded_CanConvertBackToSameTriplesAsMessyData" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PackageTreeDataTest.getSupportsEncoded_CanConvertBackToSameTriplesAsMessyData" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Reasoner" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="RDFSupportGenerationTree.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="RDFSupportGenerationTree" />
-      <option name="MAIN_CLASS_NAME" value="RDFSupportGenerationTree.PackageTreeDataTest" />
-      <option name="METHOD_NAME" value="getSupportsEncoded_CanConvertBackToSameTriplesAsMessyData" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -188,13 +151,61 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TreeManagerTest.createTreeNodes_AllInferenceTriplsAreInferenceNodesInGraph" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Reasoner" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="RDFSupportGenerationTree.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="RDFSupportGenerationTree" />
+      <option name="MAIN_CLASS_NAME" value="RDFSupportGenerationTree.TreeManagerTest" />
+      <option name="METHOD_NAME" value="createTreeNodes_AllInferenceTriplsAreInferenceNodesInGraph" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TreeManagerTest.seperateByTimestep_AllInferencesPresent" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Reasoner" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="RDFSupportGenerationTree.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="RDFSupportGenerationTree" />
+      <option name="MAIN_CLASS_NAME" value="RDFSupportGenerationTree.TreeManagerTest" />
+      <option name="METHOD_NAME" value="seperateByTimestep_AllInferencesPresent" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TreeManagerTest.seperateByTimestep_CorrectSplitBetweenTimeStepLists" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Reasoner" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="RDFSupportGenerationTree.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="RDFSupportGenerationTree" />
+      <option name="MAIN_CLASS_NAME" value="RDFSupportGenerationTree.TreeManagerTest" />
+      <option name="METHOD_NAME" value="seperateByTimestep_CorrectSplitBetweenTimeStepLists" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.TreeManagerTest" />
-        <item itemvalue="JUnit.PackageTreeDataTest" />
-        <item itemvalue="JUnit.PackageTreeDataTest.getSupportsEncoded_CanConvertBackToSameTriplesAsMessyData" />
-        <item itemvalue="JUnit.PackageTreeDataTest.getOutputsEncoded_CanConvertBackToSameTriplesAsMessyData" />
-        <item itemvalue="JUnit.PackageTreeDataTest.createSamplesFromSuppTimesteps_CorrectSampleCreationAndRemovalOfDuplicates" />
+        <item itemvalue="JUnit.TreeManagerTest.seperateByTimestep_AllInferencesPresent" />
+        <item itemvalue="JUnit.TreeManagerTest.seperateByTimestep_CorrectSplitBetweenTimeStepLists" />
+        <item itemvalue="JUnit.TreeManagerTest.createTreeNodes_AllInferenceTriplsAreInferenceNodesInGraph" />
       </list>
     </recent_temporary>
   </component>

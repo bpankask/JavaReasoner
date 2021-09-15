@@ -34,7 +34,7 @@ public class ReasonerLogic {
      */
     public static InfModel[] runTimeStepReasoner(String filePath, String rulePath, String preProcessingPath, String storageFilePath) {
 
-        int sizeOfOuts = 14;
+        int sizeOfOuts = 21;
 
         InfModel preReasoning = null;
         InfModel inf = null;

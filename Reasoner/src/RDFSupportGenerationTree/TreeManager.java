@@ -17,7 +17,6 @@ public class TreeManager {
     public InfModel infModel;
     public Model baseModel;
     public List<TreeNode> tree = null;
-    public HashMap<Double, String> encodingMap;
 
     public TreeManager(InfModel inf){
         this.infModel = inf;
@@ -141,43 +140,6 @@ public class TreeManager {
     }
 
     /**
-     * Creates appropriate TreeNode which is a fact and updates its encoding field.
-     * @param s
-     * @return
-     */
-    private List<Double> encodeStatement(Statement s){
-
-        double subjectEnc = 0;
-        double predEnc = 0;
-        double objectEnc = 0;
-
-        for(Map.Entry<Double, String> entry : encodingMap.entrySet()){
-            //It is a concept if positive.
-            if(entry.getKey() > 0){
-                if(entry.getValue().equals(s.getSubject().toString())){
-                    subjectEnc = entry.getKey();
-                }
-                if(entry.getValue().equals(s.getObject().toString())){
-                    objectEnc = entry.getKey();
-                }
-            }
-            //It is a role if negative.
-            if(entry.getKey() < 0){
-                if( entry.getValue().equals(s.getPredicate().toString())){
-                    predEnc = entry.getKey();
-                }
-            }
-        }
-
-        List<Double> encoding = new ArrayList<Double>();
-        encoding.add(subjectEnc);
-        encoding.add(predEnc);
-        encoding.add(objectEnc);
-
-        return encoding;
-    }
-
-    /**
      * Separates the tree by time step value.
      * @return Map from time step number to list of tree node.
      */
@@ -197,22 +159,4 @@ public class TreeManager {
         }
         return timesteps;
     }
-
-//    /**
-//     * Gets encoded supporting statements for this TreeManagers Inference Graph.  Each array in the list has shape
-//     * (numMaxReasoningSteps, ???)
-//     * @return
-//     */
-//    public List<Double[][]> getSupports(){
-//
-//    }
-
-//    /**
-//     * Gets encoded supporting statements for this TreeManagers Inference Graph.  Each array in the list has shape
-//     * (numMaxReasoningSteps, ???)
-//     * @return
-//     */
-//    public List<Double[][]> getOutputs(){
-//
-//    }
 }

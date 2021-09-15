@@ -74,8 +74,6 @@ public class PackageTreeData {
 
                 allSamplesForOuputAtTimeStep.add(triplesForOutsAtTimeStep);
                 allSamplesForKBAtTimeStep.add(triplesForKBAtTimeStep);
-
-//                System.out.println("PackageData: Sample: " + k);
             }
             mapFromTimeStepToSamples.put(i, allSamplesForOuputAtTimeStep);
             mapFromTimeStepToKB.put(i, allSamplesForKBAtTimeStep);

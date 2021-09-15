@@ -1,5 +1,6 @@
 package JSONHandler;
 
+import JsonHandler.SerializeDeepReasonerData;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
@@ -17,48 +18,45 @@ public class SerializeDeepReasonerDataTest {
 
     private SerializeDeepReasonerData serializeClass = null;
 
-//    @Before
-//    public void setUp(){
-//        List<ArrayList<Double>> kb = new ArrayList<ArrayList<Double>>();
-//        ArrayList<Double> list1 = new ArrayList<Double>();
-//        list1.add(.1);
-//        list1.add(.2);
-//        list1.add(.3);
-//        ArrayList<Double> list2 = new ArrayList<Double>();
-//        list2.add(.7);
-//        list2.add(.8);
-//        list2.add(.9);
-//        kb.add(list1);
-//        kb.add(list2);
-//
-//        List<Double[][]> supp = new ArrayList<Double[][]>();
-//        Double[][] supp1 = new Double[4][4];
-//        supp1[0][0] = .00;
-//        supp1[1][1] = .01;
-//        supp1[2][2] = .02;
-//        supp1[3][3] = .03;
-//        supp.add(supp1);
-//
-//        List<Double[][]> outputs = new ArrayList<Double[][]>();
-//        Double[][] outputs1 = new Double[4][4];
-//        outputs1[0][0] = .00;
-//        outputs1[1][1] = .01;
-//        outputs1[2][2] = .02;
-//        outputs1[3][3] = .03;
-//        outputs.add(outputs1);
-//
-//        List<HashMap<Double, String>> vectorMap = new ArrayList<HashMap<Double, String>>();
-//        HashMap<Double, String> dict = new HashMap<Double, String>();
-//        dict.put(.00, "rdf");
-//        dict.put(.01, "rdfs");
-//        dict.put(.02, "owl");
-//        vectorMap.add(dict);
-//
-//        this.serializeClass = new SerializeDeepReasonerData(kb, supp, outputs, vectorMap);
-//    }
+    @Before
+    public void setUp(){
+        List<ArrayList<Double>> kb = new ArrayList<ArrayList<Double>>();
+        ArrayList<Double> list1 = new ArrayList<Double>();
+        list1.add(.1);
+        list1.add(.2);
+        list1.add(.3);
+        ArrayList<Double> list2 = new ArrayList<Double>();
+        list2.add(.7);
+        list2.add(.8);
+        list2.add(.9);
+        kb.add(list1);
+        kb.add(list2);
+
+        List<ArrayList[]> supp = new ArrayList();
+        ArrayList[] suppArr1 = new ArrayList[2];
+        suppArr1[0] = new ArrayList(Arrays.asList(.01, .02));
+        suppArr1[1] = new ArrayList(Arrays.asList(.11, .12));
+        ArrayList[] suppArr2 = new ArrayList[2];
+        suppArr2[0] = new ArrayList(Arrays.asList(.11, .12));
+        suppArr2[1] = new ArrayList(Arrays.asList(.21, .22));
+        supp.add(suppArr1);
+        supp.add(suppArr2);
+
+        List<ArrayList[]> outs = new ArrayList();
+        ArrayList[] outArr1 = new ArrayList[2];
+        outArr1[0] = new ArrayList(Arrays.asList(.01, .02));
+        outArr1[1] = new ArrayList(Arrays.asList(.11, .12));
+        ArrayList[] outArr2 = new ArrayList[2];
+        outArr2[0] = new ArrayList(Arrays.asList(.11, .12));
+        outArr2[1] = new ArrayList(Arrays.asList(.21, .22));
+        outs.add(suppArr1);
+        outs.add(suppArr2);
+
+        this.serializeClass = new SerializeDeepReasonerData(kb, supp, outs, 10, 5);
+    }
 
     @Test
-    public void serializeToJson_CorrectJsonOutput() throws JsonProcessingException {
+    public void serializeToJson_CorrectJsonConversion() throws JsonProcessingException {
 
         String json = this.serializeClass.serializeToJson();
 
@@ -67,13 +65,11 @@ public class SerializeDeepReasonerDataTest {
         assertEquals(expected.getkB(), this.serializeClass.getkB());
         assertArrayEquals(expected.getOutputs().toArray(), this.serializeClass.getOutputs().toArray());
         assertArrayEquals(expected.getSupports().toArray(), this.serializeClass.getSupports().toArray());
-        assertEquals(expected.getVectorMap(), this.serializeClass.getVectorMap());
     }
 
     @Test
-    public void writeJson_JsonFileHasCorrectInput() throws IOException {
-        this.serializeClass.writeJson("C:\\Users\\Brayden Pankaskie\\Desktop\\JavaReasoner\\Reasoner\\tests\\jsonWriterTest.json",
-                this.serializeClass.serializeToJson());
+    public void writeJson_CorrectReadingAndWritingToFile() throws IOException {
+        this.serializeClass.writeJson("C:\\Users\\Brayden Pankaskie\\Desktop\\JavaReasoner\\Reasoner\\tests\\jsonWriterTest.json");
 
         File jsonFile = new File("C:\\Users\\Brayden Pankaskie\\Desktop\\JavaReasoner\\Reasoner\\tests\\jsonWriterTest.json");
 

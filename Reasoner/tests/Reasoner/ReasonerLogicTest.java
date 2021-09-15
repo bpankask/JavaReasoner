@@ -44,7 +44,7 @@ public class ReasonerLogicTest {
     }
 
     @Test
-    public void runTimeStepReasoner_NoDerivationsExceptFromContainerRules(){
+    public void runTimeStepReasoner_OnlyPareProcessingDerivationsWhereAppropriate(){
         String filePath = "C:\\Users\\Brayden Pankaskie\\Desktop\\LabStuff\\TestFiles\\gfo-1.0.owl";
         String rulePath = "src\\RulesTimeStep.txt";
         String tracePath = "OutputFiles\\traceTest";

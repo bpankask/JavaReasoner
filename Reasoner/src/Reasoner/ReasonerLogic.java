@@ -34,7 +34,7 @@ public class ReasonerLogic {
      */
     public static InfModel[] runTimeStepReasoner(String filePath, String rulePath, String preProcessingPath, String storageFilePath) {
 
-        int sizeOfOuts = 14;
+        int sizeOfOuts = 8;
 
         InfModel preReasoning = null;
         InfModel inf = null;
@@ -54,12 +54,9 @@ public class ReasonerLogic {
 
             System.out.println("Model reasoning: Completed\n");
 
-            //Encode graph using a specific method of encoding.
-            ScaledIntegerMappedEncoding sie = new ScaledIntegerMappedEncoding(inf);
-
             //Creates Tree manager for in inference graph and a specified encoding.
             //It will handle all tree manipulations and queries.
-            TreeManager tm = new TreeManager(inf, sie.getEncodedMapAndPopLabelMap());
+            TreeManager tm = new TreeManager(inf);
 
             //a infTree from a hashtable of treeNodes.
             List<TreeNode> tree = tm.createTree(tm.createTreeNodes());
@@ -81,9 +78,8 @@ public class ReasonerLogic {
             System.out.println("Packaging data: Completed\n");
 
             //Creates Serializer object to serialize data in a particular json format.
-            JsonSerializer js = new SerializeDeepReasonerData(ptd.getKBEncoded(), ptd.getSupportsEncoded(),
-                    ptd.getOutputsEncoded(), ptd.getVectorMap(), sie.labelMap, sie.conceptRoleInfoArray[0].size(),
-                    sie.conceptRoleInfoArray[1].size());
+            JsonSerializer js = new SerializeDeepReasonerData(ptd.KB, ptd.Supports,
+                    ptd.Outputs, (int) ptd.encodingInfo[0], (int) ptd.encodingInfo[1]);
 
             js.writeJson(storageFilePath);
 

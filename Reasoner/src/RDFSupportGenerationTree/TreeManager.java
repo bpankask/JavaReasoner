@@ -17,12 +17,10 @@ public class TreeManager {
     public InfModel infModel;
     public Model baseModel;
     public List<TreeNode> tree = null;
-    public HashMap<Double, String> encodingMap;
 
-    public TreeManager(InfModel inf, HashMap<Double, String> map){
+    public TreeManager(InfModel inf){
         this.infModel = inf;
         baseModel = inf.getRawModel();
-        this.encodingMap = map;
     }
 
     public InfModel getInfModelUsed() {
@@ -48,7 +46,7 @@ public class TreeManager {
                 //If statement is a fact then it won't have derivation.
                 if( baseModel.contains(s)){
                     FactNode fn = new FactNode(s.asTriple());
-                    fn.setEncoding(encodeStatement(s));
+                    //fn.setEncoding(encodeStatement(s));
                     tableOfNodes.put(s.asTriple().toString(), fn);
                 }
                 else {
@@ -58,7 +56,7 @@ public class TreeManager {
                         //Creates node from derivation/inference.
                         RuleDerivation deriv = (RuleDerivation) id.next();
                         InferenceNode node = new InferenceNode(deriv, infModel);
-                        node.setEncoding(encodeStatement(s));
+                        //node.setEncoding(encodeStatement(s));
 
                         if (!tableOfNodes.contains(node.toString())) {
                             tableOfNodes.put(node.toString(), node);
@@ -127,9 +125,9 @@ public class TreeManager {
             v2 += assignTimeSteps(infNode.support2);
         }
 
-        if(infNode.getSupportEncoding() == null){
-            infNode.setSupportEncoding();
-        }
+//        if(infNode.getSupportEncoding() == null){
+//            infNode.setSupportEncoding();
+//        }
 
         if(v1 >= v2){
             infNode.setTimeStep(v1);
@@ -139,43 +137,6 @@ public class TreeManager {
             infNode.setTimeStep(v2);
             return v2 + 1;
         }
-    }
-
-    /**
-     * Creates appropriate TreeNode which is a fact and updates its encoding field.
-     * @param s
-     * @return
-     */
-    private List<Double> encodeStatement(Statement s){
-
-        double subjectEnc = 0;
-        double predEnc = 0;
-        double objectEnc = 0;
-
-        for(Map.Entry<Double, String> entry : encodingMap.entrySet()){
-            //It is a concept if positive.
-            if(entry.getKey() > 0){
-                if(entry.getValue().equals(s.getSubject().toString())){
-                    subjectEnc = entry.getKey();
-                }
-                if(entry.getValue().equals(s.getObject().toString())){
-                    objectEnc = entry.getKey();
-                }
-            }
-            //It is a role if negative.
-            if(entry.getKey() < 0){
-                if( entry.getValue().equals(s.getPredicate().toString())){
-                    predEnc = entry.getKey();
-                }
-            }
-        }
-
-        List<Double> encoding = new ArrayList<Double>();
-        encoding.add(subjectEnc);
-        encoding.add(predEnc);
-        encoding.add(objectEnc);
-
-        return encoding;
     }
 
     /**
@@ -198,22 +159,4 @@ public class TreeManager {
         }
         return timesteps;
     }
-
-//    /**
-//     * Gets encoded supporting statements for this TreeManagers Inference Graph.  Each array in the list has shape
-//     * (numMaxReasoningSteps, ???)
-//     * @return
-//     */
-//    public List<Double[][]> getSupports(){
-//
-//    }
-
-//    /**
-//     * Gets encoded supporting statements for this TreeManagers Inference Graph.  Each array in the list has shape
-//     * (numMaxReasoningSteps, ???)
-//     * @return
-//     */
-//    public List<Double[][]> getOutputs(){
-//
-//    }
 }

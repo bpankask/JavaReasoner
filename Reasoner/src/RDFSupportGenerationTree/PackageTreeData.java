@@ -37,6 +37,8 @@ public class PackageTreeData {
 
         HashMap<Integer, Integer> quotaMap = calculateQuotaForEachTS(tsToInf, numOfOutputTriples);
 
+        System.out.println("Num of Timesteps: " + quotaMap.size());
+
         // Calculates how many iterations of complete sample data will be created.
         int longestTimestepIndex = 3;
         for(int x=1; x<=tsToInf.size(); x++){

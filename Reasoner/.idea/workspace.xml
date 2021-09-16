@@ -3,26 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="60b19ed1-ce3f-4f6f-9531-dbc7914c00da" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OutputFiles/Descriptions_and_Situations.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OutputFiles/traceTest" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Reasoner.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Reasoner.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Reasoner/RDFSupportGenerationTree/PackageTreeData.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Reasoner/RDFSupportGenerationTree/PackageTreeData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Reasoner/RDFSupportGenerationTree/TreeManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Reasoner/RDFSupportGenerationTree/TreeManager.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Reasoner/Reasoner/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Reasoner/Reasoner/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/Reasoner/RDFSupportGenerationTree/TreeManagerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/Reasoner/RDFSupportGenerationTree/TreeManagerTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/Reasoner/Reasoner/ReasonerLogicTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/Reasoner/Reasoner/ReasonerLogicTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/Reasoner/jsonWriterTest.json" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/Reasoner/jsonWriterTest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/Reasoner/testGraph.ttl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Reasoner/Reasoner/ReasonerLogic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Reasoner/Reasoner/ReasonerLogic.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RDFSupportGenerationTree/PackageTreeData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RDFSupportGenerationTree/PackageTreeData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RDFSupportGenerationTree/TreeManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RDFSupportGenerationTree/TreeManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Reasoner/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Reasoner/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Reasoner/ReasonerLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Reasoner/ReasonerLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/JSONHandler/SerializeDeepReasonerDataTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/JSONHandler/SerializeDeepReasonerDataTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/RDFGraphManipulations/ScaledIntegerMappedEncodingTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/RDFSupportGenerationTree/TreeManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/RDFSupportGenerationTree/TreeManagerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Reasoner/ReasonerLogicTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Reasoner/ReasonerLogicTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/jsonWriterTest.json" beforeDir="false" afterPath="$PROJECT_DIR$/tests/jsonWriterTest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/testGraph.ttl" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
